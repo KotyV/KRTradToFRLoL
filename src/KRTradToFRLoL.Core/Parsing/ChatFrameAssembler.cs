@@ -52,9 +52,13 @@ public sealed class ChatFrameAssembler(ChatLineParser parser)
                 continue;
             }
 
-            if (mirrorAllLines && line.Trim().Length >= 4)
+            // Porte de qualité : une ligne système doit RESSEMBLER à une ligne de chat
+            // (timestamp ou parenthèse champion ou hangul majoritaire) — les fragments
+            // d'OCR sur lignes en plein fondu (« COIEUI », « 2B Da Qs ») échouent aux trois.
+            var text = line.Trim();
+            if (mirrorAllLines && text.Length >= 4
+                && (ChatLineParser.LooksLikeNewEntry(line) || ChatLineParser.IsMostlyHangul(text)))
             {
-                var text = line.Trim();
                 messages.Add(new ChatMessage
                 {
                     Channel = "Sys",

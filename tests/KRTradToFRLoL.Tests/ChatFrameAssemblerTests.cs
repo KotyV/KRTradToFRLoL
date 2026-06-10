@@ -126,6 +126,9 @@ public class ChatFrameAssemblerTests
             "05:39 신 일 (Rell) is on the way",            // ping EN, pseudo hangul → copie
             "몬스터 (르블랑) 님이 후퇴 신호를 보냄",          // ping client CORÉEN → à traduire
             "B D",                                         // fragment court → ignoré
+            "COIEUI",                                      // bruit de fondu → ignoré
+            "2B Da Qs Compee",                             // idem (ni ts, ni champion, ni hangul)
+            "-5Eeen Rey son th a a pae",                   // idem
         ], mirrorAllLines: true);
 
         Assert.Equal(2, messages.Count);

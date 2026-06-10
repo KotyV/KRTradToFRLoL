@@ -44,7 +44,7 @@ public sealed class Deduplicator
     }
 
     private static int MaxOcrJitter(string a, string b) =>
-        Math.Max(1, (int)(Math.Max(a.Length, b.Length) * 0.15));
+        Math.Max(1, (int)(Math.Max(a.Length, b.Length) * 0.2));
 
     public void Reset()
     {
