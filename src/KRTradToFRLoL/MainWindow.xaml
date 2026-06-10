@@ -14,20 +14,21 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Clé API (mode direct) -->
+        <!-- Proxy (mode normal pour les streamers : la clé reste côté serveur) -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
-            <TextBlock Text="Clé API Anthropic :" VerticalAlignment="Center" Width="130"/>
-            <PasswordBox x:Name="ApiKeyBox" Width="330" VerticalContentAlignment="Center"/>
-            <Button x:Name="SaveKeyButton" Content="Enregistrer" Margin="8,0,0,0" Padding="10,4" Click="OnSaveKey"/>
-        </StackPanel>
-
-        <!-- Proxy (mode distribution : la clé reste côté serveur) -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="ou Proxy + token :" VerticalAlignment="Center" Width="130"
-                       ToolTip="URL https du relais (ex. https://….vercel.app/api/translate) + token d'app fourni par l'opérateur."/>
+            <TextBlock Text="Proxy + token :" VerticalAlignment="Center" Width="130"
+                       ToolTip="Mode normal. URL https du relais (ex. https://….vercel.app/api/translate) + token fourni par l'organisateur."/>
             <TextBox x:Name="ProxyUrlBox" Width="220" VerticalContentAlignment="Center"/>
             <PasswordBox x:Name="ProxyTokenBox" Width="104" Margin="6,0,0,0" VerticalContentAlignment="Center"/>
             <Button Content="Enregistrer" Margin="8,0,0,0" Padding="10,4" Click="OnSaveProxy"/>
+        </StackPanel>
+
+        <!-- Clé API (mode avancé : self-host avec sa propre clé, sans proxy) -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="ou clé API (avancé) :" VerticalAlignment="Center" Width="130" Foreground="#FF9090A0"
+                       ToolTip="Réservé au self-host/dev : ta propre clé API Anthropic, chiffrée localement (DPAPI). Les streamers n'en ont pas besoin — le proxy suffit."/>
+            <PasswordBox x:Name="ApiKeyBox" Width="330" VerticalContentAlignment="Center"/>
+            <Button x:Name="SaveKeyButton" Content="Enregistrer" Margin="8,0,0,0" Padding="10,4" Click="OnSaveKey"/>
         </StackPanel>
 
         <!-- Zone de chat -->
