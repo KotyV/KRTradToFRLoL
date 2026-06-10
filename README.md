@@ -14,7 +14,9 @@ Plan directeur : [PLAN.md](PLAN.md) · Analyse des captures réelles :
 ## Comment ça marche
 
 ```text
-capture zone chat (4 Hz) → diff → OCR (ko) → parsing structurel multi-locale (EN/FR/KO)
+capture zone chat (4 Hz) → diff → prétraitement (gris + contraste) →
+  OCR coréen spécialisé (PaddleOCR PP-OCRv5, fallback OCR Windows)
+  → parsing structurel multi-locale (EN/FR/KO)
   → recollage des messages repliés → déduplication (tolérante au jitter OCR)
   → traduction en cascade :
       1. glossaire local (330+ entrées d'argot LoL vérifiées, 0 ms)
@@ -32,8 +34,16 @@ d'ancre visuelle vers la ligne d'origine.
 ## Prérequis
 
 1. **Windows 11** (Windows 10 fonctionne pour ce MVP).
-2. **Pack de langue coréen** (OCR natif) : Paramètres → Heure et langue → Langue →
-   Ajouter **한국어** → cocher « Reconnaissance de texte ». Relancer l'app ensuite.
+2. **Moteur OCR coréen** (recommandé — bien plus précis que l'OCR Windows sur le hangul
+   du chat) :
+
+   ```powershell
+   pip install rapidocr onnxruntime
+   python tools/export_korean_ocr.py
+   ```
+
+   À défaut, l'app retombe sur l'OCR Windows : pack de langue **한국어** requis
+   (Paramètres → Langue, cocher « Reconnaissance de texte »).
 3. **LoL en mode « Sans bordure »** (l'overlay ne s'affiche pas en plein écran exclusif).
 4. Recommandé côté client LoL : timestamps du chat activés, Chat visibility = Everyone.
 5. Une source de traduction LLM (sinon : glossaire + traduction locale uniquement) —
@@ -86,14 +96,15 @@ dotnet test KRTradToFRLoL.slnx      # pyramide : unitaires + intégration (fichi
 - `tests/KRTradToFRLoL.Tests` — xUnit ; les cas de parsing viennent de captures réelles
   de parties sur le serveur KR (clients anglais, français et coréen).
 - `server/vercel-proxy` — relais API pour la distribution sans clé embarquée.
+- `tools/export_korean_ocr.py` — installation du moteur OCR coréen (PaddleOCR ONNX).
 - `tools/export_m2m100.py` — export du modèle de traduction locale.
 
 La CI GitHub Actions compile (warnings = erreurs) et exécute tous les tests sur Windows.
 
 ## Limites connues
 
-- La qualité OCR sur le hangul 12-18 px dépend de la machine : à valider en réel ; un
-  moteur PaddleOCR-coréen peut remplacer l'OCR Windows derrière `IOcrEngine` si besoin.
+- L'OCR sur flux vidéo recompressé (VOD) reste bruité même avec le moteur spécialisé ;
+  la capture native du client est le cas nominal.
 - Un message replié dont l'en-tête a défilé hors de la zone capturée est perdu.
 - Le chat d'équipe adverse n'est jamais visible (limitation du jeu, pas de l'app).
 
