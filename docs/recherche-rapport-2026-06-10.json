@@ -1,0 +1,732 @@
+{
+  "summary": "Recherche technique pour app de traduction temps réel du chat LoL coréen→français",
+  "agentCount": 10,
+  "logs": [],
+  "result": [
+    {
+      "topic": "acquisition-chat",
+      "findings": {
+        "summary": "Aucune API officielle de League of Legends n'expose le chat in-game : la Live Client Data API (https://127.0.0.1:2999/liveclientdata) ne propose que 12 endpoints orientés gameplay (allgamedata, activeplayer, playerlist, eventdata, gamestats…) et son endpoint /eventdata ne contient que des événements de jeu (kills, dragons…), jamais les messages. La LCU API (/lol-chat/v1/conversations) couvre uniquement le chat client : amis, lobby et champ select via XMPP — pas le chat in-game, qui transite par le serveur de jeu et n'est lisible que dans le processus du jeu ; de plus, la politique LCU de Riot interdit explicitement l'usage d'applications LCU par les joueurs en Corée, ce qui la disqualifie pour un event sur le serveur KR. Les replays .rofl sont un dump de paquets obfusqués, ne contiennent pas le chat exploitable et ne sont de toute façon disponibles qu'après la partie. La lecture mémoire, les hooks et l'injection DLL sont frontalement détectés par Vanguard (kernel, actif sur LoL depuis le patch 14.9 du 1er mai 2024) : Riot écrit noir sur blanc que « les outils externes lisant la mémoire ne fonctionneront plus » — c'est exclu, risque de ban maximal. À l'inverse, la capture d'écran externe + overlay en fenêtre séparée est la voie sûre : Riot confirme que « les overlays et outils utilisant les APIs continueront de fonctionner », OBS/Overwolf/Mobalytics tournent sans problème sous Vanguard, et la lecture de pixels est par nature hors de portée de détection (Vanguard ne sanctionne les « pixel bots » que pour l'automatisation d'actions, pas pour la lecture). Visuellement, le chat s'affiche en bas à gauche ; il s'ouvre avec Entrée (envoi Entrée, annulation Échap), l'historique s'étend et se scrolle avec la touche Z, et les messages récents en chat fermé s'estompent après ~10 s (durée non documentée officiellement, à mesurer). Le format des lignes est « Pseudo (Champion) : message » avec préfixes de canal [Party]/[Team]/[All] ; depuis le patch 13.4 (2023) le code couleur universel bleu allié / rouge all chat a été supprimé, il faut donc parser les préfixes plutôt que la couleur. Le chat ennemi n'est visible que via /all et seulement si le réglage « Chat visibility » est sur « Everyone » ; le chat d'équipe adverse n'est jamais visible. La taille/position du chat dépend du réglage « Chat Scale » (distinct du HUD Scale) et de la résolution. Recommandation : capture de la fenêtre du jeu (Windows.Graphics.Capture), crop de la zone chat, OCR coréen, traduction, overlay topmost click-through — méthode 100 % externe, identique à OBS, zéro interaction avec le processus protégé.",
+        "keyFacts": [
+          "Live Client Data API (port 2999) — 12 endpoints documentés sur developer.riotgames.com (vérifié juin 2026) : /allgamedata, /activeplayer, /activeplayername, /activeplayerabilities, /activeplayerrunes, /playerlist, /playerscores, /playersummonerspells, /playermainrunes, /playeritems, /eventdata, /gamestats. AUCUN endpoint chat ; /eventdata ne contient que EventID/EventName/EventTime (événements gameplay).",
+          "LCU API : /lol-chat/v1/conversations expose le chat lobby/champ select/amis (service XMPP du client), mais aucun endpoint n'expose le chat in-game. Politique LCU Riot (DevRel, en vigueur depuis janv. 2019) : approbation préalable obligatoire et « les joueurs en Corée ne peuvent pas utiliser d'applications exploitant la League Client API » ; le serveur KR masque en plus les données de lobby aux outils tiers (vérifié : restrictions Porofessor KR encore actives en févr. 2025).",
+          "Replays .rofl : « dump de paquets » obfusqués dont l'obfuscation change à chaque patch (projet roflxd, non décodé à ce jour) ; Riot indique que les replays ne montrent que le gameplay, sans chat. Inutilisable en live de toute façon (fichier disponible après la partie).",
+          "Vanguard est actif sur LoL depuis le patch 14.9 (1er mai 2024, après pilote 14.8 aux Philippines) : driver kernel vgk.sys chargé au boot, détection de la lecture mémoire, de l'injection/process tampering ; FAQ DevRel : « External tools reading memory will no longer work ». Mise à jour de mai 2026 : neutralisation du matériel de triche DMA via IOMMU, même jeu éteint. Lecture mémoire/hook/injection = ban quasi certain, exclu.",
+          "FAQ Vanguard DevRel : « Overlays and internal tools using the API, game client, and in-game APIs should continue to function » ; Porofessor/Blitz/Mobalytics fonctionnent s'ils « n'exfiltrent pas d'information depuis la mémoire du client ». OBS et la capture d'écran externe ne sont pas bloqués ; les outils à base de pixels sont hors du périmètre de détection de Vanguard (sanctionnés uniquement s'ils automatisent des actions).",
+          "Chat in-game : coin bas-gauche de l'écran ; ouverture avec Entrée, envoi Entrée, annulation Échap ; historique extensible et scrollable via la touche Z (chat fermé) ; messages récents qui s'estompent après ~10 s en chat fermé (durée non documentée officiellement — à mesurer empiriquement) ; position modifiable via Chat.ini (ChatX/ChatY) mais modifier les fichiers du jeu est à proscrire pour un event.",
+          "Format des lignes : « Pseudo (Champion) : message » avec préfixes de canal [Party]/[Team]/[All]. Depuis le patch 13.4 (févr. 2023, ajout du party chat), le code couleur universel (bleu = allié, rouge = all) a été supprimé — les joueurs s'en plaignent — donc le parsing doit s'appuyer sur les préfixes texte, pas sur la couleur.",
+          "Visibilité : réglage « Chat visibility » à 3 niveaux — Everyone (Party/Ally/All), Same Team (Party/Ally), Premade Only — doit être sur « Everyone » pour voir le /all ennemi. Le chat d'équipe des adversaires n'est JAMAIS visible. /all (alias /a, /allchat) est fonctionnel en 2026 (le test de désactivation du patch 11.21 d'oct. 2021 n'a pas été généralisé). Réglages « Chat Scale » (taille du chat) et « Show Timestamps » distincts du « HUD Scale ».",
+          "Précédents OCR fonctionnels : Remideza/lol_trad_fromimage (capture de la fenêtre LoL + Tesseract + zone chat configurable WINDOWPOS/LINESIZE), mcguia/league-chat-translator (overlay + Google Translate), RSTGameTranslation (OCR temps réel multi-moteurs + overlay). Aucun cas documenté de ban Vanguard pour de la capture d'écran."
+        ],
+        "recommendation": "Méthode recommandée : capture d'écran externe + OCR, c'est la SEULE voie possible (aucune API n'expose le chat in-game) et elle est sûre vis-à-vis de Vanguard. Architecture conseillée : (1) capture de la fenêtre « League of Legends » via Windows.Graphics.Capture (jeu en mode « Borderless » — à imposer dans les réglages des joueurs ; en fullscreen exclusif, basculer sur DXGI Desktop Duplication), exactement comme OBS, sans jamais toucher au processus du jeu ; (2) crop de la zone chat bas-gauche, calculée à partir d'une configuration verrouillée (résolution 1920x1080, Chat Scale et HUD Scale fixés, « Chat visibility » = Everyone, « Show Timestamps » = ON pour faciliter la déduplication des lignes) ; (3) boucle de capture 4-10 Hz avec détection de changement d'image avant OCR ; (4) OCR coréen local (OneOCR/Windows OCR ou PaddleOCR korean, plus rapides et fiables que Tesseract sur le hangul) ; (5) déduplication par timestamp+ligne puis traduction ; (6) affichage dans une fenêtre overlay séparée, topmost et click-through (WS_EX_TRANSPARENT/WS_EX_LAYERED), jamais injectée dans le jeu. Budget latence réaliste : capture <20 ms + OCR 50-300 ms + traduction 200-800 ms = <1,5 s atteignable. Demander aux joueurs de garder l'historique de chat étendu (touche Z) pendant les parties pour neutraliser le fade-out de ~10 s et fiabiliser l'OCR (fond plus stable, plus de lignes visibles). Ne PAS utiliser la LCU API pendant l'event (interdite en Corée par la politique Riot) ; ne pas modifier Chat.ini ni aucun fichier du jeu. Étant donné la visibilité de l'event (dizaines de milliers de viewers), faire valider l'outil en amont par Riot/Riot Korea via les contacts esport/DevRel : c'est gratuit en risque et ça blinde le dossier.",
+        "risks": [
+          "Fade-out du chat fermé (~10 s, non documenté) : si la boucle OCR rate une fenêtre de capture (lag, alt-tab, fenêtre occludée), des messages sont perdus définitivement — mitigation : historique étendu via touche Z + capture à haute fréquence + déduplication.",
+          "Fiabilité OCR sur le hangul en petite taille avec fond de jeu animé semi-transparent : taux d'erreur à valider en conditions réelles ; les pseudos coréens et noms de champions en coréen (client KR probablement verrouillé en langue coréenne) compliquent le parsing « Pseudo (Champion) : message » — à prototyper tôt avec de vraies captures du client KR.",
+          "Position/taille de la zone chat dépendantes de la résolution, du Chat Scale et de l'ouverture du chat : tout changement de réglage par un joueur en cours d'event casse le crop — mitigation : profil de réglages verrouillé + calibration visuelle au lancement (debug overlay).",
+          "Politique coréenne plus stricte sur les outils tiers (LCU API interdite aux joueurs en Corée, restrictions Porofessor KR observées en 2025) : notre outil étant purement externe (lecture d'écran, aucun avantage compétitif), le risque est faible mais non nul juridiquement/politiquement — mitigation : validation écrite par Riot/Riot Korea avant l'event.",
+          "Riot peut changer l'UI du chat (position, police, préfixes, couleurs) à n'importe quel patch — l'event doit figer la version testée et prévoir une re-calibration rapide ; le code couleur a déjà été supprimé au patch 13.4, ne jamais s'appuyer sur la couleur seule.",
+          "Le chat d'équipe ennemi n'est jamais visible : seuls le chat allié et le /all ennemi (si « Chat visibility » = Everyone) peuvent être traduits — bien cadrer les attentes éditoriales de l'event.",
+          "Performance broadcast : OCR GPU/CPU concurrent du jeu et d'OBS sur la même machine — préférer OCR léger (OneOCR) ou déport sur une machine de capture séparée ; isoler l'app pour qu'un crash de l'overlay n'affecte ni le jeu ni le stream."
+        ],
+        "criticalClaims": [
+          "Aucune API officielle (Live Client Data API, LCU API, Riot API) n'expose les messages du chat in-game — vérifié sur la doc officielle Riot (juin 2026) et corroboré par le fait que tous les projets de traduction de chat existants recourent à l'OCR. Si cette affirmation était fausse (endpoint chat découvert), toute l'architecture OCR serait remplacée par un simple polling HTTP local.",
+          "La capture d'écran externe + overlay en fenêtre séparée n'est ni détectée ni sanctionnée par Vanguard (précédents OBS/Overwolf/Mobalytics, FAQ DevRel Riot). Si c'était faux, le projet entier serait non viable — d'où l'intérêt d'une validation écrite par Riot avant l'event.",
+          "La lecture mémoire, le hook et l'injection DLL sont détectés par Vanguard (kernel-level, LoL patch 14.9, mai 2024) et mènent au ban — aucune implémentation ne doit s'en approcher, même « en lecture seule ».",
+          "La politique Riot interdit l'usage d'applications LCU par les joueurs en Corée : ne fonder AUCUNE fonctionnalité de l'event sur la LCU API (même pour le chat de champ select), sous peine de devoir tout retirer sur place.",
+          "Les messages en chat fermé s'estompent après ~10 s et le /all ennemi n'est visible que si « Chat visibility » = Everyone : ces deux paramètres conditionnent la boucle de capture et la configuration imposée aux joueurs — la durée exacte de fade-out doit être mesurée empiriquement lors du prototypage (non documentée par Riot)."
+        ],
+        "sources": [
+          {
+            "title": "Riot Developer Portal — Game Client API / Live Client Data API (liste officielle des endpoints)",
+            "url": "https://developer.riotgames.com/docs/lol"
+          },
+          {
+            "title": "Riot Games DevRel — Vanguard FAQ for Third Party Applications",
+            "url": "https://www.riotgames.com/en/DevRel/vanguard-faq"
+          },
+          {
+            "title": "Riot Games DevRel — Changes to the LCU API Policy (interdiction LCU pour les joueurs en Corée)",
+            "url": "https://www.riotgames.com/en/DevRel/changes-to-the-lcu-api-policy"
+          },
+          {
+            "title": "League of Legends Wiki — Riot Vanguard (déploiement 14.9, vgk.sys, capacités et angles morts)",
+            "url": "https://wiki.leagueoflegends.com/en-us/Riot_Vanguard"
+          },
+          {
+            "title": "League of Legends Wiki — Chat commands (Entrée, /all, touche Z, canaux Party/Team/All)",
+            "url": "https://wiki.leagueoflegends.com/en-us/Chat_commands"
+          },
+          {
+            "title": "League of Legends Wiki — Settings (Chat Scale, Chat Visibility, Show Timestamps, HUD Scale)",
+            "url": "https://wiki.leagueoflegends.com/en-us/Settings"
+          },
+          {
+            "title": "Riot API Libraries — LCU, The League Client (architecture, /lol-chat, websocket)",
+            "url": "https://riot-api-libraries.readthedocs.io/en/latest/lcu.html"
+          },
+          {
+            "title": "Hextechdocs — Getting started with the LCU API",
+            "url": "https://hextechdocs.dev/getting-started-with-the-lcu-api/"
+          },
+          {
+            "title": "fraxiinus/roflxd — parseur de fichiers .ROFL (payload = paquets obfusqués, pas de chat décodable)",
+            "url": "https://github.com/fraxiinus/roflxd"
+          },
+          {
+            "title": "Riot Support — Replays FAQ & Pro-Tips (les replays ne contiennent pas le chat)",
+            "url": "https://support.riotgames.com/en-us/league-of-legends/gameplay/replays-faq-pro-tips"
+          },
+          {
+            "title": "Remideza/lol_trad_fromimage — précédent : traduction du chat LoL par capture de fenêtre + Tesseract",
+            "url": "https://github.com/Remideza/lol_trad_fromimage"
+          },
+          {
+            "title": "mcguia/league-chat-translator — précédent : overlay de traduction du chat in-game",
+            "url": "https://github.com/mcguia/league-chat-translator"
+          },
+          {
+            "title": "RSTGameTranslation — traduction d'écran temps réel pour jeux (OCR + overlay)",
+            "url": "https://thanhkeke97.github.io/RSTGameTranslation/"
+          },
+          {
+            "title": "downthecrop — Reading/Writing Data from the League of Legends Client (check serveur KR bloquant les outils tiers)",
+            "url": "https://downthecrop.xyz/blog/reading-writing-data-from-the-league-of-legends-client/"
+          },
+          {
+            "title": "Riot — Disabling /All Chat (patch 11.21, contexte historique du /all)",
+            "url": "https://www.leagueoflegends.com/en-us/news/game-updates/disabling-all-chat/"
+          },
+          {
+            "title": "Dot Esports — LoL players fed up with chat changes (suppression du code couleur, patch 13.4)",
+            "url": "https://dotesports.com/league-of-legends/news/league-players-totally-fed-up-with-chat-changes-riot-has-made"
+          },
+          {
+            "title": "GamerMarkt — Vanguard Update Bricks DMA Cheat Devices (mai 2026, IOMMU)",
+            "url": "https://www.gamermarkt.com/blog/vanguard-update-disables-dma-cheat-devices-riot-response/"
+          },
+          {
+            "title": "GGBoost — Vanguard for League of Legends is LIVE (patch 14.9, 1er mai 2024)",
+            "url": "https://ggboost.com/blog/post/lol-patch-14-9-vanguard"
+          }
+        ]
+      },
+      "verif": {
+        "verdicts": [
+          {
+            "claim": "Aucune API officielle (Live Client Data API, LCU API, Riot API) n'expose les messages du chat in-game",
+            "verdict": "confirmé",
+            "note": "Vérifié sur developer.riotgames.com/docs/lol (juin 2026) : les 12 endpoints Live Client Data listés correspondent exactement à la claim, aucun endpoint chat, et la doc limite le périmètre aux données de gameplay. Tentative de réfutation poussée : il EXISTE un plugin LCU peu connu « lol-game-client-chat » (63 dépôts GitHub le référencent, schémas KebsCS/lcu-and-riotclient-api et doughknee/queuePop vérifiés), mais ses endpoints (GET buddies, GET muted-players, POST instant-messages, POST party-messages) permettent uniquement d'ENVOYER ou de gérer — aucun GET ne lit les messages in-game. Nuance non bloquante : depuis le patch 13.4, le canal [Party] transite par le service de chat du client (XMPP) et pourrait théoriquement être lisible via GET /lol-chat/v1/conversations/{id}/messages pendant la partie — à tester, mais sans intérêt ici car la LCU est interdite en Corée et les canaux [Team]/[All] restent côté serveur de jeu. Les précédents OCR cités existent bien (Remideza/lol_trad_fromimage, description GitHub : « Traduce the League of legends ingame chat by capturing the ingame window »)."
+          },
+          {
+            "claim": "La capture d'écran externe + overlay en fenêtre séparée n'est ni détectée ni sanctionnée par Vanguard",
+            "verdict": "confirmé",
+            "note": "La citation de la FAQ DevRel est exacte mot pour mot : « Overlays and internal tools using the API, game client, and in-game APIs should continue to function » (riotgames.com/en/DevRel/vanguard-faq, vérifié). Aucun cas de ban pour capture d'écran pure trouvé ; OBS/streaming LoL est omniprésent. MAIS deux corrections de formulation : (1) la FAQ ne mentionne PAS explicitement la capture d'écran/pixels — c'est une inférence, pas une garantie écrite ; (2) « hors de portée de détection » est faux : Vanguard détecte les outils à base de pixels — ban wave Valorant de ~200 joueurs pour un « pixel bot » (Dot Esports) — mais ne sanctionne que ceux qui automatisent des entrées. C'est une protection par POLITIQUE, pas par invisibilité (Vanguard peut d'ailleurs prendre des captures d'écran du système, cf. 80.lv/NeoGAF 2024). À noter aussi : Vanguard bloque (sans bannir) des logiciels reposant sur des drivers kernel vulnérables (cas MSI Afterburner/RTCore64.sys côté Valorant) — la stack de capture doit rester 100 % API Windows natives. La validation écrite par Riot recommandée reste donc indispensable."
+          },
+          {
+            "claim": "La lecture mémoire, le hook et l'injection DLL sont détectés par Vanguard (kernel-level, LoL patch 14.9, mai 2024) et mènent au ban",
+            "verdict": "confirmé",
+            "note": "Citation FAQ DevRel vérifiée exacte : « External tools reading memory will no longer work, and you'll need to change methods ». Déploiement confirmé par sources multiples (wiki officiel LoL, Sportskeeda, GGBoost) : annonce 11 avril 2024, activation patch 14.9 le 1er mai 2024, driver kernel chargé au boot + client actif quand le jeu tourne. Nuance mineure : la lettre de la FAQ promet que ces outils « ne fonctionneront plus » (blocage) plutôt qu'un ban automatique ; le ban découle de la détection de tampering/injection (ban waves Vanguard documentées, records de « bans-per-second » revendiqués par Riot). La conclusion opérationnelle — exclusion totale, même en lecture seule — est correcte et prudente."
+          },
+          {
+            "claim": "La politique Riot interdit l'usage d'applications LCU par les joueurs en Corée",
+            "verdict": "confirmé",
+            "note": "Source primaire vérifiée (riotgames.com/en/DevRel/changes-to-the-lcu-api-policy, page toujours en ligne en juin 2026) : « For the time being we will no longer allow players in Korea to use applications leveraging the League Client API » (publié le 24 janv. 2019 ; aucune annonce d'abrogation trouvée dans le change log API). Corroboré par le check région KR masquant les données de lobby dans l'extension OP.GG (blog downthecrop, 2019). Nuance importante découverte : selon NamuWiki, OP.GG Desktop opère en Corée comme service officiel — des exceptions négociées avec Riot Korea existent donc. Le « for the time being » et ce précédent renforcent la recommandation de passer par Riot Korea pour l'event, mais ne pas fonder l'outil sur la LCU reste le bon choix par défaut."
+          },
+          {
+            "claim": "Le /all ennemi n'est visible que si « Chat visibility » = Everyone (et le chat d'équipe adverse jamais)",
+            "verdict": "confirmé",
+            "note": "Vérifié sur wiki.leagueoflegends.com/en-us/Settings : « Change Chat Visibility: ... Everyone (Party/Ally/All) is the highest visibility, then Same Team (Party/Ally), then Premade Only (Party) ». Les réglages « Chat Scale » (« Scales the text and window size of the chat console window ») et « Show Timestamps » distincts du HUD Scale sont également confirmés sur la même page. Aucune source ne contredit l'invisibilité du chat d'équipe adverse (cohérent avec l'architecture serveur)."
+          },
+          {
+            "claim": "Les messages en chat fermé s'estompent après ~10 s",
+            "verdict": "incertain",
+            "note": "Aucune documentation officielle ni source communautaire fiable ne donne la durée exacte du fade-out (recherches wiki Settings, support Riot, forums : néant). La claim le reconnaît elle-même (« durée non documentée — à mesurer empiriquement »), ce qui est la bonne posture : la valeur ~10 s doit être traitée comme une hypothèse à mesurer en Practice Tool sur le client KR avant de dimensionner la boucle de capture. La mitigation « historique étendu via touche Z » rend de toute façon cette incertitude non critique."
+          }
+        ],
+        "corrections": "La recommandation (capture externe + OCR + overlay séparé) survit à la vérification adversariale et reste la bonne. Corrections et nuances à intégrer : (1) Reformuler « la lecture de pixels est par nature hors de portée de détection » — c'est inexact : Vanguard détecte les outils à base de pixels (ban wave Valorant de ~200 joueurs pour un pixel bot) et peut capturer l'écran du système ; la protection vient de la POLITIQUE de Riot (pas d'automatisation d'entrées = pas de sanction), pas de l'invisibilité technique. L'outil ne doit donc jamais émettre le moindre input vers le jeu (pas de simulation clavier/souris, même pour ouvrir le chat ou appuyer sur Z — c'est aux joueurs de le faire). (2) Préciser que la FAQ Vanguard ne bénit pas explicitement la « capture d'écran » (elle parle d'overlays et d'outils API) — la validation écrite par Riot/Riot Korea passe de « conseillée » à « fortement recommandée », d'autant que le précédent OP.GG Desktop (service officiel en Corée malgré la politique LCU) prouve que Riot Korea accorde des exceptions négociées. (3) Vérifier que la stack capture/overlay n'embarque aucun driver kernel tiers ni hook D3D (type RTSS) : Vanguard bloque les logiciels s'appuyant sur des drivers vulnérables (cas MSI Afterburner/RTCore64.sys) ; Windows.Graphics.Capture et une fenêtre WS_EX_LAYERED natives sont sûres. (4) Nuance factuelle sur « aucune API n'expose le chat » : le plugin LCU lol-game-client-chat existe mais n'offre que de l'envoi (POST instant/party-messages) ; et depuis le patch 13.4 le canal [Party] transite par le service de chat du client — théoriquement lisible via /lol-chat/v1/conversations, mais inutilisable (LCU interdite en Corée) et redondant (les messages [Party] s'affichent aussi dans le chat in-game et seront capturés par l'OCR). (5) Affaiblir l'argument « précédents OCR » : Remideza/lol_trad_fromimage (dernier commit mai 2022) et mcguia/league-chat-translator (2013) sont tous deux antérieurs à Vanguard sur LoL (mai 2024) — ils prouvent la faisabilité technique de l'OCR, pas la tolérance de Vanguard ; le vrai argument de sûreté reste la FAQ DevRel + l'ubiquité d'OBS. (6) La durée de fade-out ~10 s est non documentée (vérifié) : à mesurer en Practice Tool sur le client KR avant de figer la fréquence de capture."
+      }
+    },
+    {
+      "topic": "ocr-coreen",
+      "findings": {
+        "summary": "Pour de l'OCR coréen temps réel sur le chat LoL sous Windows, la solution la plus solide en 2026 est la pile PaddleOCR PP-OCRv5 « korean » exécutée via ONNX Runtime en C# (lib RapidOcrNet, Apache-2.0, .NET 8, compatible AOT) : le modèle korean_PP-OCRv5_mobile_rec atteint 88 % de précision ligne sur le benchmark coréen officiel (+65 % vs génération précédente) et le détecteur mobile (4,7 Mo) tourne en ~28-58 ms CPU, ce qui permet de rester sous 200 ms par analyse sur une zone de chat recadrée — sans toucher au GPU ni au processus du jeu. Windows.Media.Ocr (WinRT) est le fallback naturel : quasi gratuit en CPU (~2 % observé dans RSTGameTranslation), accessible nativement en .NET, correct sur les polices propres d'UI, mais il exige le pack de langue coréen installé dans Windows et a des bizarreries de segmentation des espaces sur le CJK. OneOCR (moteur du Snipping Tool Windows 11) est techniquement le meilleur moteur local selon la communauté (owocr) et est utilisé par des apps .NET actives comme WindowTranslator, mais il repose sur des DLL extraites du Snipping Tool, zone grise légale risquée pour un event médiatisé. Tesseract (kor) est à écarter : réputation médiocre sur le coréen et sur le texte de jeu, exige une x-height ≥ 20 px. EasyOCR est trop lent en CPU (PyTorch, un cœur entier consommé) et Python-only. Le cloud (Google Vision) est précis mais introduit une dépendance réseau pendant un live, à réserver en secours. Côté robustesse : capture limitée à la zone de chat via Windows.Graphics.Capture (même voie qu'OBS, sans injection donc compatible Vanguard), upscaling 2-3x + boost de contraste, déclenchement de l'OCR uniquement sur changement de la zone (diff/hash de frame), et dédoublonnage des lignes par similarité de chaîne (seuil ~0,75-0,85, pattern validé par RSTGameTranslation) pour ne traduire que les nouvelles lignes. Une cadence de capture de 10-15 fps avec OCR effectif à 2-5 analyses/s suffit largement pour un chat et laisse > 1 s de budget à la traduction dans l'objectif de 1,5 s bout en bout.",
+        "keyFacts": [
+          "PaddleOCR PP-OCRv5 (série 3.x, 2025) : le modèle korean_PP-OCRv5_mobile_rec atteint 88,0 % de précision ligne sur le jeu de test officiel de 5 007 images de texte coréen, soit +65 points vs la génération précédente (PP-OCRv3 était la dernière à avoir un modèle coréen avant v5, PP-OCRv4 n'a pas de modèle coréen officiel). Licence Apache-2.0.",
+          "PP-OCRv5_mobile_det (détection) : Hmean 79,0 %, 4,7 Mo, ~28-58 ms en CPU sur les benchmarks officiels ; PP-OCRv5_server_det : 83,8 % mais ~383 ms CPU (inutilisable ici). Sur une zone de chat recadrée (~600×300 px), la latence réelle sera nettement inférieure aux benchmarks pleine image.",
+          "RapidOCR (RapidAI) en ONNX Runtime CPU : mesures réelles rapportées de 101-210 ms (détection) + 20-30 ms (reconnaissance) sur images complètes, soit 122-239 ms ; c'est le moteur open source le plus rapide en CPU. Port C# : RapidOcrNet (NuGet, .NET 8/10, AOT-compatible, Apache-2.0) qui charge PP-OCRv5 par défaut et accepte un modèle coréen via InitModels(recPath: \"korean_PP-OCRv5_rec_mobile.onnx\", keysPath: \"ppocrv5_korean_dict.txt\").",
+          "Windows.Media.Ocr (WinRT) : supporte le coréen uniquement si le pack de langue/OCR coréen est installé dans Windows (Paramètres > Langues) ; la doc Microsoft (WinRT 26100) indique que l'API est destinée aux apps desktop avec identité de package (MSIX). Très faible coût CPU (~2 % observé dans RSTGameTranslation). Défaut connu sur CJK : la segmentation en « mots » insère/supprime des espaces de façon erratique (issue Text-Grab #191), nécessitant une reconstruction des espaces côté code.",
+          "OneOCR (moteur OCR du Snipping Tool Windows 11) : classé « un des meilleurs moteurs locaux à ce jour » par la communauté owocr (devant WinRT OCR), latence quasi instantanée en CPU (~10 % CPU dans RSTGameTranslation, 0,2-0,5 s rapporté pour OneOCR/Windows OCR par les guides VN). Mais il s'utilise en copiant 3 fichiers non redistribuables (oneocr.dll, oneocr.onemodel, onnxruntime.dll) extraits du Snipping Tool — zone grise légale. Utilisé en production par WindowTranslator (app C#/.NET, MIT, v0.9.21 de mars 2026, activement maintenue).",
+          "Tesseract (kor) : déconseillé — réputation médiocre sur le coréen (v4 pire que v3 selon la communauté ; Digital NK et d'autres confirment la faiblesse sur les écritures est-asiatiques), exige une hauteur d'x d'au moins 20 px (donc upscaling obligatoire pour du chat 12-18 px), et tessdata-best (le plus précis) est le plus lent.",
+          "EasyOCR : Python/PyTorch uniquement, lent en CPU (consomme un cœur entier en continu, issue #1206) ; les modèles « lite » sont ~6x plus rapides mais l'intégration C# sans runtime Python n'existe pas. Inadapté à une app broadcast .NET.",
+          "Google Cloud Vision (text detection) : précis sur le coréen et latence serveur de l'ordre de quelques centaines de ms pour une petite image, mais latence réseau variable pendant un live + dépendance Internet ; optimisable (image compressée, base64). Google Lens (API non officielle, via owocr) est « sans doute le meilleur OCR à ce jour » mais non fiable contractuellement pour un event.",
+          "Stratégies de robustesse validées par les outils existants (RSTGameTranslation, 2025-2026) : capture restreinte à la zone de texte (« smaller translation area = faster processing »), OCR déclenché seulement quand le contenu change, seuil de similarité de texte par défaut 0,75 pour ignorer les doublons entre frames, et « settle time » (debounce) avant capture. Des précédents spécifiques LoL existent (mcguia/league-chat-translator, Remideza/lol_trad_fromimage basé Tesseract) mais sont peu maintenus.",
+          "Budget latence réaliste de la chaîne OCR proposée (CPU moderne, zone chat ~600×300 upscalée 2x) : capture Windows.Graphics.Capture ~5 ms + prétraitement (gris + contraste) ~5 ms + détection mobile ~30-60 ms + reconnaissance ~10-30 ms/ligne nouvelle + dédoublonnage <1 ms ≈ 60-150 ms par analyse, sous l'objectif de 200 ms."
+        ],
+        "recommendation": "Solution principale : pipeline 100 % local et embarquable en C#/.NET — RapidOcrNet (ou un port maison du pipeline RapidOCR sur ONNX Runtime CPU) avec PP-OCRv5_mobile_det + korean_PP-OCRv5_mobile_rec + dictionnaire coréen. Justification : seule option qui combine (1) la meilleure précision coréen open source mesurée (88 % ligne), (2) une latence CPU-only < 200 ms sur une zone recadrée, (3) une licence Apache-2.0 permettant d'embarquer les modèles dans l'app (zéro installation sur les PC de l'event), (4) aucune interaction avec le processus du jeu (capture écran externe uniquement, même mécanisme qu'OBS, donc compatible Vanguard). Optimisation clé : comme le chat LoL a une position, une hauteur de ligne et une police fixes, on peut court-circuiter partiellement la détection (découpage des lignes par géométrie connue + détection légère en validation) et ne passer en reconnaissance que les lignes nouvelles, ramenant le coût typique à 10-40 ms par nouvelle ligne. Fallback : Windows.Media.Ocr (ko-KR) — natif .NET, quasi gratuit en CPU, aucun fichier tiers ; il faut scripter la vérification/installation du pack de langue coréen sur les machines de l'event et reconstruire les espaces des « mots » CJK. Tester aussi OneOCR en interne comme étalon de qualité, mais ne pas l'embarquer dans l'app distribuée (DLL du Snipping Tool non redistribuables). Garder Google Cloud Vision en secours d'urgence activable à chaud si l'OCR local décroche (réseau de l'event requis). Architecture robustesse : capture Windows.Graphics.Capture à 10-15 fps de la seule zone de chat (coordonnées dérivées de la résolution et de l'échelle HUD, jeu en borderless), diff/hash de la zone pour ne lancer l'OCR que sur changement avec debounce ~100-150 ms, upscaling 2-3x Lanczos + étirement de contraste (pas de binarisation dure, le fond semi-transparent bouge), dédoublonnage par similarité normalisée (Levenshtein, seuil ~0,8) sur un tampon des N dernières lignes, et envoi en traduction des seules lignes inédites. Prévoir un bench interne d'une demi-journée sur de vraies captures du client LoL coréen (12-18 px, fonds variés) comparant RapidOCR-korean, Windows.Media.Ocr et OneOCR avant de figer le choix.",
+        "risks": [
+          "Précision réelle non garantie sur le cas exact : le score de 88 % de korean_PP-OCRv5_mobile_rec est mesuré sur un dataset générique, pas sur du texte de jeu 12-18 px sur fond animé semi-transparent ; un bench sur vraies captures du client coréen est indispensable (l'upscaling 2-3x devrait suffire, mais c'est à prouver).",
+          "Latence CPU sur la machine de l'event : les 28-58 ms de détection sont mesurés sur des CPU de benchmark ; pendant une partie de LoL + OBS + navigateur, la contention CPU peut doubler les temps — prévoir affinité/priorité de threads et mesurer en conditions réelles (jeu + stream actifs).",
+          "Windows.Media.Ocr : double contrainte opérationnelle — pack de langue coréen à installer sur chaque PC (étape d'installation à ne pas oublier le jour J) et exigence documentée d'identité de package (MSIX) qui peut compliquer le déploiement d'une app non packagée ; plus la gestion des espaces CJK défaillante qui peut dégrader la qualité de la traduction en aval.",
+          "OneOCR : risque légal (fichiers extraits du Snipping Tool, non licenciés pour un usage tiers) — inacceptable à embarquer dans une app utilisée publiquement par des streamers très exposés ; de plus son support officiel du coréen n'est documenté nulle part (à valider empiriquement si testé).",
+          "Dépendance réseau du fallback cloud : Google Vision pendant un live ajoute une latence variable et un point de défaillance (réseau de l'event) ; à ne garder qu'en secours, jamais en chemin principal.",
+          "Faux positifs/doublons d'OCR : le fond qui bouge derrière le chat fait varier légèrement la reconnaissance d'une même ligne entre frames ; sans dédoublonnage par similarité (pas par égalité stricte), on enverra des doublons en traduction et l'overlay deviendra illisible.",
+          "Variabilité de l'UI LoL : la position/taille du chat dépend de la résolution et de l'échelle HUD, et un patch Riot peut déplacer la zone ; prévoir une calibration de zone à l'écran (et la re-vérifier après chaque patch avant le live).",
+          "Texte mixte coréen/anglais (noms d'invocateurs, slang) : korean_PP-OCRv5_mobile_rec couvre coréen+anglais, mais les pseudos avec caractères spéciaux peuvent générer du bruit ; filtrer les préfixes de pseudo avant traduction."
+        ],
+        "criticalClaims": [
+          "La capture d'écran externe (Windows.Graphics.Capture/DXGI, même voie qu'OBS) sans aucune lecture mémoire ni injection n'est pas détectée/ sanctionnée par Vanguard — si c'est faux, toute l'approche OCR est invalide (forte confiance : OBS tourne sur tous les streams LoL, mais à confirmer avec le volet anti-cheat du projet).",
+          "Le pipeline PP-OCRv5 korean mobile via ONNX Runtime tient < 200 ms par analyse en CPU-only sur la machine de l'event pendant que LoL et OBS tournent — si c'est faux, il faut basculer sur Windows.Media.Ocr (qualité moindre) ou le cloud (dépendance réseau).",
+          "La précision de korean_PP-OCRv5_mobile_rec (88 % ligne sur dataset générique) reste exploitable (> ~90 % après upscaling 2-3x et prétraitement) sur la police du chat LoL en 12-18 px sur fond animé — c'est l'hypothèse qualité centrale, à valider sur vraies captures avant tout développement lourd.",
+          "La zone de chat LoL est localisable de façon déterministe (position fixe fonction de la résolution/échelle HUD) permettant une capture recadrée et un découpage de lignes par géométrie — si le chat s'avère trop variable, la latence et la fiabilité du pipeline se dégradent.",
+          "Le dédoublonnage par similarité de texte (~0,75-0,85) suffit à ne traduire que les nouvelles lignes malgré le jitter d'OCR dû au fond animé — si c'est faux, l'overlay sera pollué de doublons et le budget traduction explosera."
+        ],
+        "sources": [
+          {
+            "title": "PaddleOCR — PP-OCRv5 Multi-Languages (modèle coréen, précision 88,0 %)",
+            "url": "https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/version3.x/algorithm/PP-OCRv5/PP-OCRv5_multi_languages.en.md"
+          },
+          {
+            "title": "Hugging Face — PaddlePaddle/korean_PP-OCRv5_mobile_rec (Apache-2.0)",
+            "url": "https://huggingface.co/PaddlePaddle/korean_PP-OCRv5_mobile_rec"
+          },
+          {
+            "title": "PaddleOCR — Text Detection module (benchmarks PP-OCRv5_mobile_det : 4,7 Mo, ~28-58 ms CPU)",
+            "url": "http://www.paddleocr.ai/main/en/version3.x/module_usage/text_detection.html"
+          },
+          {
+            "title": "GitHub — BobLd/RapidOcrNet (C#/.NET 8, ONNX, modèles coréens via InitModels)",
+            "url": "https://github.com/BobLd/RapidOcrNet"
+          },
+          {
+            "title": "GitHub — RapidAI/RapidOCR (toolkit ONNX Runtime multi-langages)",
+            "url": "https://github.com/RapidAI/RapidOCR"
+          },
+          {
+            "title": "GitHub — RapidAI/RapidOCR issue #514 (temps réels det/rec en CPU ONNX)",
+            "url": "https://github.com/RapidAI/RapidOCR/issues/514"
+          },
+          {
+            "title": "Microsoft Learn — OcrEngine (Windows.Media.Ocr) : langues, packs, identité de package",
+            "url": "https://learn.microsoft.com/en-us/uwp/api/windows.media.ocr.ocrengine?view=winrt-26100"
+          },
+          {
+            "title": "GitHub — Text-Grab issue #191 (problèmes d'espaces CJK/coréen avec Windows OCR)",
+            "url": "https://github.com/TheJoeFin/Text-Grab/issues/191"
+          },
+          {
+            "title": "GitHub — AuroraWright/owocr (classement des moteurs : OneOCR parmi les meilleurs locaux)",
+            "url": "https://github.com/AuroraWright/owocr"
+          },
+          {
+            "title": "GitHub — AuroraWright/oneocr (accès au moteur OCR du Snipping Tool : 3 fichiers requis)",
+            "url": "https://github.com/AuroraWright/oneocr"
+          },
+          {
+            "title": "B1TG — Windows11 SnippingTool OCR from commandline (rétro-ingénierie OneOCR)",
+            "url": "https://b1tg.github.io/post/win11-oneocr/"
+          },
+          {
+            "title": "Medium — Comparison of OneOCR and RapidOCR OCR Outputs (précision vs rappel)",
+            "url": "https://medium.com/@hastur/comparison-of-oneocr-and-rapidocr-ocr-outputs-391a16124a49"
+          },
+          {
+            "title": "RSTGameTranslation — outil 2025-2026 : coûts CPU par moteur, seuil de similarité 0,75, settle time",
+            "url": "https://thanhkeke97.github.io/RSTGameTranslation/"
+          },
+          {
+            "title": "GitHub — Freeesia/WindowTranslator (app C#/.NET active utilisant OneOCR, MIT, v0.9.21 mars 2026)",
+            "url": "https://github.com/Freeesia/WindowTranslator"
+          },
+          {
+            "title": "VNTranslator docs — Tesseract OCR (x-height ≥ 20 px, tessdata-best pour les jeux)",
+            "url": "https://docs.vntranslator.com/user-guide/ocr/ocr-engines/tesseract-ocr"
+          },
+          {
+            "title": "Digital NK — Building an OCR Tool For North Korean Archival Data (faiblesses Tesseract sur le coréen)",
+            "url": "https://digitalnk.com/blog/2017/09/15/ocr-for-north-korean-archival-data-part-1-2/"
+          },
+          {
+            "title": "GitHub — JaidedAI/EasyOCR issue #1206 (lenteur et consommation CPU)",
+            "url": "https://github.com/JaidedAI/EasyOCR/issues/1206"
+          },
+          {
+            "title": "Google Cloud — Détection de texte (Vision API OCR)",
+            "url": "https://docs.cloud.google.com/vision/docs/ocr"
+          },
+          {
+            "title": "GitHub — mcguia/league-chat-translator (précédent LoL, overlay + Google Translate)",
+            "url": "https://github.com/mcguia/league-chat-translator"
+          },
+          {
+            "title": "GitHub — Remideza/lol_trad_fromimage (précédent LoL basé Tesseract)",
+            "url": "https://github.com/Remideza/lol_trad_fromimage"
+          },
+          {
+            "title": "Riot Games Support — Riot Vanguard FAQ (League of Legends)",
+            "url": "https://support-leagueoflegends.riotgames.com/hc/en-us/articles/24169857932435-Riot-Vanguard-FAQ-League-of-Legends"
+          }
+        ]
+      },
+      "verif": {
+        "verdicts": [
+          {
+            "claim": "La capture d'écran externe (Windows.Graphics.Capture/DXGI, même voie qu'OBS) sans lecture mémoire ni injection n'est pas détectée/sanctionnée par Vanguard",
+            "verdict": "confirmé",
+            "note": "Tentative de réfutation : j'ai trouvé un contre-signal réel mais qui renforce en fait la claim. Vanguard bloque bien le « Game Capture » d'OBS (qui injecte une DLL hook dans le processus du jeu) — d'où les écrans noirs documentés (forums OBS, guides 2025-2026) — mais la voie Window/Display Capture via Windows Graphics Capture (méthode « Windows 10 1903+ ») fonctionne précisément parce qu'elle capture la sortie écran sans toucher au processus, et c'est la solution officiellement recommandée pour les jeux Vanguard/EAC/BattlEye. La FAQ Vanguard de Riot DevRel (riotgames.com/en/DevRel/vanguard-faq) confirme : seule la lecture mémoire externe est cassée (« External tools reading memory will no longer work »), tandis que « Overlays and internal tools using the API… should continue to function » ; aucune mention d'interdiction de capture d'écran. Aucun cas documenté de ban Vanguard pour capture d'écran externe n'a été trouvé. Nuance importante : la claim est validée côté CAPTURE, mais l'OVERLAY du projet relève d'une autre politique — la politique applications tierces de Riot (mise à jour 29 mai 2025) interdit les pubs in-game dans les overlays et exige qu'un overlay ne ressemble pas à l'UI officielle du jeu (règles Overwolf/Riot compliance). Un traducteur de chat ne donne pas d'« avantage mesurable » (l'info est visible à l'écran), donc conforme, mais à valider avec le volet anti-cheat/légal du projet. Sources : riotgames.com/en/DevRel/vanguard-faq ; dev.overwolf.com/ow-native/guides/game-compliance/riot-games/ ; stream-rise.com/blog/obs-game-capture-black-screen ; obsproject.com forums."
+          },
+          {
+            "claim": "Le pipeline PP-OCRv5 korean mobile via ONNX Runtime tient < 200 ms par analyse en CPU-only sur la machine de l'event pendant que LoL et OBS tournent",
+            "verdict": "incertain",
+            "note": "Les briques existent et les ordres de grandeur sont plausibles, mais la cible < 200 ms sous charge n'est prouvée nulle part. Vérifié : PP-OCRv5_mobile_det = 4,7 Mo et 57,77 ms CPU en mode standard (paddleocr.ai, module text_detection) — mais ce chiffre est mesuré sur un Xeon Gold 6271C à 8 threads, images pleines, hors pré/post-traitement ; le « ~28 ms » bas de la fourchette citée n'apparaît pas sur cette page (probablement un mode haute performance non vérifié). Contre-preuve partielle trouvée dans la propre source du rapport : l'issue RapidAI/RapidOCR#514 montre RapidOCR ONNX 2-3x PLUS LENT que PaddleOCR ONNX à modèles identiques (det 101-210 ms vs 30-59 ms), ce qui contredit l'affirmation du résumé selon laquelle RapidOCR serait « le moteur open source le plus rapide en CPU » — et ces mesures sont sur PP-OCRv4 server anglais 720p, pas sur korean v5 mobile. RapidOcrNet est bien réel, Apache-2.0, .NET 8/10, AOT, PP-OCRv5 par défaut, exemple InitModels avec korean_PP-OCRv5_rec_mobile.onnx dans le README, release 2.0.0 du 13 mai 2026 (github.com/BobLd/RapidOcrNet). Sur une zone recadrée ~600×300, < 200 ms est très probable sur CPU moderne, mais aucune mesure publiée n'existe pour ce modèle coréen en ONNX sous contention LoL+OBS : le bench en conditions réelles prévu par la recommandation est indispensable et doit rester bloquant."
+          },
+          {
+            "claim": "La précision de korean_PP-OCRv5_mobile_rec (88 % ligne sur dataset générique) reste exploitable (> ~90 % après upscaling 2-3x) sur la police du chat LoL 12-18 px sur fond animé",
+            "verdict": "incertain",
+            "note": "La partie factuelle est confirmée : la doc officielle PaddleOCR (PP-OCRv5_multi_languages.en.md) donne bien 88,0 % de précision pour korean_PP-OCRv5_mobile_rec sur un jeu de test de 5 007 images de texte coréen, +65,0 points vs PP-OCRv3, couverture coréen+anglais. En revanche, l'extrapolation « > ~90 % après upscaling 2-3x sur du chat de jeu 12-18 px sur fond animé semi-transparent » est une pure hypothèse : aucune mesure publiée trouvée sur du texte de jeu petit corps avec ce modèle, et le dataset de 5 007 images n'est pas caractérisé (scènes naturelles/documents, pas de jeux vidéo). Le chiffre de 88 % est une précision EXACTE de ligne complète : sur des lignes de chat mêlant pseudos avec caractères spéciaux et slang, le taux de lignes parfaites sera mécaniquement plus bas, même si la traduction tolère des erreurs partielles. Le rapport identifie lui-même ce risque et conditionne le choix à un bench sur vraies captures — cette précaution est la bonne conclusion ; la valeur > 90 % ne doit pas être présentée comme acquise."
+          },
+          {
+            "claim": "La zone de chat LoL est localisable de façon déterministe (position fixe fonction de la résolution/échelle HUD)",
+            "verdict": "confirmé",
+            "note": "Confirmé pour le cas d'usage (machines d'event contrôlées), avec une correction de paramètres : la position du chat est persistée dans C:\\Riot Games\\League of Legends\\Config\\PersistedSettings.json (valeurs ChatX/ChatY — l'article support Riot « Missing In-game Chat Window » documente leur remise à 0 pour restaurer la position par défaut en bas à gauche), donc elle est déterministe À CONDITION de figer ce fichier de config. Deux nuances vs la formulation : (1) l'échelle du chat dépend du réglage « Chat Scale » (curseur dédié qui « scales the text and window size of the chat console window », wiki.leagueoflegends.com/en-us/Settings), distinct du « HUD Scale » qui ne pilote pas le chat ; (2) la fenêtre de chat étant repositionnable via config, un joueur/une mise à jour peut la déplacer — d'où la pertinence de la calibration de zone + re-vérification post-patch déjà prévue dans la recommandation. Pour un event où l'on maîtrise PersistedSettings.json, résolution et Chat Scale, la capture recadrée par géométrie connue est viable."
+          },
+          {
+            "claim": "Le dédoublonnage par similarité de texte (~0,75-0,85) suffit à ne traduire que les nouvelles lignes malgré le jitter d'OCR",
+            "verdict": "incertain",
+            "note": "Le pattern et la valeur par défaut sont confirmés : la doc RSTGameTranslation (thanhkeke97.github.io/RSTGameTranslation) documente bien « Text Similarity Threshold — Skips OCR if new text is similar to previous (0.5-1.0) », défaut/recommandation 0,75, plus le settle time (0,5 s recommandé) et « Smaller translation area = faster processing ». MAIS la suffisance pour un chat défilant n'est pas démontrée et il existe des contre-exemples structurels : (1) RSTGameTranslation applique le seuil sur le bloc de texte capturé pour SAUTER l'OCR, pas pour dédoublonner ligne à ligne dans un buffer défilant — l'usage proposé est une adaptation non validée telle quelle ; (2) faux négatifs : dans un chat, une même ligne peut légitimement réapparaître (spam « ㅋㅋㅋ », réponses identiques) et serait supprimée à tort par similarité pure — il faut combiner similarité ET position/ordre des lignes dans la fenêtre ; (3) lors du défilement, toutes les lignes se décalent d'un cran, ce qui peut faire matcher la ligne N avec l'ancienne ligne N-1 et créer doublons ou pertes selon l'implémentation. Le mécanisme est un bon point de départ validé par un outil réel, mais « suffit » est trop fort sans logique de suivi de lignes."
+          }
+        ],
+        "corrections": "Corrections à apporter à la recommandation : (1) Ne pas présenter RapidOCR comme « le moteur open source le plus rapide en CPU » — la source citée (RapidAI/RapidOCR issue #514) montre l'inverse : RapidOCR ONNX y est mesuré 2-3x plus lent que PaddleOCR ONNX à modèles identiques (det 101-210 ms vs 30-59 ms). Cela ne disqualifie pas RapidOcrNet (la zone recadrée compense largement), mais le bench interne doit comparer aussi un pipeline ONNX maison optimisé, et la demi-journée de bench doit être marquée comme BLOQUANTE avant tout engagement. (2) Corriger la fourchette de détection : le chiffre officiel vérifiable est 57,77 ms CPU pour PP-OCRv5_mobile_det en mode standard sur Xeon Gold 6271C 8 threads (le « 28 ms » n'est pas sur la page citée) ; sur le CPU de l'event sous charge LoL+OBS, prévoir une marge x1,5-2. (3) Préciser que la géométrie du chat dépend du réglage « Chat Scale » (curseur dédié) et des valeurs ChatX/ChatY de PersistedSettings.json — pas de l'échelle HUD ; verrouiller ce fichier de config sur les machines de l'event rend la zone réellement déterministe. (4) Renforcer le dédoublonnage : la similarité seule (seuil 0,75-0,85) supprimera à tort les messages légitimement répétés (spam identique fréquent dans un chat LoL) et gère mal le décalage des lignes au défilement ; combiner similarité + position de ligne + ancrage sur l'ordre d'apparition (suivi de fenêtre glissante), pas un simple tampon de N dernières lignes comparé par similarité. (5) Ajouter au volet conformité : au-delà de Vanguard (capture WGC validée — c'est le hook d'injection du Game Capture OBS qui est bloqué, pas la capture externe), l'OVERLAY tombe sous la politique applications tierces Riot mise à jour le 29 mai 2025 : pas de pub in-game, apparence clairement distincte de l'UI officielle du jeu ; un traducteur de chat n'apporte pas d'avantage mesurable donc semble conforme, mais faire valider ce point (idéalement contact Riot DevRel pour un event médiatisé). (6) L'objectif « > 90 % après upscaling » du claim qualité doit être reformulé en hypothèse à mesurer, pas en attendu : 88 % est une précision de ligne exacte sur dataset générique non caractérisé (5 007 images), et les lignes de chat avec pseudos/caractères spéciaux feront mécaniquement baisser le taux de lignes parfaites."
+      }
+    },
+    {
+      "topic": "traduction-kr-fr",
+      "findings": {
+        "summary": "Pour traduire le chat LoL coréen→français en quasi temps réel, les NMT classiques (Google, DeepL, Azure, Papago) offrent des latences de 50 à 500 ms et des coûts dérisoires à notre volume (~0,9 M caractères/mois), mais ils massacrent l'argot LoL coréen (abréviations en jamo comme ㄱㄱ/ㅅㄱ/ㅈㄴ, néologismes comme 정글차이 ou 탑신병자) car ces tokens n'existent pas dans leurs corpus d'entraînement. DeepL supporte bien la paire KO→FR (les deux langues sont source et cible) mais ne documente pas si la paire est directe ou pivotée via l'anglais, et son modèle next-gen ne couvre pas le français en sortie depuis le coréen. Google Cloud Translation v3 est le NMT le plus rapide (50-200 ms) avec glossaires personnalisés gratuits. Papago (NCP) supporte KO→FR en direct mais son tarif n'est pas public et le service est cantonné à la région Corée de NAVER Cloud, ce qui crée une friction d'accès pour une équipe française. Azure Translator est quasi gratuit à notre volume (2 M chars/mois offerts) mais pivote via l'anglais et n'a aucun avantage qualité. Un LLM rapide comme Claude Haiku 4.5 ($1/$5 par MTok) avec un glossaire d'argot LoL dans un system prompt mis en cache (lectures à 0,1×) traduit l'argot contextuel de façon nettement supérieure, pour ~$15-35/mois, avec une latence réaliste de 0,9-1,3 s en streaming — tenable mais juste sous l'objectif de 1,5 s. La recommandation est une architecture hybride à trois étages : glossaire local instantané (40-60 % des messages), cache de traductions, puis Haiku 4.5 en streaming avec timeout dur et fallback Google v3.",
+        "keyFacts": [
+          "DeepL API : KO et FR tous deux supportés en source ET en cible (36+ langues, >1000 combinaisons) ; le coréen n'a été ajouté qu'en janvier 2023 et DeepL ne documente pas si KO→FR est direct ou pivote via l'anglais ; le modèle next-gen ne couvre que EN/JA/DE/KO/ZH. Tarif : API Free 500K chars/mois ; API Pro historique $5,49/mois + $25/1M chars (remplacé pour les nouveaux clients par des plans Growth ~1M chars inclus). Latence benchmarkée ~0,4-0,5 s.",
+          "Google Cloud Translation v3 : $20/1M caractères, 500K chars/mois gratuits ; glossaires personnalisés GRATUITS (création et usage) sur l'édition Advanced — idéal pour figer 갱→gank, 와드→ward ; latence typique 50-200 ms ; quota par défaut ~6000 requêtes/min — largement suffisant pour 150 msg/partie. Attention : certaines langues récentes sont exclues des glossaires (KO/FR sont des langues cœur, à vérifier en test).",
+          "Naver Papago (NCP) : KO→FR supporté en DIRECT (le français figure dans la liste des cibles depuis le coréen, 29 paires au total) ; facturation par tranche de 1M caractères mais le tarif KRW exact n'est PAS publié dans la doc (console NCP uniquement ; historiquement ~₩20.000/1M ≈ $15, non vérifié) ; service disponible uniquement en région Corée de NAVER Cloud, auth par Client ID/Secret ; limites configurables jusqu'à 300M chars/jour.",
+          "Azure Translator : tier F0 gratuit 2M chars/mois (notre volume entier tiendrait dedans), puis S1 $10/1M chars ; Custom Translator $40/1M + entraînement ; pivote via l'anglais pour les paires non-anglaises ; latence sub-seconde comparable à Google.",
+          "Claude Haiku 4.5 (claude-haiku-4-5) : $1,00/MTok input, $5,00/MTok output (tarif Anthropic vérifié via la doc officielle ; Artificial Analysis liste $1,25 input — divergence signalée) ; TTFT mesuré 0,57-0,95 s selon le fournisseur (API Anthropic ~0,75-0,85 s) ; débit ~90 tokens/s → un message traduit de ~40 tokens sort en ~1,0-1,3 s au total en streaming.",
+          "Prompt caching Anthropic : lectures à ~0,1× le prix input, écritures à 1,25× (TTL 5 min) ; PIÈGE CRITIQUE : le préfixe cacheable minimum sur Haiku 4.5 est de 4096 tokens — un glossaire trop court ne sera silencieusement jamais mis en cache ; il faut donc un system prompt glossaire ≥4096 tokens (ou padding) pour bénéficier du cache. Avec ~1 message toutes les 10-20 s en partie, le TTL de 5 min reste chaud.",
+          "Coût mensuel estimé (10 parties/jour × 150 msgs × ~20 chars ≈ 0,9M chars et 45K messages/mois) : Azure ~$0 (sous le tier gratuit) ; Google v3 ~$8 ; Papago ~$13-18 (non vérifié) ; DeepL ~$28 ; Haiku 4.5 avec caching ~$31 plein volume, ~$15 si le glossaire local absorbe 50 % des messages ; Haiku SANS caching ~$190 (le cache divise le coût par ~6).",
+          "Latence comparée : NMT (Google/DeepL/Azure) = 50-500 ms par requête ; LLM = 10-100× plus lent à volume équivalent selon les benchmarks 2026, mais Haiku 4.5 en streaming reste sous 1,5 s pour des sorties courtes ; un pivot KO→EN→FR via NMT double la latence mais reste <600 ms."
+        ],
+        "recommendation": "Architecture hybride à 3 étages avec LLM en tête pour la qualité argot et NMT en filet de sécurité pour la latence. Étage 0 : table de correspondance locale (dictionnaire exact + regex) pour les expressions ultra-fréquentes — ㅋㅋㅋ+ (\\\"lol\\\"), ㄱㄱ (\\\"go go\\\"), ㅅㄱ (\\\"gg/bien joué\\\"), ㅈㄱ (\\\"jungle\\\"), 미아/mia par lane, 와드 (\\\"ward\\\"), 갱 (\\\"gank\\\"), 닷지 (\\\"dodge\\\"), ㄹㅇ (\\\"sérieux\\\"), etc. : 0 ms, 0 €, couvre vraisemblablement 40-60 % des messages de chat LoL. Étage 1 : cache LRU des traductions déjà vues (après normalisation : trim, réduction des répétitions de jamo) : 0 ms. Étage 2 : Claude Haiku 4.5 en streaming, system prompt figé de ≥4096 tokens contenant le glossaire complet d'argot LoL coréen + exemples few-shot + consigne de sortie ultra-courte (max_tokens ~100, pas de thinking), avec prompt caching vérifié via usage.cache_read_input_tokens ; timeout dur à ~1,2 s. Fallback : si timeout/erreur/quota du LLM, basculer instantanément sur Google Cloud Translation v3 avec glossaire ko→fr (50-200 ms, $20/1M) ; garder Azure F0 (gratuit) comme troisième rideau. Éviter Papago comme brique principale malgré sa réputation sur le coréen : tarif opaque, onboarding NAVER Cloud région Corée pénible depuis la France, et sa force documentée est KO↔EN plus que KO→FR — le tester seulement si l'équipe obtient facilement un compte NCP. Éviter DeepL comme primaire : paire KO→FR jeune (2023), pivot anglais non documenté, prix le plus élevé du lot. Coût total attendu < $40/mois, négligeable pour un event broadcast. Avant l'event : constituer un corpus de ~500 messages réels de chat solo queue coréenne et comparer en aveugle Haiku 4.5+glossaire vs Google v3+glossaire vs Papago sur ce corpus — c'est le seul vrai test de l'hypothèse qualité.",
+        "risks": [
+          "Latence LLM tangente à l'objectif : TTFT Haiku 4.5 de 0,6-0,95 s + génération ≈ 1,0-1,3 s au total, sans marge pour la capture/OCR en amont du pipeline ; en cas de pic de charge API (erreurs 529 overloaded), le budget 1,5 s saute — le timeout + fallback NMT est indispensable, pas optionnel.",
+          "Si le system prompt glossaire fait moins de 4096 tokens, le prompt caching de Haiku 4.5 ne s'active jamais (échec silencieux) et le coût LLM est multiplié par ~6 (~$190/mois) avec une latence d'input accrue ; vérifier cache_read_input_tokens > 0 dès les premiers tests.",
+          "Tarif et accès Papago non vérifiables sans compte NAVER Cloud : le service est cantonné à la région Corée, la création de compte facturable NCP depuis la France peut exiger des vérifications, et le tarif exact n'est pas public — ne pas bâtir le plan sur cette brique.",
+          "Qualité KO→FR directe incertaine chez tous les fournisseurs : la plupart des moteurs (Azure documenté, DeepL probable) pivotent via l'anglais, ce qui dégrade l'argot deux fois ; la qualité réelle sur du chat LoL (fautes, jamo isolés, mélange KR/EN) n'est mesurée par aucun benchmark public — test sur corpus réel obligatoire.",
+          "Divergence de prix constatée sur Haiku 4.5 ($1,00 vs $1,25/MTok input selon les sources) et plans DeepL en pleine restructuration (API Pro fermé aux nouveaux clients) : revalider les tarifs au moment de la signature.",
+          "Le glossaire local peut produire des faux positifs (ㅅㄱ = \"bien joué\" mais aussi début d'un autre mot ; 갱 dans un mot composé) : limiter la table aux messages-tokens exacts ou entourés d'espaces, et laisser l'ambigu au LLM.",
+          "Estimation de volume fragile : 2 streamers simultanés, des parties plus bavardes ou l'ajout du chat all-chat peuvent doubler le volume ; tous les coûts restent <$80/mois même doublés, mais les quotas gratuits (Google 500K, Azure 2M) peuvent être dépassés en cours de mois."
+        ],
+        "criticalClaims": [
+          "Claude Haiku 4.5 en streaming tient ~1,0-1,3 s de bout en bout (TTFT 0,6-0,95 s + ~90 tok/s) pour une traduction courte — si cette latence dérive en production, le LLM ne peut être que correcteur asynchrone et le NMT devient primaire.",
+          "Le préfixe cacheable minimum de Haiku 4.5 est 4096 tokens : toute l'économie du plan LLM (~$15-35/mois au lieu de ~$190) repose sur un system prompt glossaire ≥4096 tokens effectivement mis en cache.",
+          "Les NMT classiques échouent sur l'argot LoL en jamo (ㄱㄱ, ㅈㄴ, 정글차이...) tandis qu'un LLM avec glossaire le gère — hypothèse plausible mais non benchmarkée publiquement : elle doit être validée sur un corpus réel de chat coréen avant l'event, sinon l'avantage du LLM ne justifie pas sa latence.",
+          "Papago supporte bien KO→FR en direct, mais l'accès API passe par un compte NAVER Cloud région Corée au tarif non publié — si l'équipe ne peut pas ouvrir ce compte, l'option Papago disparaît entièrement.",
+          "Le volume estimé (~45 000 messages, ~0,9 M caractères/mois) maintient toutes les options sous $40/mois — si le format de l'event change (plus de parties, plusieurs streamers), les tiers gratuits sautent et le classement des coûts peut changer."
+        ],
+        "sources": [
+          {
+            "title": "DeepL — Langues supportées (documentation développeurs)",
+            "url": "https://developers.deepl.com/docs/getting-started/supported-languages"
+          },
+          {
+            "title": "DeepL — Plans API (Help Center)",
+            "url": "https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans"
+          },
+          {
+            "title": "Google Cloud Translation — Pricing",
+            "url": "https://cloud.google.com/translate/pricing"
+          },
+          {
+            "title": "Google Cloud Translation — Glossaires (Advanced v3)",
+            "url": "https://docs.cloud.google.com/translate/docs/advanced/glossary"
+          },
+          {
+            "title": "Google Cloud Translation — Quotas et limites",
+            "url": "https://docs.cloud.google.com/translate/quotas"
+          },
+          {
+            "title": "NAVER Cloud Platform — Papago Translation (produit)",
+            "url": "https://www.ncloud.com/product/aiService/papagoTranslation"
+          },
+          {
+            "title": "NAVER Cloud — Papago Translation APIs (paires de langues)",
+            "url": "https://guide.ncloud-docs.com/docs/en/papagotranslation-api"
+          },
+          {
+            "title": "NAVER Cloud — Papago Translation prerequisites (région Corée)",
+            "url": "https://guide.ncloud-docs.com/docs/en/papagotranslation-spec"
+          },
+          {
+            "title": "Microsoft Azure — Translator Pricing",
+            "url": "https://azure.microsoft.com/en-us/pricing/details/translator/"
+          },
+          {
+            "title": "Artificial Analysis — Claude 4.5 Haiku (latence TTFT, débit, prix)",
+            "url": "https://artificialanalysis.ai/models/claude-4-5-haiku"
+          },
+          {
+            "title": "Artificial Analysis — Claude 4.5 Haiku par fournisseur (TTFT Vertex/Anthropic/AWS)",
+            "url": "https://artificialanalysis.ai/models/claude-4-5-haiku/providers"
+          },
+          {
+            "title": "Anthropic — Documentation prompt caching (prix lecture/écriture, minimum cacheable)",
+            "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+          },
+          {
+            "title": "Anthropic — Pricing officiel",
+            "url": "https://platform.claude.com/docs/en/pricing"
+          },
+          {
+            "title": "TranslatePlus — Benchmark latence DeepL/Google/Azure (avril 2026)",
+            "url": "https://translateplus.io/blog/translateplus-vs-deepl-google-azure-translation-benchmark"
+          },
+          {
+            "title": "MachineTranslation.com — Papago vs Google Translate (forces sur le coréen)",
+            "url": "https://www.machinetranslation.com/blog/google-translate-vs-papago"
+          },
+          {
+            "title": "Hardcore Leveling Warrior Wiki — Terminologie gaming coréenne (référence argot)",
+            "url": "https://hardcorelevelingwarrior.fandom.com/wiki/Common_Korean_Terminology/Gaming_Terms"
+          }
+        ]
+      },
+      "verif": {
+        "verdicts": [
+          {
+            "claim": "Claude Haiku 4.5 en streaming tient ~1,0-1,3 s de bout en bout (TTFT 0,6-0,95 s + ~90 tok/s) pour une traduction courte",
+            "verdict": "confirmé",
+            "note": "Artificial Analysis (artificialanalysis.ai/models/claude-4-5-haiku et /providers) mesure un TTFT de 0,75-0,81 s sur l'API Anthropic, 0,57 s sur Google Vertex, 0,95 s sur Amazon, et un débit de ~93 tok/s (jusqu'à 105 t/s chez Amazon). Pour ~40 tokens de sortie : 0,75 + 40/93 ≈ 1,2 s — la fourchette 1,0-1,3 s est cohérente avec les benchmarks publics. Caveat adversarial : ce sont des médianes mesurées sur des prompts standard ; la charge réelle (erreurs 529, prompt système de 4096+ tokens même caché) peut faire dériver le TTFT, donc le timeout + fallback NMT prévu par le plan reste indispensable. À noter : Vertex AI offre le meilleur TTFT mesuré si la latence devient critique."
+          },
+          {
+            "claim": "Le préfixe cacheable minimum de Haiku 4.5 est 4096 tokens ; toute l'économie du plan LLM (~$15-35/mois au lieu de ~$190) repose dessus",
+            "verdict": "confirmé",
+            "note": "Doc officielle Anthropic (platform.claude.com/docs/en/build-with-claude/prompt-caching) vérifiée le 2026-06-10 : « 4,096 tokens for Claude Haiku 4.5 », échec silencieux en dessous (« shorter prefixes silently won't cache »), lectures à 0,1× ($0,10/MTok), écritures 5 min à 1,25× ($1,25/MTok). Prix de base officiel confirmé : $1,00 input / $5,00 output par MTok — la divergence avec Artificial Analysis ($1,25) est tranchée en faveur de la doc officielle. Arithmétique revérifiée : 45K msgs × 4096 tokens cachés ≈ 184M tokens × $0,10 ≈ $18,4 + input non caché ~$2 + output ~$9 ≈ $30/mois avec cache, contre ~$190-195 sans cache (≈ ×6). Attention : si l'équipe passe au TTL 1 h pour des parties espacées, l'écriture passe à 2× (et non 1,25×)."
+          },
+          {
+            "claim": "Les NMT classiques échouent sur l'argot LoL en jamo tandis qu'un LLM avec glossaire le gère — hypothèse non benchmarkée à valider sur corpus réel",
+            "verdict": "incertain",
+            "note": "Aucun benchmark public sur le chat LoL coréen n'a été trouvé — la qualification « non benchmarkée » est exacte. La littérature soutient la direction générale : les LLM surpassent les NMT encodeur-décodeur sur les paires à hautes ressources, MAIS un testset discourse-level KO→EN (COLING 2025, aclanthology.org/2025.coling-main.110) montre que l'argot, les idiomes et l'implicature restent difficiles MÊME pour GPT-4o — l'avantage LLM n'est donc pas garanti sans le glossaire en prompt, et certaines sources (machinetranslation.com) créditent justement Papago d'une force sur le KO informel. Le test en aveugle sur ~500 messages réels prévu par la recommandation est bien le seul moyen de trancher ; cette claim doit rester traitée comme une hypothèse, pas un acquis."
+          },
+          {
+            "claim": "Papago supporte KO→FR en direct, mais l'accès API passe par un compte NAVER Cloud région Corée au tarif non publié",
+            "verdict": "confirmé",
+            "note": "Trois éléments vérifiés : (1) la paire coréen-français figure bien parmi les 29 paires de Papago Text Translation (guide.ncloud-docs.com/docs/en/papagotranslation-api) ; (2) la page prerequisites (guide.ncloud-docs.com/docs/en/papagotranslation-spec) confirme « 리전(존) | 한국 » — région Corée uniquement, environnements VPC/Classic, avec obligation d'attribution de marque Papago ; (3) ni la doc ni la page produit ncloud.com ne publient de tarif chiffré — la doc renvoie au portail/console, et le chiffre historique ₩20.000/1M reste invérifiable publiquement. NUANCE à corriger : « en direct » signifie seulement que la paire est appelable en un seul appel API ; la doc ne documente PAS l'architecture interne (pivot anglais ou non) — la claim ne peut pas affirmer l'absence de pivot."
+          },
+          {
+            "claim": "Le volume estimé (~45 000 messages, ~0,9 M caractères/mois) maintient toutes les options sous $40/mois ; si le format change, les tiers gratuits sautent et le classement peut changer",
+            "verdict": "confirmé",
+            "note": "Tarifs revérifiés à la source : Google Cloud Translation Advanced = $20/1M chars au-delà de 500K gratuits/mois (cloud.google.com/translate/pricing — précision : le tier gratuit est un crédit de $10/mois partagé Basic+Advanced, sans report), glossaires gratuits confirmés ; Azure Translator F0 = 2M chars/mois gratuits, S1 = $10/1M (azure.microsoft.com/pricing/details/translator). Arithmétique validée : Google ~$8, Azure $0, DeepL ~$28 ($5,49 + 0,9×$25), Haiku ~$30 avec cache — tout <$40. Le scénario doublé (1,8M chars) tient aussi : Azure reste sous les 2M gratuits, Google ~$26, Haiku ~$60, tout <$80 comme annoncé. Seule inconnue résiduelle : le tarif Papago, non publié — déjà correctement signalé comme non vérifiable."
+          }
+        ],
+        "corrections": "Trois corrections à apporter à la recommandation. (1) Glossaire local (étage 0) — deux entrées erronées : « ㅈㄱ = jungle » est douteux (jungle se dit 정글, et ㅈㄱ n'est pas une abréviation standard de jungle en chat LoL) ; et attention à la paire ㅅㄱ/ㅈㅈ : ㅅㄱ = 수고 (« bien joué / salut » en fin de partie, OK) mais c'est ㅈㅈ qui est l'équivalent standard de « GG » (surrender/abandon) — le confondre avec ㄱㄱ (« go go ») serait un contresens en overlay broadcast ; faire relire la table par un locuteur natif avant l'event. (2) Tarif Haiku 4.5 : la divergence $1,00 vs $1,25/MTok est tranchée — la doc officielle Anthropic confirme $1,00 input / $5,00 output ; utiliser $1,00 dans les calculs et cesser de présenter cela comme une incertitude. (3) Papago « en direct » : reformuler en « paire KO→FR disponible en un seul appel API » — l'absence de pivot anglais interne n'est documentée nulle part, exactement comme pour DeepL. Détails mineurs : le tier gratuit Google est un crédit de $10/mois partagé entre Basic et Advanced (pas un quota distinct de 500K par édition) ; et si le TTL de cache passait de 5 min à 1 h (parties espacées), le coût d'écriture passe de 1,25× à 2× le prix input. Le reste de la recommandation (architecture 3 étages, timeout + fallback Google v3, test en aveugle sur corpus réel avant l'event) est solide et cohérent avec les preuves recueillies."
+      }
+    },
+    {
+      "topic": "overlay-capture-stack",
+      "findings": {
+        "summary": "Pour cet event broadcast au-dessus de LoL+Vanguard, la stack la plus sûre et la plus rapide à livrer est : C#/.NET 8 + WPF pour une fenêtre overlay transparente (AllowsTransparency + styles Win32 WS_EX_TRANSPARENT|WS_EX_NOACTIVATE|WS_EX_TOOLWINDOW + HWND_TOPMOST), et Windows.Graphics.Capture (WGC) en capture de la FENÊTRE « League of Legends.exe » (pas du moniteur) avec crop GPU de la zone chat via Direct3D11. WGC est l'API que Microsoft et OBS poussent par défaut : frames livrées en textures GPU (~1 frame de latence, soit ~16 ms à 60 Hz), cross-GPU, et capture de fenêtre même partiellement recouverte — ce qui élimine toute boucle de feedback avec notre propre overlay. DXGI Desktop Duplication reste très rapide mais capture le moniteur entier (overlay inclus), exige le même GPU, et a régressé sous Windows 11 24H2 (dépendance aux MPO) ; GDI BitBlt est CPU-bound et inadapté au temps réel 60 fps. Côté anti-ban : Vanguard bloque uniquement ce qui ouvre des read handles ou pose des hooks sur le process du jeu (blocage assumé par Riot, qui n'équivaut pas à un ban — faux positifs < 1/10 000) ; une app 100 % externe (capture DWM + fenêtre topmost, zéro injection) est dans la même catégorie que Porofessor/Blitz/Mobalytics, officiellement compatibles Vanguard en 2025-2026. Condition impérative : LoL doit être en mode Borderless (fenêtré sans bordure) — le standard des streamers — car en fullscreen exclusif les fenêtres topmost ne s'affichent pas. Pour OBS : SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE) cache l'overlay d'une capture d'écran (Win10 2004+), et de toute façon une source « Game Capture » ou « Window Capture » de LoL ne voit jamais l'overlay ; pour la version visible des viewers, un mini serveur WebSocket local + page HTML en source navigateur OBS (fond transparent par défaut) est la pratique standard. Distribution aux streamers non techniques via Velopack (successeur de Squirrel : installeur 1-clic + auto-update delta).",
+        "keyFacts": [
+          "Windows.Graphics.Capture (WGC) existe depuis Windows 10 1803 ; l'interop Win32 CreateForWindow/CreateForMonitor depuis 1903 (mai 2019). Les frames arrivent en textures Direct3D11 via un frame pool, latence ~1 frame (≈16 ms à 60 Hz), charge GPU minime, zéro copie CPU obligatoire.",
+          "Windows 11 24H2 (build 26100) : bug WGC corrigé (ne livre plus de frames sans mise à jour réelle) et ajout de GraphicsCaptureSession.MinUpdateInterval pour throttler la capture (fonctionne pour les valeurs > 1 ms). À l'inverse, DXGI Desktop Duplication y est devenu dépendant des Multiplane Overlays (MPO), cassant le framepacing sur certaines configs.",
+          "La bordure jaune de WGC est supprimable uniquement sous Windows 11 : IsBorderRequired = false après GraphicsCaptureAccess.RequestAccessAsync(Borderless) + capability graphicsCaptureWithoutBorder. Sous Windows 10 elle est inamovible → exiger Windows 11 sur les machines de l'event.",
+          "GDI BitBlt : capture CPU-bound avec copie GPU→CPU, débit et latence médiocres à 1080p, pas de cadencement vsync — acceptable pour des screenshots ponctuels, inadapté à un flux 60 fps temps réel.",
+          "Vanguard (actif sur LoL depuis le patch 14.9, avril 2024) : le retrospective Riot d'août 2024 précise que les apps tierces (mods, overlays, outils passifs) échouent quand elles tentent d'« ouvrir des read handles ou poser des hooks » sur le process — blocage 100 % intentionnel, distinct d'un ban ; faux positifs de ban < 1/10 000, levés en < 72 h en moyenne.",
+          "Porofessor, Blitz et Mobalytics fonctionnent avec Vanguard en 2025-2026 (apps vetted par Overwolf/Riot, conformes à la politique tierce mise à jour le 29 mai 2025) ; Vanguard bloque en revanche des drivers vulnérables comme RTCore64.sys (MSI Afterburner ≤ 4.6.2) et OBS a dû patcher son hook Game Capture pour les jeux Riot dans OBS 31.1.",
+          "Fenêtre overlay : WS_EX_LAYERED | WS_EX_TRANSPARENT (click-through) | WS_EX_NOACTIVATE (ne vole jamais le focus) | WS_EX_TOOLWINDOW + HWND_TOPMOST. Visible au-dessus du jeu uniquement en Borderless/Windowed (composition DWM) — jamais en fullscreen exclusif ; les guides streamers LoL recommandent unanimement le Borderless.",
+          "SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE) (Windows 10 2004+) : la fenêtre reste visible à l'écran mais disparaît des captures logicielles (OBS Display Capture, Snipping Tool, Teams/Zoom). Inutile si le streamer utilise Game Capture/Window Capture de LoL, qui n'inclut jamais l'overlay.",
+          "WinUI 3 ne supporte toujours pas les fenêtres transparentes click-through proprement (pas d'équivalent AllowsTransparency, issues #7276/#2515 ouvertes) ; WPF le fait nativement. Tauri v2 le fait (setIgnoreCursorEvents + alwaysOnTop ; overlay Manasight mars 2026 : 14 Mo RAM, < 1 % CPU) ; Electron coûte 200-300 Mo RAM et 80-150 Mo d'installeur.",
+          "Windows.Media.Ocr supporte le coréen (tier « good », pack de langue ko-KR requis sur la machine) avec inférence locale en dizaines de ms — accessible nativement depuis .NET via CsWinRT, ce qui laisse l'essentiel du budget 1,5 s à la traduction.",
+          "Velopack (successeur de Squirrel, moteur Rust, NuGet v1.2+) fournit installeur Windows 1-clic + auto-updates delta pour .NET 8/9/10 — adapté à une distribution à des streamers non techniques.",
+          "Source navigateur OBS : fond transparent par défaut pour une page HTML locale ; un petit serveur WebSocket local poussant les traductions vers cette page est le pattern standard des overlays de stream (état resynchronisé au refresh)."
+        ],
+        "recommendation": "Stack recommandée : (1) App C#/.NET 8 WPF (pas WinUI 3) en deux fenêtres — une fenêtre de contrôle normale, et une fenêtre overlay WPF AllowsTransparency=True, Topmost, avec WS_EX_TRANSPARENT|WS_EX_NOACTIVATE|WS_EX_TOOLWINDOW posés via SetWindowLongPtr, re-assertion périodique du HWND_TOPMOST (timer 1-2 s) pour la robustesse broadcast. (2) Capture via Windows.Graphics.Capture en mode CreateForWindow sur « League of Legends.exe » (jamais le moniteur) : pas de boucle de feedback avec l'overlay, fonctionne fenêtre recouverte, frames D3D11 GPU ; crop de la zone chat sur GPU puis descente CPU de la seule vignette pour l'OCR ; throttle à 4-10 fps via MinUpdateInterval (24H2) ou échantillonnage — un chat ne change pas 60 fois par seconde, ce qui réduit la charge à quasi zéro. (3) OCR Windows.Media.Ocr ko-KR en première intention (natif, local, gratuit), interface d'abstraction pour swapper vers un moteur plus précis si besoin. (4) Sortie double : mode « privé » = overlay local + SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE) si le streamer capture l'écran entier ; mode « public » = serveur WebSocket local (Kestrel) + page HTML stylisée en source navigateur OBS. (5) Distribution Velopack : installeur 1-clic signé + auto-update delta. Exigences opérationnelles : Windows 11 (suppression de la bordure jaune WGC + MinUpdateInterval), LoL forcé en Borderless (à verrouiller dans la config et à vérifier par l'app au lancement, avec alerte si fullscreen exclusif détecté), OBS ≥ 31.1, répétition générale sur les machines réelles avec Vanguard actif une semaine avant l'event. Écarter : Electron (empreinte mémoire/CPU injustifiée pendant un live), WinUI 3 (transparence click-through non supportée), Python+Qt (distribution et latence pipeline moins maîtrisées). Tauri v2 est le seul plan B crédible (très léger, overlay prouvé en 2026) mais l'accès à WGC/Windows.Media.Ocr y demande du Rust (windows-rs) pour aucun gain fonctionnel ici — .NET y accède nativement via CsWinRT.",
+        "risks": [
+          "Mode d'affichage : si un streamer passe LoL en fullscreen exclusif (réflexe « perf »), l'overlay disparaît purement et simplement. L'app doit détecter le mode et alerter ; verrouiller Borderless dans game.cfg avant l'event.",
+          "Vanguard est une boîte noire mise à jour silencieusement : même si une app externe sans hook est aujourd'hui dans la catégorie tolérée (comme Porofessor/Blitz), tester sur les machines réelles, Vanguard actif, à chaque patch LoL jusqu'au jour J ; idéalement prévenir Riot/les organisateurs de l'event (les rushs Corée sponsorisés ont des contacts Riot) pour une validation explicite.",
+          "Bordure jaune WGC sous Windows 10 : inamovible, visible à l'écran ET dans la capture OBS — inacceptable en broadcast. Mitigation : Windows 11 obligatoire + RequestAccessAsync(Borderless) ; tester car un refus utilisateur ou une app tierce peut réimposer la bordure.",
+          "WDA_EXCLUDEFROMCAPTURE cache l'overlay de TOUTES les captures logicielles, y compris une éventuelle capture moniteur de secours du régisseur ; et certaines apps (Discord screen share, etc.) afficheraient un trou noir. Documenter précisément quelle source OBS utiliser (Game Capture de LoL + source navigateur).",
+          "Latence cumulée : capture (~16-50 ms) + OCR coréen (~30-150 ms local) laissent le budget à la traduction (LLM/API : 300-900 ms) — le risque principal du « < 1,5 s » est réseau coréen→API, pas la stack capture/overlay ; prévoir un fallback de traduction locale et mesurer de bout en bout sur place.",
+          "OCR coréen Windows.Media.Ocr classé « good » et non « excellent » : le chat LoL est petit, anti-aliasé, sur fond animé — risque d'erreurs de reconnaissance ; capturer en résolution native (pas de downscale), suréchantillonner la vignette x2, et prévoir un moteur OCR alternatif testé sur de vraies captures du chat coréen.",
+          "Fiabilité broadcast : un crash de l'overlay ne doit pas toucher le jeu (process séparé, aucun lien avec LoL — c'est le cas par design) ; surveiller les fuites mémoire du frame pool WGC sur des sessions de 8-12 h de live et auto-redémarrer le pipeline de capture en cas d'erreur de device D3D (TDR, changement de résolution, alt-tab).",
+          "Environnement coréen (PC bang/machines locales) : pack de langue OCR ko-KR à installer, DPI scaling et multi-moniteurs à gérer pour positionner l'overlay exactement à côté du chat ; OBS < 31.1 casse le Game Capture des jeux Vanguard."
+        ],
+        "criticalClaims": [
+          "LoL en mode Borderless laisse les fenêtres topmost s'afficher par-dessus le jeu (composition DWM), alors qu'en fullscreen exclusif l'overlay est invisible — tout le concept d'overlay repose sur le fait que les streamers jouent en Borderless ; à valider physiquement sur les machines de l'event.",
+          "Une application 100 % externe — capture via Windows.Graphics.Capture + fenêtre topmost, sans handle, hook ni injection sur le process LoL — n'est ni bloquée ni bannie par Vanguard (Riot ne bloque que les hooks/read handles ; Porofessor/Blitz/Mobalytics, basés sur le même principe, sont compatibles 2025-2026). Si cette affirmation est fausse, le projet entier est invalide.",
+          "WGC en capture de fenêtre (CreateForWindow) restitue le contenu de la fenêtre LoL même recouverte par notre overlay — donc pas de boucle de feedback et pas besoin de cacher l'overlay pour notre propre capture. Si faux, il faudrait basculer sur capture moniteur + WDA_EXCLUDEFROMCAPTURE.",
+          "SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE) rend l'overlay invisible dans OBS tout en restant affiché à l'écran du joueur (Windows 10 2004+) — c'est le mécanisme du mode « privé » ; et la source navigateur OBS transparente alimentée en WebSocket local est le mécanisme du mode « public ».",
+          "Windows.Media.Ocr reconnaît le coréen localement (pack ko-KR) assez vite et assez bien sur le chat in-game pour tenir le budget < 1,5 s — si la qualité est insuffisante sur le rendu réel du chat LoL, il faudra un moteur OCR alternatif (le choix .NET reste valide, seul le module OCR change)."
+        ],
+        "sources": [
+          {
+            "title": "OBS Forums — Windows Graphics Capture vs DXGI Desktop Duplication",
+            "url": "https://obsproject.com/forum/threads/windows-graphics-capture-vs-dxgi-desktop-duplication.149320/"
+          },
+          {
+            "title": "Ryan's Blog — Game Capture & Window Capture (BitBlt/WGC/DXGI/hook, anti-cheat)",
+            "url": "https://ryanai.dev/en/blog/pc-window-capture"
+          },
+          {
+            "title": "Microsoft Learn — GraphicsCaptureSession.IsBorderRequired",
+            "url": "https://learn.microsoft.com/en-us/uwp/api/windows.graphics.capture.graphicscapturesession.isborderrequired?view=winrt-26100"
+          },
+          {
+            "title": "Windows Developer Blog — New Ways to do Screen Capture (WGC)",
+            "url": "https://blogs.windows.com/windowsdeveloper/2019/09/16/new-ways-to-do-screen-capture/"
+          },
+          {
+            "title": "robmikh/Win32CaptureSample #82 — MinUpdateInterval (Windows 11 24H2)",
+            "url": "https://github.com/robmikh/Win32CaptureSample/issues/82"
+          },
+          {
+            "title": "Riot — /dev: Vanguard x LoL Retrospective (août 2024)",
+            "url": "https://www.leagueoflegends.com/en-us/news/dev/dev-vanguard-x-lol-retrospective/"
+          },
+          {
+            "title": "Riot — /dev: Vanguard x LoL (politique drivers/blocages)",
+            "url": "https://www.leagueoflegends.com/en-us/news/dev/dev-vanguard-x-lol/"
+          },
+          {
+            "title": "Riot Support — Third Party Applications (politique maj 29 mai 2025)",
+            "url": "https://support-leagueoflegends.riotgames.com/hc/en-us/articles/225266848-Third-Party-Applications"
+          },
+          {
+            "title": "Overwolf Developers — Riot Games compliance (règles overlays LoL/Valorant)",
+            "url": "https://dev.overwolf.com/ow-native/guides/game-compliance/riot-games/"
+          },
+          {
+            "title": "Blitz Support — Will Blitz.gg Continue Working with Vanguard?",
+            "url": "https://support.blitz.gg/hc/en-us/articles/8744136175375-Will-Blitz-gg-Continue-Working-with-League-of-Legends-with-the-Introduction-of-Vanguard"
+          },
+          {
+            "title": "Overwolf — Porofessor.gg (app vetted, compatible Vanguard)",
+            "url": "https://www.overwolf.com/app/trebonius-porofessor.gg"
+          },
+          {
+            "title": "guru3D — RTCore64.sys (MSI Afterburner) bloqué par Vanguard",
+            "url": "https://forums.guru3d.com/threads/rtcore64-sys-and-valorant-vanguard.431963/"
+          },
+          {
+            "title": "OBS — League of Legends Capture Guide (OBS 31.1+, Window/Game Capture)",
+            "url": "https://obsproject.com/kb/league-of-legends-capture-guide"
+          },
+          {
+            "title": "Microsoft Q&A — SetWindowDisplayAffinity / WDA_EXCLUDEFROMCAPTURE",
+            "url": "https://learn.microsoft.com/en-us/answers/questions/1653885/setwindowdisplayaffinity-bad-usecase"
+          },
+          {
+            "title": "GitHub aamitn/winhider — WDA_EXCLUDEFROMCAPTURE en pratique (OBS, Snipping Tool)",
+            "url": "https://github.com/aamitn/winhider"
+          },
+          {
+            "title": "Microsoft Q&A — WS_EX_LAYERED/WS_EX_TRANSPARENT click-through",
+            "url": "https://learn.microsoft.com/en-us/answers/questions/1096479/how-to-stop-ws-ex-layered-causing-mouse-clicks-to"
+          },
+          {
+            "title": "microsoft-ui-xaml #7276 — WinUI 3 ne supporte pas les fenêtres transparentes",
+            "url": "https://github.com/microsoft/microsoft-ui-xaml/issues/7276"
+          },
+          {
+            "title": "Manasight (mars 2026) — Why I Chose Tauri v2 for a Desktop Overlay",
+            "url": "https://blog.manasight.gg/why-i-chose-tauri-v2-for-a-desktop-overlay/"
+          },
+          {
+            "title": "Tauri #6164 — setIgnoreCursorEvents pour overlays click-through",
+            "url": "https://github.com/tauri-apps/tauri/issues/6164"
+          },
+          {
+            "title": "gethopp.app — Tauri vs Electron : perfs, bundle, trade-offs",
+            "url": "https://www.gethopp.app/blog/tauri-vs-electron"
+          },
+          {
+            "title": "Microsoft Learn — OcrEngine.AvailableRecognizerLanguages (Windows.Media.Ocr)",
+            "url": "https://learn.microsoft.com/en-us/uwp/api/windows.media.ocr.ocrengine.availablerecognizerlanguages?view=winrt-26100"
+          },
+          {
+            "title": "Velopack — installeur + auto-update (successeur de Squirrel)",
+            "url": "https://velopack.io/"
+          },
+          {
+            "title": "loltheory.gg — Borderless vs Fullscreen pour streamers LoL",
+            "url": "https://blog.loltheory.gg/how-to-make-league-of-legends-full-screen/"
+          },
+          {
+            "title": "OBS Forums — Browser source transparente (overlay HTML local)",
+            "url": "https://obsproject.com/forum/threads/translucent-transparent-browser-source.59549/"
+          }
+        ]
+      },
+      "verif": {
+        "verdicts": [
+          {
+            "claim": "LoL en mode Borderless laisse les fenêtres topmost s'afficher par-dessus le jeu (composition DWM), alors qu'en fullscreen exclusif l'overlay est invisible.",
+            "verdict": "confirmé",
+            "note": "Mécanisme confirmé par le blog DirectX de Microsoft (« Demystifying Fullscreen Optimizations », devblogs.microsoft.com/directx) : les overlays nécessitent la composition DWM, active en borderless/windowed mais pas en vrai fullscreen exclusif ; les guides streamers LoL (blog.loltheory.gg, rankedkings.com) confirment que les overlays ne s'affichent pas au-dessus de LoL en fullscreen et recommandent le Borderless. Précédent fort : le nouveau overlay Discord est précisément une fenêtre HWND_TOPMOST externe qui s'affiche au-dessus des jeux borderless (erikmcclure.com/blog/discord-overlay-breaks-gsync). Nuance non mentionnée par l'agent : sous Windows 10/11 avec « Fullscreen Optimizations » activées, un jeu DX11 en mode « fullscreen » est en réalité composité par DWM et l'overlay PEUT s'afficher quand même — mais ce comportement est désactivable par utilisateur/app, donc l'exigence opérationnelle « forcer le Borderless » reste la bonne. La validation physique sur les machines de l'event reste indispensable comme indiqué."
+          },
+          {
+            "claim": "Une application 100 % externe (WGC + fenêtre topmost, sans handle/hook/injection) n'est ni bloquée ni bannie par Vanguard ; Porofessor/Blitz/Mobalytics sont compatibles 2025-2026.",
+            "verdict": "confirmé",
+            "note": "La FAQ développeurs officielle de Riot (riotgames.com/en/DevRel/vanguard-faq) confirme : « Overlays and internal tools using the API, game client, and in-game APIs should continue to function » et seuls « external tools reading memory will no longer work ». Le retrospective Vanguard x LoL d'août 2024 confirme mot pour mot que ce sont les tentatives de read handles/hooks sur le client qui échouent intentionnellement, que blocage ≠ ban, avec faux positifs « sub 0.01%, or less than 1 in every 10,000 bans » levés en « less than 72 hours » — chiffres de l'agent exacts. Comparatifs tiers 2026 (buildzcrank.com) confirment Mobalytics/Blitz/Porofessor fonctionnels avec Vanguard ; OBS lui-même capture LoL via WGC/Window Capture sans incident. Aucun contre-exemple trouvé d'une app de pure capture d'écran + fenêtre topmost bloquée ou bannie. RÉSERVE importante : la même FAQ Riot précise « there is absolutely no allow list for Vanguard » — parler d'apps « vetted par Riot » est inexact (Overwolf a son propre programme de conformité, mais Riot ne whiteliste rien) ; la compatibilité est comportementale, pas garantie contractuellement. La recommandation de prévenir Riot/les organisateurs reste donc pertinente. À noter aussi : la maj politique du 29 mai 2025 vise les publicités in-game dans les overlays, pas les overlays eux-mêmes (eloking.com)."
+          },
+          {
+            "claim": "WGC CreateForWindow restitue le contenu de la fenêtre LoL même recouverte par notre overlay — pas de boucle de feedback.",
+            "verdict": "confirmé",
+            "note": "Confirmé par plusieurs sources indépendantes : la doc Microsoft (IGraphicsCaptureItemInterop::CreateForWindow, learn.microsoft.com) et le Windows Developer Blog décrivent une capture par fenêtre via DWM ; Medialooks (support.medialooks.com) et ryanai.dev confirment que WGC « can capture background or occluded windows by bypassing Z-order restrictions » — la capture restitue le rendu de la fenêtre cible, pas ce qui est visible à l'écran ; un overlay top-level séparé n'apparaît donc jamais dans la capture de la fenêtre LoL. Caveats à ajouter : (1) une fenêtre MINIMISÉE n'est plus capturée (le flux se fige/s'arrête) — gérer ce cas ; (2) certains chemins de rendu fullscreen exclusif ne sont pas capturables par fenêtre — non bloquant ici puisque le Borderless est déjà exigé."
+          },
+          {
+            "claim": "SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE) rend l'overlay invisible dans OBS tout en restant affiché à l'écran (Win10 2004+) ; source navigateur OBS transparente + WebSocket local pour le mode public.",
+            "verdict": "confirmé",
+            "note": "Confirmé par la doc Microsoft (SetWindowDisplayAffinity, winuser.h : WDA_EXCLUDEFROMCAPTURE disponible depuis Windows 10 2004, la fenêtre reste visible à l'écran mais exclue des captures) et par des projets en production (github.com/myexistences/WindowCaptureHider : fonctionne contre OBS et Snipping Tool). La transparence par défaut de la source navigateur OBS et le pattern WebSocket local sont la pratique standard documentée (forums OBS). RÉSERVES documentées : (1) Microsoft Q&A signale « a subset of Windows 11 computers » où WDA_EXCLUDEFROMCAPTURE et WDA_MONITOR échouent, et des environnements (restrictions admin, DWM inactif) où l'affinité est ignorée — vérifier le code retour et tester sur les machines réelles ; (2) inopérant contre une capture matérielle (capture card/projector) ; (3) le mode « public » (browser source) doit rester le chemin principal, WDA n'étant qu'un best-effort — ce que la recommandation fait déjà. Côté OBS 31.1 : le fix Game Capture pour les jeux Vanguard est confirmé (issues obs-studio #11879/#11991, cause : changement du certificat de signature d'OBS)."
+          },
+          {
+            "claim": "Windows.Media.Ocr reconnaît le coréen localement (pack ko-KR) assez vite et assez bien sur le chat in-game pour tenir le budget < 1,5 s.",
+            "verdict": "incertain",
+            "note": "Partiellement vérifié : le coréen figure bien parmi les ~25 langues du moteur OCR Windows (doc OcrEngine.AvailableRecognizerLanguages / Power Automate OCR, learn.microsoft.com), pack de langue requis, inférence 100 % locale — la partie « support ko-KR natif et rapide » est solide. EN REVANCHE : (1) aucune source Microsoft trouvée classant le coréen en tier « good » — cette classification semble provenir d'une source tierce non identifiée, à ne pas présenter comme officielle ; (2) aucun benchmark indépendant trouvé sur la précision du moteur Windows sur du texte de jeu petit et anti-aliasé en coréen — les outils spécialisés (Capture2Text, VNTranslator) existent précisément parce que l'OCR générique peine sur ce type de rendu. La partie « assez bien sur le chat LoL réel » est invérifiable sans test sur captures réelles ; le plan de l'agent (interface d'abstraction + moteur alternatif + suréchantillonnage) est la bonne mitigation et doit être traité comme un prérequis de validation, pas une option."
+          }
+        ],
+        "corrections": "Trois corrections/ajouts à apporter à la recommandation, qui reste globalement valide : (1) Reformuler « apps vetted par Overwolf/Riot, officiellement compatibles Vanguard » — la FAQ développeurs Riot affirme explicitement « there is absolutely no allow list for Vanguard » ; la compatibilité d'une app externe est comportementale (pas de read handles, pas de hooks, pas de lecture mémoire), jamais garantie par un agrément Riot. Le programme de conformité est celui d'Overwolf pour SA plateforme ; notre app n'en bénéficie pas. Cela renforce l'importance de la validation explicite auprès de Riot/organisateurs déjà prévue dans les risques. (2) Risque manquant : une fenêtre HWND_TOPMOST permanente au-dessus d'un jeu borderless casse les « borderless windowed optimizations » de DWM (independent flip/MPO), ce qui peut désactiver G-Sync/VRR et ajouter ~1 frame de latence de présentation au jeu — précédent documenté avec le nouveau overlay Discord (erikmcclure.com). Mitigation : ne montrer la fenêtre overlay que lorsqu'il y a du texte à afficher, ou assumer ce coût mineur en contexte event (à mesurer). (3) Affaiblir l'affirmation « tier good » de l'OCR coréen (provenance non retrouvée dans la doc Microsoft) et requalifier le test OCR sur captures réelles du chat LoL coréen de « si besoin » en prérequis bloquant du projet, avec moteur alternatif (ex. PaddleOCR/EasyOCR ou API cloud) benchmarké en parallèle dès le début. Ajouts mineurs : gérer le cas fenêtre LoL minimisée (WGC fige le flux) ; vérifier le code retour de SetWindowDisplayAffinity car il échoue sur un sous-ensemble de machines Windows 11 (Microsoft Q&A) — le mode « public » browser-source doit rester le chemin principal pour OBS."
+      }
+    },
+    {
+      "topic": "conformite-riot",
+      "findings": {
+        "summary": "Un outil purement externe \"capture d'écran + OCR + traduction affichée dans une fenêtre overlay transparente\" est conforme à la politique applications tierces de Riot et présente un risque de ban quasi nul, à condition de ne jamais toucher au processus du jeu. La politique officielle de Riot interdit les apps donnant un \"avantage mesurable au joueur\" (exposer des infos volontairement masquées, agir à la place du joueur via bot/script, tirer des conclusions pendant la partie, altérer le champ d'information type zoomhack/alertes d'ultis) — la traduction d'un chat déjà visible à l'écran ne coche aucune de ces cases. Vanguard (actif sur LoL depuis le patch 14.9, 1er mai 2024) détecte la lecture mémoire, l'injection de code et les drivers vulnérables; il \"bloque\" les logiciels incompatibles (le jeu refuse de se lancer, erreur VAN) mais ne bannit pas pour la simple présence d'un logiciel — les bans visent les cheats détectés activement. La capture d'écran (DXGI/Windows Graphics Capture, comme OBS utilisé par des millions de streamers) et une fenêtre transparente topmost séparée ne déclenchent rien; le seul piège technique est l'overlay par injection (style Discord/Steam), bloqué par Vanguard — il faut donc une fenêtre externe avec le jeu en mode borderless. Il existe des précédents directs validés: League Chat Translator et EzChat.gg sont des traducteurs de chat LoL publiés sur le store Overwolf (qui exige une approbation Riot avant publication), plus des projets open-source dont un français (Remideza/lol_trad_fromimage, Tesseract + Google Translate sur capture de fenêtre) et LeagueOCR utilisé pour les HUD de broadcast. Attention: Riot durcit activement sa politique overlays (interdiction des ult timers le 13 mars 2025, interdiction des pubs in-game dans les overlays le 29 mai 2025), mais cela ne concerne que les fonctionnalités d'avantage compétitif et la monétisation, pas la traduction. Il n'existe AUCUNE allow-list Vanguard (\"There is absolutely no allow list for Vanguard\"), donc la voie officielle est l'enregistrement du produit sur le Riot Developer Portal + contact Developer Relations (revue hebdomadaire, jusqu'à 3 semaines de délai — à lancer immédiatement). Enfin, le vrai vecteur de ban historique des bootcamps Corée n'est pas l'outillage mais le partage de comptes et la vérification KSSN (bans permanents d'août 2023, affaire TF Blade): les comptes KR doivent être fournis/validés via Riot, ce qui offre justement un canal (Riot France/Riot Korea, partenariats event) pour faire valider l'outil par écrit avant le live.",
+        "keyFacts": [
+          "Vanguard est déployé sur League of Legends depuis le patch 14.9 (1er mai 2024): driver kernel vgk.sys chargé au boot, TPM 2.0/Secure Boot exigés sous Windows 11; moins de 0,03% des joueurs ont signalé des problèmes au lancement (wiki officiel LoL).",
+          "Critères officiels d'interdiction (article support Riot \"Third Party Applications\"): avantage mesurable = exposer des informations volontairement obfusquées, agir à la place du joueur (botting/scripting), tirer des conclusions pendant la partie, altérer le champ d'information (zoomhack, alertes globales d'ultis). La traduction de texte visible n'entre dans aucune catégorie.",
+          "FAQ Vanguard officielle pour développeurs (riotgames.com/en/DevRel/vanguard-faq): \"External tools reading memory will no longer work\" / \"Overlays and internal tools using the API, game client, and in-game APIs should continue to function\" / \"There is absolutely no allow list for Vanguard\".",
+          "Dev blog Riot \"Vanguard x LoL\": Vanguard ne bannit pas pour un logiciel installé; les logiciels incompatibles (drivers vulnérables, lecture mémoire) sont bloqués (erreurs VAN, jeu qui ne démarre pas) et non bannis; les faux bans sont qualifiés d'\"exceedingly rare\" et révertés en quelques jours.",
+          "Précédents directs: League Chat Translator (GPT-4, overlay in-game) et EzChat.gg (12K téléchargements, note 4,3/5) sont des traducteurs de chat LoL distribués sur Overwolf, dont la politique exige une approbation Riot avant publication; ils fonctionnent sous Vanguard en 2025-2026. Projets open-source: Remideza/lol_trad_fromimage (FR, capture de fenêtre + Tesseract + Google Translate), LeagueOCR (HUD broadcast).",
+          "Durcissements 2025: interdiction des ult timers dans les apps tierces effective le 13 mars 2025; interdiction des publicités in-game dans les overlays/écrans de chargement/client effective le 29 mai 2025 (annonce @RiotGamesDevRel); les overlays doivent offrir une version gratuite et toute monétisation doit être pré-approuvée.",
+          "Procédure officielle: Riot Developer Portal > \"Register Product\" (projet personnel ou produit grande échelle), formulaire + vérification, revue par l'équipe Developer Relations environ hebdomadaire, délai pouvant atteindre 3 semaines; rejets négociables via la messagerie du portail; contact le plus rapide via le site support Developer Relations.",
+          "Porofessor, Blitz, Mobalytics et Facecheck fonctionnent toujours avec overlays in-game sous Vanguard en 2026, en passant par les API officielles (Riot API, Live Client Data) sans lecture mémoire; le chat in-game n'est PAS exposé par ces API ni par les événements Overwolf, ce qui fait de l'OCR sur capture d'écran la seule voie conforme.",
+          "Bans des bootcamps Corée (août 2023, affaire TF Blade): cause = partage de compte et contournement de la vérification KSSN (\"chaque compte du serveur coréen doit être vérifié par numéro de sécurité sociale, sauf compte officiel fourni par Riot\") — aucun outil tiers en cause; Riot fournit des comptes vérifiés pour les events/bootcamps.",
+          "Overlay par injection (Discord, Steam) = bloqué par Vanguard (n'affiche rien, pas de ban); Overwolf injecte dans le process mais bénéficie de sa relation contractuelle avec Riot; une app indépendante doit utiliser une fenêtre externe transparente (WS_EX_LAYERED/TRANSPARENT, click-through) avec le jeu en borderless/fenêtré."
+        ],
+        "recommendation": "Construire l'outil en application 100% externe: capture du framebuffer via Windows Graphics Capture/DXGI Desktop Duplication (même mécanisme qu'OBS, utilisé par tous les streamers LoL sans incident), OCR hors process, et affichage dans une fenêtre Windows séparée, transparente, topmost et click-through — jamais d'injection de DLL, jamais de lecture mémoire, jamais de modification de fichiers du jeu, jamais de simulation d'input, et jeu configuré en borderless/fenêtré (l'overlay ne s'affichera pas en plein écran exclusif). Limiter strictement le périmètre fonctionnel à la traduction du chat: aucune info de cooldown, timer ou suggestion de gameplay (zone activement réprimée par Riot en 2025), aucune pub dans l'overlay, et afficher le disclaimer obligatoire \\\"[Nom de l'app] isn't endorsed by Riot Games...\\\". Côté officialisation, lancer dès maintenant (délai de revue jusqu'à 3 semaines) un enregistrement de produit sur le Riot Developer Portal en décrivant explicitement la méthode (capture d'écran + OCR + overlay externe, lecture seule), et solliciter Developer Relations via leur site support pour une confirmation écrite; en parallèle, passer par le canal événementiel — un \\\"rush Corée\\\" de cette ampleur implique nécessairement Riot France/Riot Korea pour les comptes KR vérifiés (KSSN) — et faire valider l'outil par écrit dans le même paquet que les comptes. C'est ce canal event/partenariat qui apporte la vraie garantie, car il n'existe aucune allow-list Vanguard technique. Tester l'outil plusieurs semaines avant l'event sur des comptes non critiques et sur les PC réels des streamers (pour purger les conflits de drivers RGB/monitoring qui sont la cause n°1 des blocages VAN), et prévoir un plan B sans overlay (affichage sur 2e écran, comme le propose EzChat.gg) si un doute subsiste le jour J. Le risque de ban pour la méthode capture+OCR+fenêtre externe est quasi nul (aucun précédent de ban documenté pour cette classe d'outils, précédents approuvés existants); le risque résiduel se gère par la validation écrite préalable.",
+        "risks": [
+          "Overlay par injection: si l'overlay est implémenté en hook/injection dans le process du jeu (comme Discord ou Steam), Vanguard le bloquera (pas de ban, mais overlay invisible ou jeu qui ne se lance pas) — risque d'incident en plein live; imposer l'architecture fenêtre externe.",
+          "Blocage VAN au lancement (pas un ban) causé par des logiciels tiers sur les PC des streamers: drivers vulnérables, RGB (drivers type inpoutx64.sys), outils de monitoring — cause n°1 documentée d'erreurs VAN/1067; tester la machine exacte de chaque streamer en conditions réelles avant l'event.",
+          "Le vrai vecteur de ban en Corée est le compte, pas l'outil: vérification KSSN obligatoire et bans permanents pour partage de compte/IP d'hôtel (précédent TF Blade, août 2023); les comptes doivent impérativement venir de Riot via le canal officiel de l'event.",
+          "Riot durcit sa politique overlays depuis 2025 (ult timers bannis en mars, pubs in-game bannies en mai): une évolution de politique d'ici l'event reste possible; suivre @RiotGamesDevRel et garder le contact DevRel ouvert.",
+          "Flag manuel/heuristique pendant un event ultra-visible: une revue humaine de Riot pourrait s'interroger sur une fenêtre inconnue superposée au jeu vue par des dizaines de milliers de viewers; la validation écrite préalable (DevRel + Riot Korea) élimine ce risque réputationnel et juridique.",
+          "Faux positifs Vanguard: rares mais documentés (qualifiés d'\"exceedingly rare\" par Riot, révertés en quelques jours) — un délai de quelques jours est inacceptable en plein event, d'où l'intérêt d'un contact Riot direct nommé, joignable pendant le live.",
+          "Performance broadcast: une capture d'écran haute fréquence + OCR mal optimisés peuvent faire chuter les FPS du jeu ou de l'encodage OBS; capturer à basse cadence (1-2 Hz suffisent pour du chat), sur la seule zone du chat, et hors du thread GPU critique."
+        ],
+        "criticalClaims": [
+          "Vanguard ne bannit pas pour une capture d'écran externe ni pour une fenêtre transparente séparée: il bannit les cheats détectés activement (lecture/écriture mémoire, injection) et se contente de BLOQUER les logiciels incompatibles — si cette affirmation était fausse, tout le projet serait invalide. Elle est corroborée par le dev blog officiel Vanguard x LoL, la FAQ DevRel et l'absence totale de précédent de ban pour OBS/outils OCR de broadcast.",
+          "Un traducteur de chat ne confère pas d'\"avantage mesurable\" au sens de la politique Riot et est déjà accepté de facto: des traducteurs de chat LoL (League Chat Translator, EzChat.gg) sont publiés sur Overwolf, store qui exige l'approbation Riot avant publication — si Riot considérait la traduction comme un avantage déloyal, ces apps n'existeraient pas.",
+          "Le chat in-game n'est accessible par AUCUNE API officielle (Riot API, Live Client Data, événements Overwolf): l'OCR sur capture d'écran est donc la seule méthode conforme — à confirmer auprès de DevRel; si une API exposait le chat, l'architecture pourrait être simplifiée et la latence réduite.",
+          "Il n'existe aucune allow-list Vanguard ni exemption technique (\"absolutely no allow list\"): la sécurisation passe exclusivement par la conformité architecturale + une validation écrite via Developer Portal/DevRel/Riot Korea — toute promesse d'un \"whitelisting Vanguard\" serait fausse.",
+          "L'overlay doit être une fenêtre externe et le jeu en mode borderless/fenêtré: les overlays injectés sont bloqués par Vanguard et le plein écran exclusif masquerait la fenêtre — si les streamers exigent le plein écran exclusif, il faudra basculer sur l'affichage 2e écran/regie OBS."
+        ],
+        "sources": [
+          {
+            "title": "Third Party Applications – League of Legends Support (Riot Games)",
+            "url": "https://support-leagueoflegends.riotgames.com/hc/en-us/articles/225266848-Third-Party-Applications"
+          },
+          {
+            "title": "Vanguard FAQ for Third Party Applications – Riot Games DevRel",
+            "url": "https://www.riotgames.com/en/DevRel/vanguard-faq"
+          },
+          {
+            "title": "/dev: Vanguard x LoL – blog développeur officiel Riot",
+            "url": "https://www.leagueoflegends.com/en-us/news/dev/dev-vanguard-x-lol/"
+          },
+          {
+            "title": "Riot Vanguard – League of Legends Wiki (officiel)",
+            "url": "https://wiki.leagueoflegends.com/en-us/Riot_Vanguard"
+          },
+          {
+            "title": "Riot Games compliance – Overwolf Developers",
+            "url": "https://dev.overwolf.com/ow-native/guides/game-compliance/riot-games/"
+          },
+          {
+            "title": "Riot Games Developer Relations – annonce interdiction pubs in-game (29 mai 2025)",
+            "url": "https://x.com/RiotGamesDevRel/status/1928141776415568329"
+          },
+          {
+            "title": "Riot Developer Portal – documentation et enregistrement de produit",
+            "url": "https://developer.riotgames.com/docs/portal"
+          },
+          {
+            "title": "General Policies – Riot Developer Portal (màj 11 mars 2025)",
+            "url": "https://developer.riotgames.com/policies/general"
+          },
+          {
+            "title": "EzChat.gg – traducteur de chat LoL sur Overwolf",
+            "url": "https://www.overwolf.com/app/suffix.gg-ezchat.gg"
+          },
+          {
+            "title": "League Chat Translator – app Overwolf",
+            "url": "https://www.overwolf.com/app/patso-league_chat_translator"
+          },
+          {
+            "title": "lol_trad_fromimage – traducteur de chat LoL open-source français (capture + Tesseract)",
+            "url": "https://github.com/Remideza/lol_trad_fromimage"
+          },
+          {
+            "title": "LeagueOCR – collecte de données broadcast par OCR (mode spectateur)",
+            "url": "https://github.com/floh22/LeagueOCR"
+          },
+          {
+            "title": "LoL: des bannissements permanents suite au bootcamp en Corée (TF Blade, KSSN)",
+            "url": "https://www.creocommunity.com/league-of-legends/lol-des-bannissements-permanents-suite-au-bootcamp-en-coree/"
+          },
+          {
+            "title": "VAN: Incompatible Software – Riot Support (blocage, pas ban)",
+            "url": "https://support-valorant.riotgames.com/hc/en-us/articles/48441713812755-VAN-Incompatible-Software"
+          },
+          {
+            "title": "Overwolf Won't Get You Banned – Overwolf Support",
+            "url": "https://support.overwolf.com/support/solutions/articles/9000182312-overwolf-won-t-get-you-banned"
+          },
+          {
+            "title": "League of Legends: Riot Bans In-game Overlay Advertisements – Eloking",
+            "url": "https://eloking.com/blog/lol-riot-bans-overlay-advertisements"
+          },
+          {
+            "title": "Mobalytics x Vanguard Information",
+            "url": "https://mobalytics.gg/lol/guides/vanguard-and-mobalytics"
+          }
+        ]
+      },
+      "verif": {
+        "verdicts": [
+          {
+            "claim": "Vanguard ne bannit pas pour une capture d'écran externe ni pour une fenêtre transparente séparée: il bannit les cheats détectés activement et se contente de BLOQUER les logiciels incompatibles.",
+            "verdict": "confirmé",
+            "note": "Sources officielles concordantes: la FAQ DevRel (riotgames.com/en/DevRel/vanguard-faq) dit des outils de lecture mémoire qu'ils « will no longer work » (cassés, pas bannis); le dev blog Vanguard x LoL décrit le « Signature Scanning » contre les cheats connus et qualifie les faux positifs d'« exceedingly rare », révertés « after a few days »; les articles support VAN (Incompatible Software, VAN 1067) décrivent un blocage au lancement explicitement distinct d'une accusation de triche. Aucun précédent de ban documenté pour OBS ou un outil de capture/OCR. NUANCE adversariale: (1) Vanguard prend des captures de la fenêtre du jeu précisément pour détecter les overlays donnant un avantage déloyal (déclaration du responsable anti-cheat Riot relayée en mai 2024, confirmée par 80.lv et Sportskeeda) — la fenêtre de traduction sera donc VISIBLE pour Riot, et c'est l'absence d'avantage qui protège, pas l'architecture externe; (2) il existe des témoignages communautaires non vérifiés de bans Valorant attribués à des crosshair overlays externes (Crosshair X, filtres GeForce), cohérents avec la politique « avantage = sanctionnable » mais sans confirmation officielle. Pour un overlay limité à la traduction de texte visible, l'affirmation tient."
+          },
+          {
+            "claim": "Un traducteur de chat ne confère pas d'avantage mesurable au sens de la politique Riot et est déjà accepté de facto (League Chat Translator, EzChat.gg sur Overwolf, store exigeant l'approbation Riot).",
+            "verdict": "confirmé",
+            "note": "Vérifié: EzChat.gg est bien en ligne sur Overwolf (12 000 téléchargements, note 4,3/5, freemium) et League Chat Translator aussi (GPT-4, ~1,92K téléchargements, gratuit avec pubs — attention, ce dernier affiche une note de 1/5 et son modèle « gratuit avec publicités » est probablement non conforme depuis l'interdiction des pubs in-game du 29 mai 2025 s'il les affiche dans l'overlay). La page compliance Overwolf confirme l'exigence d'approbation Riot: « If you wish to integrate your app with any of Riot's games, you are required to seek their approval through their 3rd party application process » et « apps which reach the publication phase and do not yet possess a Riot approval will be asked to provide one before proceeding ». La politique Riot (« measurable advantage »: exposer des infos volontairement obfusquées, agir à la place du joueur, tirer des conclusions) ne couvre pas la traduction de texte déjà visible. Réserve: l'approbation Riot est accordée APP par APP — ces précédents prouvent que la catégorie est acceptable, pas que votre app est pré-approuvée; l'enregistrement individuel reste indispensable."
+          },
+          {
+            "claim": "Le chat in-game n'est accessible par AUCUNE API officielle (Riot API, Live Client Data, événements Overwolf): l'OCR sur capture d'écran est donc la seule méthode conforme.",
+            "verdict": "réfuté",
+            "note": "FAUX pour la partie Overwolf: la documentation officielle Overwolf GEP pour League of Legends (dev.overwolf.com/ow-native/live-game-data-gep/supported-games/league-of-legends/) documente une feature « chat » décrite comme « All the chat messages sent in a match », avec le format « [Team] Jacksork (Lux): Hello », assortie d'une restriction « intended for real-time usage only, and its content should not be logged ». C'est très probablement ainsi que fonctionne EzChat.gg, dont la fiche précise explicitement qu'il ne fait PAS d'OCR (« zéro lag », traduction directe du texte du chat). La partie Riot est exacte: ni la Riot API ni la Live Client Data API (port 2999, allgamedata) n'exposent d'endpoint chat. Conclusion corrigée: l'OCR n'est PAS la seule voie conforme — construire l'app sur la plateforme Overwolf (ou ow-electron) donne accès au texte du chat nativement, sans OCR, avec une latence et une fiabilité bien meilleures, et inclut le canal d'approbation Riot. L'OCR reste la seule voie si l'on tient à une app Windows 100% indépendante hors plateforme Overwolf."
+          },
+          {
+            "claim": "Il n'existe aucune allow-list Vanguard ni exemption technique: la sécurisation passe exclusivement par la conformité architecturale + validation écrite via Developer Portal/DevRel.",
+            "verdict": "confirmé",
+            "note": "Confirmé verbatim sur la FAQ officielle Vanguard pour développeurs tiers (riotgames.com/en/DevRel/vanguard-faq): « No - There is absolutely no allow list for Vanguard. » Aucune source 2025-2026 trouvée indiquant l'introduction d'un mécanisme de whitelisting depuis. Toute promesse commerciale de « whitelisting Vanguard » serait donc bien fausse. Bémol mineur sur la formulation « exemption technique »: l'absence d'allow-list signifie aussi que même une app approuvée par DevRel peut être cassée techniquement par une mise à jour Vanguard — l'approbation écrite protège du ban, pas du blocage fonctionnel."
+          },
+          {
+            "claim": "L'overlay doit être une fenêtre externe et le jeu en mode borderless/fenêtré: les overlays injectés sont bloqués par Vanguard et le plein écran exclusif masquerait la fenêtre.",
+            "verdict": "incertain",
+            "note": "La RECOMMANDATION (fenêtre externe + borderless) est saine et reste le choix le plus sûr, et la partie « plein écran exclusif masque une fenêtre topmost externe » est un comportement Windows standard avéré. Mais la PRÉMISSE « les overlays injectés sont bloqués par Vanguard » est trop absolue et contredite par la FAQ officielle DevRel elle-même: « Overlays and internal tools using the API, game client, and in-game APIs should continue to function ». Dans les faits, les overlays par injection d'Overwolf, Porofessor, Blitz et Mobalytics fonctionnent sous Vanguard sur LoL en 2025-2026, et l'overlay Discord fonctionne pour la plupart des joueurs LoL (les blocages documentés concernent surtout Valorant, souvent résolus en passant en borderless). Ce que Vanguard bloque réellement: les drivers vulnérables (ex. RTCore64.sys de MSI Afterburner/RivaTuner) et les hooks non signés/non fiables. Notez aussi que l'explication « Overwolf bénéficie de sa relation contractuelle avec Riot » est en tension avec « absolutely no allow list » — Overwolf passe parce que ses méthodes d'injection signées sont tolérées par Vanguard, pas via une exemption contractuelle de l'anti-cheat."
+          }
+        ],
+        "corrections": "Trois corrections à apporter à la recommandation. (1) MAJEURE — architecture: le claim « OCR = seule voie conforme » est réfuté. L'Overwolf GEP expose officiellement une feature « chat » pour LoL (« All the chat messages sent in a match », temps réel uniquement, interdiction de logger le contenu) — c'est ainsi qu'EzChat.gg fonctionne sans OCR. Il faut donc évaluer sérieusement l'option « app Overwolf/ow-electron » comme voie principale ou plan B: accès direct au texte du chat (latence quasi nulle, zéro erreur d'OCR sur le coréen, pas de dépendance à la position/police du chat), overlay géré par la plateforme, et processus d'approbation Riot intégré au store. La voie capture+OCR+fenêtre externe reste valable si l'indépendance vis-à-vis d'Overwolf est un impératif, mais elle n'est plus « la seule voie conforme » — présenter les deux options avec ce trade-off. Attention à la restriction Overwolf « content should not be logged »: le pipeline de traduction est de l'usage temps réel acceptable, mais aucun stockage/archivage des messages. (2) Nuancer la prémisse « overlays injectés bloqués par Vanguard »: c'est faux en général (Overwolf, Porofessor, Blitz, Discord fonctionnent sous Vanguard sur LoL); Vanguard bloque les drivers vulnérables et hooks non fiables. La fenêtre externe reste le choix le plus prudent pour une app indépendante, mais l'argumentaire doit être corrigé pour ne pas perdre en crédibilité face à DevRel. Corollaire important: Vanguard capture la fenêtre du jeu pour inspecter les overlays — la fenêtre de traduction sera visible par Riot, ce qui renforce encore la nécessité de la validation écrite préalable (déjà recommandée, à maintenir). (3) Mineures: les URLs support Riot citées sont obsolètes (redirections 301 vers support.riotgames.com/en-us/riot/events/third-party-applications et .../league-of-legends/performance/riot-vanguard-faq-league-of-legends — mettre à jour les sources); le précédent EzChat.gg valide l'acceptabilité de la TRADUCTION mais pas l'architecture OCR (il n'utilise pas d'OCR); le seul précédent architectural OCR direct est Remideza/lol_trad_fromimage, qui existe bien (Tesseract + Google Translate sur capture de fenêtre) mais est un micro-projet personnel (0 star, 9 commits) sans statut d'approbation Riot connu — ne pas le présenter comme « précédent validé »; enfin League Chat Translator a une note de 1/5 (pas un précédent flatteur) et son modèle gratuit-avec-pubs est potentiellement non conforme depuis l'interdiction des pubs in-game du 29 mai 2025, à ne pas citer comme modèle."
+      }
+    }
+  ]
+}
