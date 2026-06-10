@@ -44,6 +44,11 @@ public sealed class AppConfig
     /// <summary>Dossier des modèles de traduction locale (M2M-100 ONNX). Vide = dossier par défaut.</summary>
     public string LocalModelDirectory { get; set; } = "";
 
+    /// <summary>Refléter TOUTES les lignes du chat (pings/système compris) dans l'overlay,
+    /// pas seulement le chat joueur. Les lignes majoritairement coréennes (client KR) sont
+    /// traduites, les autres copiées. Utile sur client coréen ou pour valider une zone.</summary>
+    public bool MirrorAllLines { get; set; }
+
     // — Capture/OCR —
     public int CaptureIntervalMs { get; set; } = 250;
     public double OcrUpscaleFactor { get; set; } = 2.0;

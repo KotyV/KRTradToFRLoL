@@ -38,6 +38,7 @@ public partial class MainWindow : Window
         _ocr = (IOcrEngine?)PaddleKoreanOcrEngine.TryCreate(_config.EffectiveOcrModelDirectory)
                ?? new WindowsMediaOcrEngine();
         ProxyUrlBox.Text = _config.ProxyUrl;
+        MirrorAllCheck.IsChecked = _config.MirrorAllLines;
         UpdateRegionLabel();
         Loaded += async (_, _) =>
         {
@@ -261,15 +262,17 @@ public partial class MainWindow : Window
     {
         // Le timestamp du jeu sert d'ancre visuelle (la ligne « 24:28 » de l'overlay = celle
         // du chat) ; le pseudo reprend le code couleur du jeu (bleu allié, rouge /all, doré lobby).
+        var isSystem = evt.Message.Channel == "Sys";
         var ts = evt.Message.Timestamp;
-        var speaker = $"[{evt.Message.SpeakerKey}]";
+        var speaker = isSystem ? "" : $"[{evt.Message.SpeakerKey}]";
         var brush = OverlayWindow.BrushForChannel(evt.Message.Channel);
         var key = evt.Message.DedupKey;
         _displayed[key] = (evt.Message, 0);
 
         if (evt.Translation is { } result)
         {
-            _overlay?.Upsert(key, ts, speaker, result.Text, result.Failed, brush);
+            // Les copies système s'affichent en gris : l'œil distingue le bruit du vrai chat.
+            _overlay?.Upsert(key, ts, speaker, result.Text, result.Failed || (isSystem && result.Source == "copie"), brush);
             AppendDiag($"[{result.Source}] {evt.Message.SpeakerKey}: {evt.Message.Text} → {result.Text}");
         }
         else if (evt.PartialText is { } partial)
@@ -280,6 +283,12 @@ public partial class MainWindow : Window
         {
             _overlay?.Upsert(key, ts, speaker, evt.Message.Text, failed: true, brush); // coréen brut en attendant
         }
+    }
+
+    private void OnMirrorAllChanged(object sender, RoutedEventArgs e)
+    {
+        _config.MirrorAllLines = MirrorAllCheck.IsChecked == true;
+        _config.Save(); // lu par la boucle à chaque frame : effet immédiat, sans redémarrage
     }
 
     private void OnToggleEditOverlay(object sender, RoutedEventArgs e)

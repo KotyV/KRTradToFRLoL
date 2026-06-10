@@ -109,7 +109,7 @@ public sealed class TranslatorService(
 
         OcrFrame?.Invoke(lines);
 
-        var visible = _assembler.Assemble(lines);
+        var visible = _assembler.Assemble(lines, config.MirrorAllLines);
         _lastVisible = visible;
         VisibleFrame?.Invoke(visible);
 

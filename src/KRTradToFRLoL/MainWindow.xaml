@@ -44,6 +44,10 @@
                     FontWeight="Bold" Click="OnStartStop"/>
             <Button x:Name="EditOverlayButton" Content="Déplacer l'overlay" Padding="10,6" Margin="10,0,0,0"
                     Click="OnToggleEditOverlay"/>
+            <CheckBox x:Name="MirrorAllCheck" Content="Tout afficher (pings/système)" Foreground="White"
+                      VerticalAlignment="Center" Margin="14,0,0,0"
+                      ToolTip="Reflète toutes les lignes du chat : traduites si coréennes (client KR), copiées sinon. Décoché = chat joueur uniquement (recommandé en live)."
+                      Checked="OnMirrorAllChanged" Unchecked="OnMirrorAllChanged"/>
         </StackPanel>
 
         <!-- Test bout-en-bout sans partie en cours -->

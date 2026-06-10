@@ -11,7 +11,10 @@ namespace KRTradToFRLoL.Parsing;
 /// </summary>
 public sealed class ChatFrameAssembler(ChatLineParser parser)
 {
-    public IReadOnlyList<ChatMessage> Assemble(IReadOnlyList<string> lines)
+    /// <param name="mirrorAllLines">Si vrai, les lignes non-chat (pings, kills, système)
+    /// deviennent des messages « Sys » : traduits si majoritairement coréens (client KR),
+    /// copiés sinon — l'overlay reflète alors tout le bloc de chat.</param>
+    public IReadOnlyList<ChatMessage> Assemble(IReadOnlyList<string> lines, bool mirrorAllLines = false)
     {
         var messages = new List<ChatMessage>();
         var lastParsedIndex = -2; // jamais adjacent au départ
@@ -46,6 +49,21 @@ public sealed class ChatFrameAssembler(ChatLineParser parser)
                     RawLine = $"{last.RawLine} ⏎ {line}",
                 };
                 lastParsedIndex = i; // autorise un repli sur 3 lignes et plus
+                continue;
+            }
+
+            if (mirrorAllLines && line.Trim().Length >= 4)
+            {
+                var text = line.Trim();
+                messages.Add(new ChatMessage
+                {
+                    Channel = "Sys",
+                    Text = text,
+                    RawLine = line,
+                    // Ping/annonce du client coréen → traduisible ; ligne anglaise avec
+                    // pseudo hangul → simple copie.
+                    NeedsTranslation = ChatLineParser.IsMostlyHangul(text),
+                });
             }
         }
 

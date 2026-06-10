@@ -7,7 +7,7 @@ namespace KRTradToFRLoL.Tests;
 public class ChatFrameAssemblerTests
 {
     private static readonly ChatFrameAssembler Assembler =
-        new(new ChatLineParser(new ChampionNames(["Yunara", "Yone", "Sylas", "Lee Sin"])));
+        new(new ChatLineParser(new ChampionNames(["Yunara", "Yone", "Sylas", "Lee Sin", "Hwei"])));
 
     [Fact]
     public void Fusionne_la_ligne_de_continuation_avec_le_message_precedent()
@@ -116,6 +116,34 @@ public class ChatFrameAssemblerTests
 
         Assert.Equal(2, messages.Count);
         Assert.All(messages, m => Assert.Equal("Lobby", m.Channel));
+    }
+
+    [Fact]
+    public void Mode_tout_afficher_copie_les_pings_anglais_et_traduit_les_coreens()
+    {
+        var messages = Assembler.Assemble(
+        [
+            "05:39 신 일 (Rell) is on the way",            // ping EN, pseudo hangul → copie
+            "몬스터 (르블랑) 님이 후퇴 신호를 보냄",          // ping client CORÉEN → à traduire
+            "B D",                                         // fragment court → ignoré
+        ], mirrorAllLines: true);
+
+        Assert.Equal(2, messages.Count);
+        Assert.All(messages, m => Assert.Equal("Sys", m.Channel));
+        Assert.False(messages[0].NeedsTranslation); // copie telle quelle
+        Assert.True(messages[1].NeedsTranslation);  // hangul majoritaire → traduction
+    }
+
+    [Fact]
+    public void Mode_tout_afficher_ne_duplique_pas_le_chat_joueur()
+    {
+        var messages = Assembler.Assemble(
+        [
+            "13:51 [Team] 큰 곰 (Hwei): 원숭이마낭",
+        ], mirrorAllLines: true);
+
+        var msg = Assert.Single(messages);
+        Assert.Equal("Team", msg.Channel); // parsé en chat joueur, pas en Sys
     }
 
     [Fact]
