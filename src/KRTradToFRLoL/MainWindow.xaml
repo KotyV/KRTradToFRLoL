@@ -10,6 +10,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -45,17 +46,25 @@
                     Click="OnToggleEditOverlay"/>
         </StackPanel>
 
+        <!-- Test bout-en-bout sans partie en cours -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Test sans jeu :" VerticalAlignment="Center" Width="130"
+                       ToolTip="Envoie ce message coréen dans la vraie chaîne de traduction (glossaire → cache → LLM/proxy → local) et affiche le résultat dans l'overlay. Valide la configuration sans lancer de partie."/>
+            <TextBox x:Name="TestInputBox" Width="330" VerticalContentAlignment="Center" Text="미드 갱 좀 와주세요 ㅈㄴ 힘들어"/>
+            <Button Content="Tester la traduction" Margin="8,0,0,0" Padding="10,4" Click="OnTestTranslate"/>
+        </StackPanel>
+
         <!-- Statut -->
-        <TextBlock x:Name="StatusLabel" Grid.Row="4" Margin="0,0,0,8" Foreground="#FF8BE28B"
+        <TextBlock x:Name="StatusLabel" Grid.Row="5" Margin="0,0,0,8" Foreground="#FF8BE28B"
                    TextWrapping="Wrap" Text="Prêt."/>
 
         <!-- Diagnostic -->
-        <GroupBox Grid.Row="5" Header="Diagnostic (OCR brut → messages traduits)" Foreground="White">
+        <GroupBox Grid.Row="6" Header="Diagnostic (OCR brut → messages traduits)" Foreground="White">
             <ListBox x:Name="DiagnosticList" Background="#FF14141A" Foreground="#FFD0D0DC"
                      FontFamily="Consolas" FontSize="12"/>
         </GroupBox>
 
-        <TextBlock Grid.Row="6" Margin="0,8,0,0" FontSize="11" Foreground="#FF9090A0" TextWrapping="Wrap"
+        <TextBlock Grid.Row="7" Margin="0,8,0,0" FontSize="11" Foreground="#FF9090A0" TextWrapping="Wrap"
                    Text="LoL en mode « Sans bordure ». App 100 % externe au jeu : capture d'écran + overlay, aucune interaction avec le process (compatible Vanguard). KRTradToFRLoL isn't endorsed by Riot Games."/>
     </Grid>
 </Window>

@@ -23,7 +23,7 @@ public partial class MainWindow : Window
     private TranslatorService? _service;
     private OverlayWindow? _overlay;
     private bool _editMode;
-    private HashSet<string> _prevOcrLines = [];
+    private List<string> _prevOcrLines = [];
 
     public MainWindow()
     {
@@ -128,29 +128,58 @@ public partial class MainWindow : Window
         _overlay ??= new OverlayWindow(_config);
         if (_service is null)
         {
-            _llm = new ClaudeTranslator(_config);
-            var pipeline = new TranslationPipeline(
-                _glossary, _cache,
-                _llm.IsConfigured ? _llm : null,
-                _localNmt,
-                _config.TranslationTimeoutSeconds,
-                _config.LocalTranslationTimeoutSeconds);
-
-            _service = new TranslatorService(_config, _ocr, _champions, pipeline);
+            _service = new TranslatorService(_config, _ocr, _champions, BuildPipeline());
             _service.StatusChanged += msg => Dispatcher.BeginInvoke(() => SetStatus(msg));
             _service.OcrFrame += lines => Dispatcher.BeginInvoke(() =>
             {
-                // N'affiche que les lignes inédites par rapport à la frame précédente :
-                // sans ça, le jitter d'OCR sur fond animé inonde le diagnostic.
-                foreach (var l in lines.Where(l => l.Length >= 3 && !_prevOcrLines.Contains(l)).Take(8))
+                // Dédup FLOUE contre la frame précédente : l'OCR fait varier 1-3 caractères
+                // par ligne à chaque frame (fond animé) — l'égalité stricte ne suffit pas
+                // et le diagnostic affichait les mêmes lignes en boucle.
+                foreach (var l in lines.Where(IsNewOcrLine).Take(8))
                     AppendDiag($"[ocr] {l}");
-                _prevOcrLines = new HashSet<string>(lines, StringComparer.Ordinal);
+                _prevOcrLines = [.. lines];
             });
             _service.MessageUpdated += evt => Dispatcher.BeginInvoke(() => OnMessage(evt));
         }
 
         _service.Start();
         StartStopButton.Content = "■ Arrêter";
+    }
+
+    private TranslationPipeline BuildPipeline()
+    {
+        _llm ??= new ClaudeTranslator(_config);
+        return new TranslationPipeline(
+            _glossary, _cache,
+            _llm.IsConfigured ? _llm : null,
+            _localNmt,
+            _config.TranslationTimeoutSeconds,
+            _config.LocalTranslationTimeoutSeconds);
+    }
+
+    private int _testCounter;
+
+    /// <summary>Valide toute la chaîne de traduction sans partie en cours.</summary>
+    private async void OnTestTranslate(object sender, RoutedEventArgs e)
+    {
+        var text = TestInputBox.Text.Trim();
+        if (text.Length == 0) return;
+
+        _overlay ??= new OverlayWindow(_config);
+        var key = $"test-{++_testCounter}";
+        _overlay.Upsert(key, "[Test] ", text, failed: true);
+        AppendDiag($"[test] {text} → …");
+
+        var pipeline = BuildPipeline();
+        var result = await pipeline.TranslateAsync(
+            text,
+            partial => Dispatcher.BeginInvoke(() => _overlay?.Upsert(key, "[Test] ", partial, false)),
+            CancellationToken.None);
+
+        _overlay?.Upsert(key, "[Test] ", result.Text, result.Failed);
+        AppendDiag($"[test → {result.Source}] {text} → {result.Text}");
+        if (result.Failed)
+            SetStatus("Test : aucune source de traduction n'a répondu (ni proxy/clé, ni modèle local). " + DescribeTranslationSetup(), error: true);
     }
 
     private void OnMessage(PipelineEvent evt)
@@ -186,6 +215,10 @@ public partial class MainWindow : Window
         _overlay.SetEditMode(_editMode);
         EditOverlayButton.Content = _editMode ? "✔ Terminer le placement" : "Déplacer l'overlay";
     }
+
+    private bool IsNewOcrLine(string line) =>
+        line.Length >= 3 && !_prevOcrLines.Any(prev =>
+            Parsing.Levenshtein.Distance(prev, line) <= Math.Max(2, (int)(Math.Max(prev.Length, line.Length) * 0.2)));
 
     private void UpdateRegionLabel() =>
         RegionLabel.Text = $"zone : {_config.ChatRegionX},{_config.ChatRegionY} {_config.ChatRegionWidth}×{_config.ChatRegionHeight}px";
