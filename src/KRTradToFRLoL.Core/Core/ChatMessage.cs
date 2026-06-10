@@ -10,6 +10,10 @@ public sealed record ChatMessage
     public string Text { get; init; } = "";           // le message seul, à traduire
     public string RawLine { get; init; } = "";        // ligne OCR complète (diagnostic)
 
+    /// <summary>Faux pour un message de chat sans hangul (anglais…) : affiché tel quel
+    /// dans l'overlay, sans passer par la traduction — le flux reste complet.</summary>
+    public bool NeedsTranslation { get; init; } = true;
+
     /// <summary>Identité de l'émetteur : champion in-game, pseudo (anonymisé ou non) en champ select.</summary>
     public string SpeakerKey => Champion.Length > 0 ? Champion : Author;
 

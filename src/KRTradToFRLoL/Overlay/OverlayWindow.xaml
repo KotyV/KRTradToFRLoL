@@ -13,7 +13,8 @@
                     <TextBlock Margin="0,1" TextWrapping="Wrap"
                                FontFamily="Segoe UI" FontWeight="SemiBold"
                                FontSize="{Binding FontSize}">
-                        <Run Text="{Binding Header, Mode=OneWay}" Foreground="#FF9AC4FF"/>
+                        <Run Text="{Binding Timestamp, Mode=OneWay}" Foreground="#FF8A8A98"/>
+                        <Run Text="{Binding Speaker, Mode=OneWay}" Foreground="{Binding SpeakerBrush, Mode=OneWay}"/>
                         <Run Text="{Binding Body, Mode=OneWay}" Foreground="{Binding BodyBrush, Mode=OneWay}"/>
                     </TextBlock>
                 </DataTemplate>

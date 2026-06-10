@@ -178,6 +178,16 @@ Krug : 연승치니까 주포절대안주네 4판연속        [râle sur l'auto
 29:24 미니맵 이제 못봄 (Karma) purchased Control Ward                 [achat → rejet]
 ```
 
+## Capture 17 — sémantique des couleurs du chat (client anglais)
+
+- **Bleu** : pseudos et pings alliés ; **doré/jaune** : objets, quêtes d'objet, achats,
+  annonces d'objectifs (« The enemy team has slain the Infernal Drake! » — corps doré) ;
+  **rouge** : toute référence ennemie (« The enemy team », noms ennemis dans les kills
+  « has slain 들하는정훈이당 (Graves) », pings ciblés « has targeted 미드 전소헌 ») ;
+  **orange** : kill streaks.
+- L'overlay reprend ce code pour ce qu'il affiche : timestamp gris, pseudo bleu (allié),
+  rouge pour le /all, doré pour le champ select, texte blanc (gris si non traduit).
+
 ---
 
 ## Implications de design (à refléter dans PLAN.md)

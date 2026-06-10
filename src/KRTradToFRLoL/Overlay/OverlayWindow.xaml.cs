@@ -32,9 +32,11 @@ public partial class OverlayWindow : Window
         private string _body = "";
         private Brush _bodyBrush = Brushes.White;
 
-        public string Header { get; init; } = "";
+        public string Timestamp { get; init; } = "";
+        public string Speaker { get; init; } = "";
+        public Brush SpeakerBrush { get; init; } = AllyBlue;
         public string Key { get; init; } = "";
-        public double FontSize { get; init; } = 16;
+        public double FontSize { get; init; } = 13;
         public DateTime CreatedAt { get; } = DateTime.UtcNow;
 
         public string Body
@@ -52,6 +54,18 @@ public partial class OverlayWindow : Window
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
+
+    // Code couleur calqué sur le chat du jeu : allié bleu, /all ennemi rouge, lobby doré.
+    public static readonly Brush AllyBlue = new SolidColorBrush(Color.FromRgb(0x6F, 0xB1, 0xFF));
+    public static readonly Brush EnemyRed = new SolidColorBrush(Color.FromRgb(0xFF, 0x7B, 0x6B));
+    public static readonly Brush LobbyGold = new SolidColorBrush(Color.FromRgb(0xE8, 0xC3, 0x6A));
+
+    public static Brush BrushForChannel(string channel) => channel switch
+    {
+        "All" => EnemyRed,
+        "Lobby" => LobbyGold,
+        _ => AllyBlue,
+    };
 
     private readonly ObservableCollection<MessageVm> _messages = [];
     private readonly AppConfig _config;
@@ -97,7 +111,7 @@ public partial class OverlayWindow : Window
         {
             MouseLeftButtonDown += OnDragMove;
             if (_messages.Count == 0)
-                Upsert("démo", "[Yuumi] ", "exemple de traduction — déplace-moi puis quitte le mode édition", false);
+                Upsert("démo", "12:34", "[Yuumi]", "exemple de traduction — déplace-moi puis quitte le mode édition", false);
         }
         else
         {
@@ -110,13 +124,29 @@ public partial class OverlayWindow : Window
 
     private void OnDragMove(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
 
+    /// <summary>Retire un message (sa ligne d'origine a disparu du chat à l'écran).</summary>
+    public void Remove(string key)
+    {
+        for (var i = _messages.Count - 1; i >= 0; i--)
+        {
+            if (_messages[i].Key == key) _messages.RemoveAt(i);
+        }
+    }
+
     /// <summary>Ajoute ou met à jour un message (clé = ligne de chat d'origine).</summary>
-    public void Upsert(string key, string header, string body, bool failed)
+    public void Upsert(string key, string timestamp, string speaker, string body, bool failed, Brush? speakerBrush = null)
     {
         var existing = _messages.FirstOrDefault(m => m.Key == key);
         if (existing is null)
         {
-            existing = new MessageVm { Key = key, Header = header, FontSize = _config.OverlayFontSize };
+            existing = new MessageVm
+            {
+                Key = key,
+                Timestamp = timestamp,
+                Speaker = speaker,
+                SpeakerBrush = speakerBrush ?? AllyBlue,
+                FontSize = _config.OverlayFontSize,
+            };
             _messages.Add(existing);
             while (_messages.Count > 6) _messages.RemoveAt(0);
         }

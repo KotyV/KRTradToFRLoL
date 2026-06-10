@@ -12,7 +12,7 @@ public class ChatLineParserTests
     private static readonly ChampionNames Champions = new(
     [
         "Lucian", "Rek'Sai", "Maître Yi", "Ezreal", "Yuumi", "Lee Sin", "Vi", "Jax",
-        "Kennen", "Nautilus", "Jhin", "Karma", "Hwei", "나피리", "요네", "사일러스", "르블랑",
+        "Kennen", "Nautilus", "Jhin", "Karma", "Hwei", "Thresh", "나피리", "요네", "사일러스", "르블랑",
     ]);
 
     private readonly ChatLineParser _parser = new(Champions);
@@ -66,12 +66,32 @@ public class ChatLineParserTests
     [InlineData("몬스터 (르블랑) 님이 가고 있음")]
     [InlineData("못참겠어 (사일러스)님이 제어 와드 아이템을 구입했습니다.")]
     [InlineData("Adrian mateos (요네) 님이 첫 번째 포탑을 파괴했습니다!")]
-    // Chat sans hangul = déjà lisible par le streamer
-    [InlineData("02:33 [Team] 아삿추시러 (Ezreal): AN")]
-    [InlineData("13:31 [Team] Vi (Vi): stop die")]
-    [InlineData("13:45 [Team] MoeYS (Thresh): because bot AD")]
     [InlineData("13:26 큰 곰 (Hwei) Bot Quest Complete!")]
     public void Rejette_pings_kills_et_systeme(string line) => Assert.Null(_parser.Parse(line));
+
+    [Theory]
+    // Chat joueur sans hangul : conservé en COPIE telle quelle (l'overlay reflète tout le
+    // chat, traduit ou non), sans passer par la traduction.
+    [InlineData("13:31 [Team] Vi (Vi): stop die", "Vi", "stop die")]
+    [InlineData("13:45 [Team] MoeYS (Thresh): because bot AD", "Thresh", "because bot AD")]
+    [InlineData("02:33 [Team] 아삿추시러 (Ezreal): AN", "Ezreal", "AN")]
+    public void Garde_le_chat_non_coreen_en_copie(string line, string champion, string text)
+    {
+        var msg = _parser.Parse(line);
+
+        Assert.NotNull(msg);
+        Assert.False(msg.NeedsTranslation);
+        Assert.Equal(champion, msg.Champion);
+        Assert.Equal(text, msg.Text);
+    }
+
+    [Fact]
+    public void Le_chat_coreen_part_bien_en_traduction()
+    {
+        var msg = _parser.Parse("13:51 [Team] 큰 곰 (Hwei): 원숭이마낭");
+        Assert.NotNull(msg);
+        Assert.True(msg.NeedsTranslation);
+    }
 
     [Fact]
     public void Rejette_un_champion_inconnu_quand_la_liste_est_chargee() =>

@@ -26,6 +26,11 @@ public partial class MainWindow : Window
     private bool _editMode;
     private List<string> _prevOcrLines = [];
 
+    // Suivi de visibilité : l'overlay disparaît avec le chat (fade/scroll). Clé overlay →
+    // message source + nombre de frames consécutives où sa ligne n'est plus à l'écran.
+    private readonly Dictionary<string, (ChatMessage Msg, int Missing)> _displayed = new();
+    private const int MissingFramesBeforeRemoval = 4; // ~1 s à 4 Hz : absorbe le flicker OCR
+
     public MainWindow()
     {
         InitializeComponent();
@@ -185,6 +190,7 @@ public partial class MainWindow : Window
                 _prevOcrLines = [.. lines];
             });
             _service.MessageUpdated += evt => Dispatcher.BeginInvoke(() => OnMessage(evt));
+            _service.VisibleFrame += visible => Dispatcher.BeginInvoke(() => SyncOverlayWithChat(visible));
         }
 
         _service.Start();
@@ -212,16 +218,16 @@ public partial class MainWindow : Window
 
         _overlay ??= new OverlayWindow(_config);
         var key = $"test-{++_testCounter}";
-        _overlay.Upsert(key, "[Test] ", text, failed: true);
+        _overlay.Upsert(key, "", "[Test]", text, failed: true, System.Windows.Media.Brushes.Plum);
         AppendDiag($"[test] {text} → …");
 
         var pipeline = BuildPipeline();
         var result = await pipeline.TranslateAsync(
             text,
-            partial => Dispatcher.BeginInvoke(() => _overlay?.Upsert(key, "[Test] ", partial, false)),
+            partial => Dispatcher.BeginInvoke(() => _overlay?.Upsert(key, "", "[Test]", partial, false, System.Windows.Media.Brushes.Plum)),
             CancellationToken.None);
 
-        _overlay?.Upsert(key, "[Test] ", result.Text, result.Failed);
+        _overlay?.Upsert(key, "", "[Test]", result.Text, result.Failed, System.Windows.Media.Brushes.Plum);
         AppendDiag($"[test → {result.Source}] {text} → {result.Text}");
         if (result.Failed)
             SetStatus("Test : aucune source de traduction n'a répondu (ni proxy/clé, ni modèle local). " + DescribeTranslationSetup(), error: true);
@@ -229,26 +235,26 @@ public partial class MainWindow : Window
 
     private void OnMessage(PipelineEvent evt)
     {
-        // Le timestamp du jeu sert d'ancre visuelle : la ligne « 24:28 » de l'overlay
-        // correspond à la ligne « 24:28 » du chat, même après défilement.
-        // En champ select il n'y a ni timestamp ni champion → pseudo (anonymisé) seul.
-        var header = evt.Message.Timestamp.Length > 0
-            ? $"{evt.Message.Timestamp} [{evt.Message.SpeakerKey}] "
-            : $"[{evt.Message.SpeakerKey}] ";
+        // Le timestamp du jeu sert d'ancre visuelle (la ligne « 24:28 » de l'overlay = celle
+        // du chat) ; le pseudo reprend le code couleur du jeu (bleu allié, rouge /all, doré lobby).
+        var ts = evt.Message.Timestamp;
+        var speaker = $"[{evt.Message.SpeakerKey}]";
+        var brush = OverlayWindow.BrushForChannel(evt.Message.Channel);
         var key = evt.Message.DedupKey;
+        _displayed[key] = (evt.Message, 0);
 
         if (evt.Translation is { } result)
         {
-            _overlay?.Upsert(key, header, result.Text, result.Failed);
-            AppendDiag($"[{result.Source}] {evt.Message.Champion}: {evt.Message.Text} → {result.Text}");
+            _overlay?.Upsert(key, ts, speaker, result.Text, result.Failed, brush);
+            AppendDiag($"[{result.Source}] {evt.Message.SpeakerKey}: {evt.Message.Text} → {result.Text}");
         }
         else if (evt.PartialText is { } partial)
         {
-            _overlay?.Upsert(key, header, partial, failed: false);
+            _overlay?.Upsert(key, ts, speaker, partial, failed: false, brush);
         }
         else
         {
-            _overlay?.Upsert(key, header, evt.Message.Text, failed: true); // coréen brut en attendant
+            _overlay?.Upsert(key, ts, speaker, evt.Message.Text, failed: true, brush); // coréen brut en attendant
         }
     }
 
@@ -259,6 +265,39 @@ public partial class MainWindow : Window
         if (_editMode && !_overlay.IsVisible) _overlay.Show();
         _overlay.SetEditMode(_editMode);
         EditOverlayButton.Content = _editMode ? "✔ Terminer le placement" : "Déplacer l'overlay";
+    }
+
+    /// <summary>L'overlay suit le chat : une ligne qui a quitté l'écran (fade, scroll)
+    /// retire sa traduction. Correspondance FLOUE (le jitter d'OCR fait varier le texte).</summary>
+    private void SyncOverlayWithChat(IReadOnlyList<ChatMessage> visible)
+    {
+        foreach (var key in _displayed.Keys.ToList())
+        {
+            var (msg, missing) = _displayed[key];
+            var stillVisible = visible.Any(v => IsSameChatLine(v, msg));
+            if (stillVisible)
+            {
+                _displayed[key] = (msg, 0);
+            }
+            else if (++missing >= MissingFramesBeforeRemoval)
+            {
+                _displayed.Remove(key);
+                _overlay?.Remove(key);
+            }
+            else
+            {
+                _displayed[key] = (msg, missing);
+            }
+        }
+    }
+
+    private static bool IsSameChatLine(ChatMessage a, ChatMessage b)
+    {
+        if (!a.SpeakerKey.Equals(b.SpeakerKey, StringComparison.OrdinalIgnoreCase)) return false;
+        if (a.Timestamp != b.Timestamp && a.Timestamp.Length > 0 && b.Timestamp.Length > 0) return false;
+        var na = ChatMessage.Normalize(a.Text);
+        var nb = ChatMessage.Normalize(b.Text);
+        return Parsing.Levenshtein.Distance(na, nb) <= Math.Max(1, (int)(Math.Max(na.Length, nb.Length) * 0.2));
     }
 
     private bool IsNewOcrLine(string line) =>

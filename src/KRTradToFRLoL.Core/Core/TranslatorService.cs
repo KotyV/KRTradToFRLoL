@@ -27,6 +27,7 @@ public sealed class TranslatorService(
     private CancellationTokenSource? _cts;
     private Task? _loop;
     private string _lastFrameText = "";
+    private IReadOnlyList<ChatMessage> _lastVisible = [];
 
     /// <summary>Déclenché à chaque nouveau message : d'abord brut (Translation null),
     /// puis au fil du streaming (PartialText), puis avec la traduction finale.</summary>
@@ -34,6 +35,10 @@ public sealed class TranslatorService(
 
     /// <summary>Diagnostic : lignes OCR brutes de la dernière frame analysée.</summary>
     public event Action<IReadOnlyList<string>>? OcrFrame;
+
+    /// <summary>Messages de chat actuellement VISIBLES à l'écran (à chaque frame) :
+    /// permet à l'overlay de disparaître en même temps que le chat (fade/scroll).</summary>
+    public event Action<IReadOnlyList<ChatMessage>>? VisibleFrame;
 
     public event Action<string>? StatusChanged;
 
@@ -92,17 +97,33 @@ public sealed class TranslatorService(
         var lines = await ocr.RecognizeLinesAsync(upscaled);
 
         // Le diff de pixels ne suffit pas : le jeu bouge en permanence derrière le chat
-        // semi-transparent. Second rideau : si le TEXTE reconnu n'a pas changé, rien à faire.
+        // semi-transparent. Second rideau : si le TEXTE reconnu n'a pas changé, rien à faire —
+        // mais on republie la visibilité pour que l'overlay continue de suivre le chat.
         var frameText = string.Join('\n', lines);
-        if (frameText == _lastFrameText) return;
+        if (frameText == _lastFrameText)
+        {
+            VisibleFrame?.Invoke(_lastVisible);
+            return;
+        }
         _lastFrameText = frameText;
 
         OcrFrame?.Invoke(lines);
 
-        foreach (var msg in _assembler.Assemble(lines))
+        var visible = _assembler.Assemble(lines);
+        _lastVisible = visible;
+        VisibleFrame?.Invoke(visible);
+
+        foreach (var msg in visible)
         {
             ct.ThrowIfCancellationRequested();
             if (!_dedup.IsNew(msg)) continue;
+
+            // Message sans hangul (anglais…) : copie telle quelle, pas de traduction.
+            if (!msg.NeedsTranslation)
+            {
+                MessageUpdated?.Invoke(new PipelineEvent(msg, new TranslationResult(msg.Text, "copie"), null));
+                continue;
+            }
 
             // Affiche immédiatement le coréen brut ; la traduction le remplacera.
             MessageUpdated?.Invoke(new PipelineEvent(msg, null, null));

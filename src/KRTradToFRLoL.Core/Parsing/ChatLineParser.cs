@@ -67,14 +67,13 @@ public sealed partial class ChatLineParser(ChampionNames champions)
 
         var champion = acm.Groups["champ"].Value.Trim();
         var message = acm.Groups["msg"].Value.Trim();
-
-        // Le message doit contenir du coréen, sinon rien à traduire
-        // (les pings/système avec ':' sont en langue du client : exclus ici).
-        if (!ContainsHangul(message)) return null;
+        if (message.Length == 0) return null;
 
         // Validation champion (tolérante aux erreurs d'OCR ; ne bloque pas si liste absente)
         if (!champions.IsChampion(champion)) return null;
 
+        // Un message de chat sans hangul (anglais…) est conservé en copie telle quelle :
+        // l'overlay reflète TOUT le chat joueur, traduit ou non.
         return new ChatMessage
         {
             Timestamp = m.Groups["ts"].Value.Replace(" ", ""),
@@ -83,6 +82,7 @@ public sealed partial class ChatLineParser(ChampionNames champions)
             Champion = champion,
             Text = message,
             RawLine = rawLine,
+            NeedsTranslation = ContainsHangul(message),
         };
     }
 
