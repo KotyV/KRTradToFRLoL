@@ -14,7 +14,7 @@ public partial class MainWindow : Window
 {
     private readonly AppConfig _config = AppConfig.Load();
     private readonly ChampionNames _champions = new();
-    private readonly IOcrEngine _ocr = new WindowsMediaOcrEngine();
+    private readonly IOcrEngine _ocr;
     private readonly TranslationCache _cache = TranslationCache.Load();
     private readonly Glossary _glossary = Glossary.LoadFromDataDir();
     private readonly Prenormalizer _prenorm = Prenormalizer.LoadFromDataDir();
@@ -29,6 +29,9 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        // Moteur spécialisé hangul en priorité (tools/export_korean_ocr.py), OCR Windows sinon.
+        _ocr = (IOcrEngine?)PaddleKoreanOcrEngine.TryCreate(_config.EffectiveOcrModelDirectory)
+               ?? new WindowsMediaOcrEngine();
         ProxyUrlBox.Text = _config.ProxyUrl;
         UpdateRegionLabel();
         Loaded += async (_, _) =>
@@ -285,6 +288,7 @@ public partial class MainWindow : Window
         _service?.Dispose();
         _llm?.Dispose();
         _localNmt?.Dispose();
+        (_ocr as IDisposable)?.Dispose();
         _overlay?.Close();
         _cache.Save();
         _config.Save();

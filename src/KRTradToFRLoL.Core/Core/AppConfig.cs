@@ -57,6 +57,10 @@ public sealed class AppConfig
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "KRTradToFRLoL");
 
     [JsonIgnore]
+    public string EffectiveOcrModelDirectory =>
+        Path.Combine(ConfigDir, "models", "ocr-ko");
+
+    [JsonIgnore]
     public string EffectiveLocalModelDirectory =>
         string.IsNullOrWhiteSpace(LocalModelDirectory)
             ? Path.Combine(ConfigDir, "models", "m2m100")
