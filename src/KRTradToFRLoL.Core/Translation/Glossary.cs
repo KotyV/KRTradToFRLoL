@@ -13,6 +13,7 @@ namespace KRTradToFRLoL.Translation;
 public sealed partial class Glossary
 {
     private readonly Dictionary<string, string> _exact = new();
+    private readonly Lock _lock = new();
 
     public Glossary() { }
 
@@ -23,7 +24,17 @@ public sealed partial class Glossary
             _exact[Core.ChatMessage.Normalize(kr)] = fr;
     }
 
-    public int Count => _exact.Count;
+    public int Count
+    {
+        get { lock (_lock) return _exact.Count; }
+    }
+
+    /// <summary>Complète le glossaire (lexique Data Dragon…) SANS écraser les entrées vérifiées.</summary>
+    public bool TryAdd(string kr, string fr)
+    {
+        if (string.IsNullOrWhiteSpace(kr) || string.IsNullOrWhiteSpace(fr)) return false;
+        lock (_lock) return _exact.TryAdd(Core.ChatMessage.Normalize(kr), fr);
+    }
 
     [GeneratedRegex("^[ㅋㅎ;~!.…ㅠㅜ ]+$")]
     private static partial Regex LaughOnlyRegex();
@@ -60,6 +71,6 @@ public sealed partial class Glossary
         if (LaughOnlyRegex().IsMatch(t))
             return t.Contains('ㅠ') || t.Contains('ㅜ') ? "(pleure)" : "mdrr";
 
-        return _exact.GetValueOrDefault(Core.ChatMessage.Normalize(t));
+        lock (_lock) return _exact.GetValueOrDefault(Core.ChatMessage.Normalize(t));
     }
 }

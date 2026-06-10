@@ -17,6 +17,7 @@ public partial class MainWindow : Window
     private readonly IOcrEngine _ocr = new WindowsMediaOcrEngine();
     private readonly TranslationCache _cache = TranslationCache.Load();
     private readonly Glossary _glossary = Glossary.LoadFromDataDir();
+    private readonly Prenormalizer _prenorm = Prenormalizer.LoadFromDataDir();
 
     private ClaudeTranslator? _llm;
     private M2M100Translator? _localNmt;
@@ -42,10 +43,29 @@ public partial class MainWindow : Window
                 ? "Noms de champions chargés (fr/en/ko) via Data Dragon."
                 : "⚠ Data Dragon inaccessible : validation des champions désactivée (parsing plus permissif).");
 
-            _localNmt = M2M100Translator.TryCreate(_config.EffectiveLocalModelDirectory, Prenormalizer.LoadFromDataDir());
+            _localNmt = M2M100Translator.TryCreate(_config.EffectiveLocalModelDirectory, _prenorm);
             AppendDiag(_localNmt is not null
                 ? "Traduction locale M2M-100 chargée (filet hors ligne actif)."
                 : $"Traduction locale absente (optionnel) — modèles attendus dans {_config.EffectiveLocalModelDirectory} (cf. tools/export_m2m100.py).");
+
+            // Lexique officiel ko→fr (champions, objets, sorts) : complète le glossaire et la
+            // pré-normalisation sans jamais écraser les entrées vérifiées à la main.
+            var lexicon = new DataDragonLexicon();
+            await lexicon.LoadAsync();
+            if (lexicon.Count > 0)
+            {
+                int toGlossary = 0, toPrenorm = 0;
+                foreach (var (ko, fr) in lexicon.KoToFr)
+                {
+                    if (_glossary.TryAdd(ko, fr)) toGlossary++;
+                    if (_prenorm.TryAdd(ko, fr)) toPrenorm++;
+                }
+                AppendDiag($"Lexique Data Dragon : {lexicon.Count} noms officiels ko→fr (+{toGlossary} glossaire, +{toPrenorm} prénormalisation).");
+            }
+            else
+            {
+                AppendDiag("⚠ Lexique Data Dragon indisponible (hors ligne ?) — noms d'objets coréens non couverts.");
+            }
         };
     }
 

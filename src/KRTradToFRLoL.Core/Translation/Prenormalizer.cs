@@ -13,13 +13,25 @@ namespace KRTradToFRLoL.Translation;
 public sealed class Prenormalizer
 {
     private readonly Dictionary<string, string> _map;
+    private readonly Lock _lock = new();
 
     public Prenormalizer(IReadOnlyDictionary<string, string>? pairs = null)
     {
         _map = pairs is null ? new Dictionary<string, string>() : new Dictionary<string, string>(pairs);
     }
 
-    public int Count => _map.Count;
+    public int Count
+    {
+        get { lock (_lock) return _map.Count; }
+    }
+
+    /// <summary>Complète la table (lexique Data Dragon…) sans écraser les paires vérifiées.
+    /// Tokens entiers uniquement : les noms multi-mots sont refusés.</summary>
+    public bool TryAdd(string from, string to)
+    {
+        if (string.IsNullOrWhiteSpace(from) || string.IsNullOrWhiteSpace(to) || from.Contains(' ')) return false;
+        lock (_lock) return _map.TryAdd(from, to);
+    }
 
     public static Prenormalizer LoadFromDataDir()
     {
@@ -45,15 +57,19 @@ public sealed class Prenormalizer
 
     public string Apply(string text)
     {
-        if (_map.Count == 0 || text.Length == 0) return text;
+        if (text.Length == 0) return text;
         var tokens = text.Split(' ', StringSplitOptions.None);
         var changed = false;
-        for (var i = 0; i < tokens.Length; i++)
+        lock (_lock)
         {
-            if (_map.TryGetValue(tokens[i], out var replacement))
+            if (_map.Count == 0) return text;
+            for (var i = 0; i < tokens.Length; i++)
             {
-                tokens[i] = replacement;
-                changed = true;
+                if (_map.TryGetValue(tokens[i], out var replacement))
+                {
+                    tokens[i] = replacement;
+                    changed = true;
+                }
             }
         }
         return changed ? string.Join(' ', tokens) : text;
