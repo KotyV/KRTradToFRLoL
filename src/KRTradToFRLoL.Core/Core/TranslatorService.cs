@@ -26,6 +26,7 @@ public sealed class TranslatorService(
 
     private CancellationTokenSource? _cts;
     private Task? _loop;
+    private string _lastFrameText = "";
 
     /// <summary>Déclenché à chaque nouveau message : d'abord brut (Translation null),
     /// puis au fil du streaming (PartialText), puis avec la traduction finale.</summary>
@@ -43,6 +44,7 @@ public sealed class TranslatorService(
         if (IsRunning) return;
         _cts = new CancellationTokenSource();
         _dedup.Reset();
+        _lastFrameText = "";
         _loop = Task.Run(() => RunLoopAsync(_cts.Token));
         StatusChanged?.Invoke("Capture démarrée.");
     }
@@ -87,6 +89,13 @@ public sealed class TranslatorService(
 
         using var upscaled = ScreenRegionCapturer.Upscale(raw, config.OcrUpscaleFactor);
         var lines = await ocr.RecognizeLinesAsync(upscaled);
+
+        // Le diff de pixels ne suffit pas : le jeu bouge en permanence derrière le chat
+        // semi-transparent. Second rideau : si le TEXTE reconnu n'a pas changé, rien à faire.
+        var frameText = string.Join('\n', lines);
+        if (frameText == _lastFrameText) return;
+        _lastFrameText = frameText;
+
         OcrFrame?.Invoke(lines);
 
         foreach (var msg in _assembler.Assemble(lines))

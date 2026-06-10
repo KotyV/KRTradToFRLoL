@@ -23,6 +23,7 @@ public partial class MainWindow : Window
     private TranslatorService? _service;
     private OverlayWindow? _overlay;
     private bool _editMode;
+    private HashSet<string> _prevOcrLines = [];
 
     public MainWindow()
     {
@@ -139,7 +140,11 @@ public partial class MainWindow : Window
             _service.StatusChanged += msg => Dispatcher.BeginInvoke(() => SetStatus(msg));
             _service.OcrFrame += lines => Dispatcher.BeginInvoke(() =>
             {
-                foreach (var l in lines.Take(8)) AppendDiag($"[ocr] {l}");
+                // N'affiche que les lignes inédites par rapport à la frame précédente :
+                // sans ça, le jitter d'OCR sur fond animé inonde le diagnostic.
+                foreach (var l in lines.Where(l => l.Length >= 3 && !_prevOcrLines.Contains(l)).Take(8))
+                    AppendDiag($"[ocr] {l}");
+                _prevOcrLines = new HashSet<string>(lines, StringComparer.Ordinal);
             });
             _service.MessageUpdated += evt => Dispatcher.BeginInvoke(() => OnMessage(evt));
         }
