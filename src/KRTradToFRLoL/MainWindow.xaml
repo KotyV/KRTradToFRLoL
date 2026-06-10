@@ -1,0 +1,60 @@
+<Window x:Class="KRTradToFRLoL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KRTradToFRLoL — Traducteur de chat LoL coréen" Height="560" Width="640"
+        Background="#FF1B1B22" Foreground="White" Closing="OnClosing">
+    <Grid Margin="14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Clé API (mode direct) -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
+            <TextBlock Text="Clé API Anthropic :" VerticalAlignment="Center" Width="130"/>
+            <PasswordBox x:Name="ApiKeyBox" Width="330" VerticalContentAlignment="Center"/>
+            <Button x:Name="SaveKeyButton" Content="Enregistrer" Margin="8,0,0,0" Padding="10,4" Click="OnSaveKey"/>
+        </StackPanel>
+
+        <!-- Proxy (mode distribution : la clé reste côté serveur) -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="ou Proxy + token :" VerticalAlignment="Center" Width="130"
+                       ToolTip="URL https du relais (ex. https://….vercel.app/api/translate) + token d'app fourni par l'opérateur."/>
+            <TextBox x:Name="ProxyUrlBox" Width="220" VerticalContentAlignment="Center"/>
+            <PasswordBox x:Name="ProxyTokenBox" Width="104" Margin="6,0,0,0" VerticalContentAlignment="Center"/>
+            <Button Content="Enregistrer" Margin="8,0,0,0" Padding="10,4" Click="OnSaveProxy"/>
+        </StackPanel>
+
+        <!-- Zone de chat -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="SelectRegionButton" Content="1. Sélectionner la zone de chat" Padding="10,6" Click="OnSelectRegion"/>
+            <TextBlock x:Name="RegionLabel" VerticalAlignment="Center" Margin="12,0,0,0" Foreground="#FFB0B0C0"/>
+        </StackPanel>
+
+        <!-- Démarrage -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="StartStopButton" Content="2. Démarrer la traduction" Padding="10,6"
+                    FontWeight="Bold" Click="OnStartStop"/>
+            <Button x:Name="EditOverlayButton" Content="Déplacer l'overlay" Padding="10,6" Margin="10,0,0,0"
+                    Click="OnToggleEditOverlay"/>
+        </StackPanel>
+
+        <!-- Statut -->
+        <TextBlock x:Name="StatusLabel" Grid.Row="4" Margin="0,0,0,8" Foreground="#FF8BE28B"
+                   TextWrapping="Wrap" Text="Prêt."/>
+
+        <!-- Diagnostic -->
+        <GroupBox Grid.Row="5" Header="Diagnostic (OCR brut → messages traduits)" Foreground="White">
+            <ListBox x:Name="DiagnosticList" Background="#FF14141A" Foreground="#FFD0D0DC"
+                     FontFamily="Consolas" FontSize="12"/>
+        </GroupBox>
+
+        <TextBlock Grid.Row="6" Margin="0,8,0,0" FontSize="11" Foreground="#FF9090A0" TextWrapping="Wrap"
+                   Text="LoL en mode « Sans bordure ». App 100 % externe au jeu : capture d'écran + overlay, aucune interaction avec le process (compatible Vanguard). KRTradToFRLoL isn't endorsed by Riot Games."/>
+    </Grid>
+</Window>

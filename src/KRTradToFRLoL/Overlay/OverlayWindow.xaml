@@ -1,0 +1,23 @@
+<Window x:Class="KRTradToFRLoL.Overlay.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KRTradToFRLoL Overlay"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" ShowActivated="False"
+        SizeToContent="Height" ResizeMode="NoResize">
+    <Border x:Name="RootBorder" CornerRadius="8" Padding="8"
+            Background="#90101018" BorderBrush="#552EA8FF" BorderThickness="1">
+        <ItemsControl x:Name="MessagesList">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="0,2" TextWrapping="Wrap"
+                               FontFamily="Segoe UI" FontWeight="SemiBold"
+                               FontSize="{Binding FontSize}">
+                        <Run Text="{Binding Header, Mode=OneWay}" Foreground="#FF9AC4FF"/>
+                        <Run Text="{Binding Body, Mode=OneWay}" Foreground="{Binding BodyBrush, Mode=OneWay}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Border>
+</Window>
