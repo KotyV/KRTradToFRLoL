@@ -20,8 +20,8 @@ public sealed class AppConfig
     // — Overlay —
     public double OverlayX { get; set; } = 600;
     public double OverlayY { get; set; } = 600;
-    public double OverlayWidth { get; set; } = 480;
-    public double OverlayFontSize { get; set; } = 16;
+    public double OverlayWidth { get; set; } = 380;
+    public double OverlayFontSize { get; set; } = 13;
     public int OverlayMessageLifetimeSeconds { get; set; } = 25;
 
     // — Traduction —

@@ -5,12 +5,12 @@
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Topmost="True" ShowInTaskbar="False" ShowActivated="False"
         SizeToContent="Height" ResizeMode="NoResize">
-    <Border x:Name="RootBorder" CornerRadius="8" Padding="8"
+    <Border x:Name="RootBorder" CornerRadius="5" Padding="5,3"
             Background="#90101018" BorderBrush="#552EA8FF" BorderThickness="1">
         <ItemsControl x:Name="MessagesList">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Margin="0,2" TextWrapping="Wrap"
+                    <TextBlock Margin="0,1" TextWrapping="Wrap"
                                FontFamily="Segoe UI" FontWeight="SemiBold"
                                FontSize="{Binding FontSize}">
                         <Run Text="{Binding Header, Mode=OneWay}" Foreground="#FF9AC4FF"/>

@@ -19,6 +19,57 @@ public sealed class ScreenRegionCapturer
         return bmp;
     }
 
+    /// <summary>
+    /// Niveaux de gris + étirement de contraste (percentiles 2-98) : le texte clair du chat
+    /// ressort du fond de jeu texturé, sans binarisation dure (le fond est animé).
+    /// Aide tous les moteurs OCR sur le hangul 12-18 px.
+    /// </summary>
+    public static unsafe void EnhanceForOcr(Bitmap bmp)
+    {
+        var data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),
+            ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+        try
+        {
+            var histogram = new int[256];
+            var ptr = (byte*)data.Scan0;
+            var total = bmp.Width * bmp.Height;
+
+            for (var y = 0; y < bmp.Height; y++)
+            {
+                var row = ptr + y * data.Stride;
+                for (var x = 0; x < bmp.Width; x++)
+                {
+                    var p = row + x * 4;
+                    var luma = (p[2] * 299 + p[1] * 587 + p[0] * 114) / 1000;
+                    histogram[luma]++;
+                }
+            }
+
+            int lo = 0, hi = 255, acc = 0;
+            var cut = total / 50; // 2 %
+            for (var i = 0; i < 256; i++) { acc += histogram[i]; if (acc >= cut) { lo = i; break; } }
+            acc = 0;
+            for (var i = 255; i >= 0; i--) { acc += histogram[i]; if (acc >= cut) { hi = i; break; } }
+            var range = Math.Max(1, hi - lo);
+
+            for (var y = 0; y < bmp.Height; y++)
+            {
+                var row = ptr + y * data.Stride;
+                for (var x = 0; x < bmp.Width; x++)
+                {
+                    var p = row + x * 4;
+                    var luma = (p[2] * 299 + p[1] * 587 + p[0] * 114) / 1000;
+                    var stretched = (byte)Math.Clamp((luma - lo) * 255 / range, 0, 255);
+                    p[0] = p[1] = p[2] = stretched;
+                }
+            }
+        }
+        finally
+        {
+            bmp.UnlockBits(data);
+        }
+    }
+
     /// <summary>Agrandit l'image avant OCR (le hangul du chat fait ~12-18 px).</summary>
     public static Bitmap Upscale(Bitmap src, double factor)
     {

@@ -48,11 +48,16 @@ public sealed partial class ChatLineParser(ChampionNames champions)
 
     public static bool LooksLikeNewEntry(string s) => NewEntryMarkerRegex().IsMatch(s);
 
-    /// <summary>Parse une ligne OCR ; null si ce n'est pas un message de chat coréen.</summary>
-    public ChatMessage? Parse(string rawLine)
+    /// <summary>
+    /// Parse une ligne OCR ; null si ce n'est pas un message de chat coréen.
+    /// <paramref name="allowChampSelect"/> : le format lobby (« Krug : … ») ne doit être
+    /// tenté QUE hors partie — en jeu, les fragments d'OCR contenant le pseudo coréen d'un
+    /// joueur s'y engouffrent (faux positifs vus en test réel).
+    /// </summary>
+    public ChatMessage? Parse(string rawLine, bool allowChampSelect = true)
     {
         var m = ChannelLineRegex().Match(rawLine);
-        if (!m.Success) return ParseChampSelect(rawLine);
+        if (!m.Success) return allowChampSelect ? ParseChampSelect(rawLine) : null;
 
         var rest = m.Groups["rest"].Value.Trim();
 
@@ -102,6 +107,7 @@ public sealed partial class ChatLineParser(ChampionNames champions)
         var author = m.Groups["author"].Value.Trim();
         var message = m.Groups["msg"].Value.Trim();
         if (!CleanAuthorRegex().IsMatch(author)) return null;
+        if (author.All(char.IsDigit)) return null; // « 29 », « 3052 »… = fragment d'OCR, pas un pseudo
         if (!IsMostlyHangul(message) || LooksLikeKoreanSystemFragment(rawLine)) return null;
 
         return new ChatMessage

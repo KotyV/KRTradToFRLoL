@@ -16,10 +16,15 @@ public sealed class ChatFrameAssembler(ChatLineParser parser)
         var messages = new List<ChatMessage>();
         var lastParsedIndex = -2; // jamais adjacent au départ
 
+        // Une frame qui contient des marqueurs in-game (timestamps, « (Champion) ») vient
+        // du jeu : le format champ-select y est désactivé — en partie, il n'attrape que
+        // des fragments d'OCR contenant le pseudo coréen d'un joueur.
+        var allowChampSelect = !lines.Any(ChatLineParser.LooksLikeNewEntry);
+
         for (var i = 0; i < lines.Count; i++)
         {
             var line = lines[i];
-            var msg = parser.Parse(line);
+            var msg = parser.Parse(line, allowChampSelect);
             if (msg is not null)
             {
                 messages.Add(msg);

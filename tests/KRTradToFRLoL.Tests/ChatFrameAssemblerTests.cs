@@ -92,6 +92,33 @@ public class ChatFrameAssemblerTests
     }
 
     [Fact]
+    public void Le_format_lobby_est_desactive_dans_une_frame_in_game()
+    {
+        // Faux positif vu en test réel : le pseudo coréen « 큰 곰 » apparaît dans chaque
+        // ping/achat ; un fragment d'OCR « 29 : 4 큰 곰 대… » passait par le format lobby.
+        var messages = Assembler.Assemble(
+        [
+            "30:30 큰 곰 (Hwei) is on the way",      // marqueur in-game → frame en partie
+            "29 : 4 큰 곰 대 yc",                    // fragment d'OCR → ne doit PAS parser
+        ]);
+
+        Assert.Empty(messages);
+    }
+
+    [Fact]
+    public void Le_format_lobby_reste_actif_dans_une_frame_de_champ_select()
+    {
+        var messages = Assembler.Assemble(
+        [
+            "Krug : 진짜",
+            "Krug : 연승치니까 주포절대안주네 4판연속",
+        ]);
+
+        Assert.Equal(2, messages.Count);
+        Assert.All(messages, m => Assert.Equal("Lobby", m.Channel));
+    }
+
+    [Fact]
     public void Plusieurs_messages_simples_restent_separes()
     {
         var messages = Assembler.Assemble(

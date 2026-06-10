@@ -41,6 +41,7 @@ public class ChampSelectParsingTests
     [InlineData("누 : zn has sian tbe Cberntech 누rake!")]
     [InlineData("|055 Tcamj : Mo(Y5 시")]
     [InlineData("I IOI Tcamj : 10(YS go ahne farm")]
+    [InlineData("29 : 4 큰 곰 대 yc")]   // auteur purement numérique = fragment d'OCR
     public void Rejette_le_bruit_ocr_des_annonces_systeme(string line) => Assert.Null(_parser.Parse(line));
 
     [Fact]

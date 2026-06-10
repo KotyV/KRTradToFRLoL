@@ -88,6 +88,7 @@ public sealed class TranslatorService(
         if (!_changeDetector.HasChanged(raw)) return;
 
         using var upscaled = ScreenRegionCapturer.Upscale(raw, config.OcrUpscaleFactor);
+        ScreenRegionCapturer.EnhanceForOcr(upscaled);
         var lines = await ocr.RecognizeLinesAsync(upscaled);
 
         // Le diff de pixels ne suffit pas : le jeu bouge en permanence derrière le chat
