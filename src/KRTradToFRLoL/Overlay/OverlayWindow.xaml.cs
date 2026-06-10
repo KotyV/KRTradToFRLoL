@@ -135,7 +135,8 @@ public partial class OverlayWindow : Window
     }
 
     /// <summary>Ajoute ou met à jour un message (clé = ligne de chat d'origine).</summary>
-    public void Upsert(string key, string timestamp, string speaker, string body, bool failed, Brush? speakerBrush = null)
+    public void Upsert(string key, string timestamp, string speaker, string body, bool failed,
+        Brush? speakerBrush = null, Brush? bodyBrush = null)
     {
         if (key != "démo") Remove("démo"); // un vrai message chasse l'exemple
 
@@ -154,9 +155,14 @@ public partial class OverlayWindow : Window
             while (_messages.Count > 6) _messages.RemoveAt(0);
         }
         existing.Body = body;
-        existing.BodyBrush = failed ? Brushes.LightGray : Brushes.White;
+        existing.BodyBrush = failed ? Brushes.LightGray : bodyBrush ?? Brushes.White;
         if (!IsVisible) Show();
     }
+
+    // Corps des lignes système, calqué sur la palette du jeu.
+    public static readonly Brush SysGold = new SolidColorBrush(Color.FromRgb(0xE8, 0xC3, 0x6A));
+    public static readonly Brush SysRed = new SolidColorBrush(Color.FromRgb(0xE0, 0x6A, 0x5A));
+    public static readonly Brush SysGray = new SolidColorBrush(Color.FromRgb(0xB9, 0xC2, 0xCC));
 
     private void Housekeeping()
     {

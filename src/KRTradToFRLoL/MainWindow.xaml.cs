@@ -264,25 +264,48 @@ public partial class MainWindow : Window
         // du chat) ; le pseudo reprend le code couleur du jeu (bleu allié, rouge /all, doré lobby).
         var isSystem = evt.Message.Channel == "Sys";
         var ts = evt.Message.Timestamp;
-        var speaker = isSystem ? "" : $"[{evt.Message.SpeakerKey}]";
+        var speaker = $"[{evt.Message.SpeakerKey}]";
         var brush = OverlayWindow.BrushForChannel(evt.Message.Channel);
+        System.Windows.Media.Brush? bodyBrush = null;
         var key = evt.Message.DedupKey;
         _displayed[key] = (evt.Message, 0);
 
+        var body = evt.Translation?.Text ?? evt.PartialText ?? evt.Message.Text;
+        if (isSystem)
+        {
+            // Miroir de la palette du jeu : « Nom (Champion) » en bleu, corps coloré par type.
+            var m = System.Text.RegularExpressions.Regex.Match(body, @"^(?<who>.{0,40}?\([^()]{2,30}\))\s*(?<act>.+)$");
+            speaker = m.Success ? m.Groups["who"].Value : "";
+            if (m.Success) body = m.Groups["act"].Value;
+            bodyBrush = SysBodyBrush(body);
+        }
+
         if (evt.Translation is { } result)
         {
-            // Les copies système s'affichent en gris : l'œil distingue le bruit du vrai chat.
-            _overlay?.Upsert(key, ts, speaker, result.Text, result.Failed || (isSystem && result.Source == "copie"), brush);
+            _overlay?.Upsert(key, ts, speaker, body, result.Failed, brush, bodyBrush);
             AppendDiag($"[{result.Source}] {evt.Message.SpeakerKey}: {evt.Message.Text} → {result.Text}");
         }
-        else if (evt.PartialText is { } partial)
+        else if (evt.PartialText is not null)
         {
-            _overlay?.Upsert(key, ts, speaker, partial, failed: false, brush);
+            _overlay?.Upsert(key, ts, speaker, body, failed: false, brush, bodyBrush);
         }
         else
         {
-            _overlay?.Upsert(key, ts, speaker, evt.Message.Text, failed: true, brush); // coréen brut en attendant
+            _overlay?.Upsert(key, ts, speaker, body, failed: true, brush, bodyBrush); // coréen brut en attendant
         }
+    }
+
+    private static System.Windows.Media.Brush SysBodyBrush(string text)
+    {
+        if (System.Text.RegularExpressions.Regex.IsMatch(text,
+                @"slain|shut down|rampage|killing spree|legendary|dominating|unstoppable|ace|first blood|godlike|처치",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+            return OverlayWindow.SysRed;
+        if (System.Text.RegularExpressions.Regex.IsMatch(text,
+                @"purchased|Quest Complete|Bounty|stolen|Baron|Drake|Herald|Sentinel|targeted|milestone|구입|파괴",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+            return OverlayWindow.SysGold;
+        return OverlayWindow.SysGray;
     }
 
     private void OnMirrorAllChanged(object sender, RoutedEventArgs e)
