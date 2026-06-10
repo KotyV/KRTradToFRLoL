@@ -67,6 +67,8 @@ public class ChatLineParserTests
     [InlineData("못참겠어 (사일러스)님이 제어 와드 아이템을 구입했습니다.")]
     [InlineData("Adrian mateos (요네) 님이 첫 번째 포탑을 파괴했습니다!")]
     [InlineData("13:26 큰 곰 (Hwei) Bot Quest Complete!")]
+    [InlineData("12:44 큰 매화살 (Rek'Sai) has hit a new milestone on Jaws: 3,346,012!")]
+    [InlineData("13:05 김네김밥 (Katarina): Twisted Fate R")]
     public void Rejette_pings_kills_et_systeme(string line) => Assert.Null(_parser.Parse(line));
 
     [Theory]
