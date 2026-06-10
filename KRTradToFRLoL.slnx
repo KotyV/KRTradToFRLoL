@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/KRTradToFRLoL.Core/KRTradToFRLoL.Core.csproj" />
+    <Project Path="src/KRTradToFRLoL/KRTradToFRLoL.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/KRTradToFRLoL.Tests/KRTradToFRLoL.Tests.csproj" />
+  </Folder>
+</Solution>
