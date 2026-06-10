@@ -1,0 +1,5940 @@
+{
+  "entries": [
+    {
+      "kr": "ㄱㄱ",
+      "fr": "go go / on y va",
+      "literal": "고고 (go go)",
+      "note": "Lancer une action : accepter une game, partir sur un objectif. Ne PAS confondre avec ㅈㅈ (ff).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄱㄱㅆ",
+      "fr": "go go ! (enjoué, un peu rétro)",
+      "literal": "고고씽 (aussi 고고싱)",
+      "note": "Variante enjouée de ㄱㄱ. Argot du début des années 2000 : daté, souvent employé avec une pointe de second degré, mais compris par tous.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅈㅈ",
+      "fr": "ff / gg",
+      "literal": "지지 (GG)",
+      "note": "En cours de partie = proposition d'abandon (\"ㅈㅈ 치자\" = \"go ff\"), PAS un compliment. En toute fin de game seulement = \"gg\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅅㄱ",
+      "fr": "bg / ciao",
+      "literal": "수고 (bon boulot)",
+      "note": "Fin de partie ou départ. Peut être sarcastique après ta mort (\"bye lol\"). Vient de 수고했다.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄹㅇ",
+      "fr": "véridique / sérieux",
+      "literal": "레알 (real)",
+      "note": "Affirme que c'est vrai ; \"ㄹㅇ?\" = \"sérieux ?\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅇㄱㄹㅇ",
+      "fr": "véridique de chez véridique",
+      "literal": "이거 레알 (ça c'est réel)",
+      "note": "Approbation forte du message précédent.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄹㅇㅋㅋ",
+      "fr": "véridique mdr",
+      "literal": "레알 + rire",
+      "note": "Accord amusé, très fréquent.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅈㄴ",
+      "fr": "putain de / trop (intensif)",
+      "literal": "존나",
+      "note": "Intensifieur vulgaire : \"ㅈㄴ잘함\" = \"il est trop fort putain\". Pas une insulte dirigée en soi. ㅈㄱ n'existe pas pour \"jungle\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅇㅇ",
+      "fr": "ouais",
+      "literal": "응응 (oui oui)",
+      "note": "Acquiescement neutre, parfois froid.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄴㄴ",
+      "fr": "non non",
+      "literal": "노노",
+      "note": "Refus.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅇㅋ",
+      "fr": "ok",
+      "literal": "오케이",
+      "note": "Accord.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅇㅋㄷㅋ",
+      "fr": "oki doki",
+      "literal": "오키도키",
+      "note": "Accord enjoué.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅎㅇ",
+      "fr": "slt",
+      "literal": "하이 (hi)",
+      "note": "Salut de début de partie.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅂㅂ",
+      "fr": "bye",
+      "literal": "바이바이",
+      "note": "Au revoir ; variante ㅃㅃ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄱㅅ",
+      "fr": "merci",
+      "literal": "감사",
+      "note": "Remerciement bref ; ㄱㅅㄱㅅ = \"merciii\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅈㅅ",
+      "fr": "dsl",
+      "literal": "죄송 (désolé)",
+      "note": "Excuse rapide après un fail.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄷㄷ",
+      "fr": "oula / impressionnant / ça fait flipper",
+      "literal": "덜덜 (tremblement)",
+      "note": "Étonnement admiratif (après un penta) OU effroi/malaise réel (\"ce smurf ㄷㄷ\" = \"flippant\"). Jamais hostile envers l'interlocuteur, mais pas toujours positif — trancher au contexte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅁㅊ",
+      "fr": "wtf / t'es taré",
+      "literal": "미친 (fou)",
+      "note": "Choc (souvent admiratif) ou reproche selon contexte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅅㅂ",
+      "fr": "putain",
+      "literal": "시발",
+      "note": "Juron de frustration ; dirigé vers quelqu'un = insulte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅆㅂ",
+      "fr": "PUTAIN",
+      "literal": "씨발",
+      "note": "Version renforcée de ㅅㅂ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅄ",
+      "fr": "débile / attardé",
+      "literal": "병신 (infirme)",
+      "note": "Aussi écrit ㅂㅅ. Insulte courante et blessante (validiste) — à signaler au streamer.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅊㅊ",
+      "fr": "+1 / je valide",
+      "literal": "추천 (recommandation)",
+      "note": "Approbation ; sur un pick = \"bon pick\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅊㅋ",
+      "fr": "gratz",
+      "literal": "축하 (félicitations)",
+      "note": "Souvent doublé : ㅊㅋㅊㅋ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄱㄷ",
+      "fr": "attends / wait",
+      "literal": "기다려",
+      "note": "Demande d'attendre (avant engage, recall, objectif).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅁㄹ",
+      "fr": "jsp",
+      "literal": "몰라 (je sais pas)",
+      "note": "Variante meme : 몰루.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅁㅈ",
+      "fr": "exact",
+      "literal": "맞아 (c'est juste)",
+      "note": "Accord avec le message précédent.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅇㅈ",
+      "fr": "j'avoue",
+      "literal": "인정 (j'admets)",
+      "note": "Reconnaissance d'un beau play ou d'un fait ; \"ㅇㅈ?\" demande l'approbation.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄲㅈ",
+      "fr": "dégage",
+      "literal": "꺼져",
+      "note": "Agressif : on te dit de partir (de la lane, du jeu).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅇㄷ",
+      "fr": "où ?",
+      "literal": "어디",
+      "note": "\"정글 ㅇㄷ?\" = \"il est où le jungler ?\". Rarement abréviation de 와드 (ward) — trancher au contexte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅉㅉ",
+      "fr": "tss tss (pathétique)",
+      "literal": "쯧쯧 (claquement de langue)",
+      "note": "Mépris/pitié envers quelqu'un.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅗ",
+      "fr": "doigt d'honneur",
+      "literal": "jamo en forme de majeur",
+      "note": "Insulte claire ; ㅗㅗ = double doigt.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅋ",
+      "fr": "mdr (sec, méprisant)",
+      "literal": "rire",
+      "note": "Un seul ㅋ = rire jaune/sarcasme. Très différent de ㅋㅋㅋ sincère.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅋㅋㅋ",
+      "fr": "mdrr",
+      "literal": "kekeke (rire)",
+      "note": "Plus il y a de ㅋ, plus le rire est sincère ; ㅋㅋ court peut être passif-agressif.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅎㅎ",
+      "fr": "héhé",
+      "literal": "rire doux",
+      "note": "Rire poli ou gêné.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅠㅠ",
+      "fr": "snif / 😭",
+      "literal": "larmes qui coulent",
+      "note": "Tristesse/dépit, souvent après une mort. Variante ㅜㅜ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄱㅊ",
+      "fr": "ça va / pas grave",
+      "literal": "괜찮아",
+      "note": "Rassure : ㄱㅊㄱㅊ = \"t'inquiète\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅈㄹ",
+      "fr": "n'importe quoi / arrête ton délire",
+      "literal": "지랄 (crise)",
+      "note": "Vulgaire ; \"ㅈㄹ하네\" = \"tu racontes de la merde\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅈㅂ",
+      "fr": "stp / pitié",
+      "literal": "제발",
+      "note": "Supplication : \"ㅈㅂ ff\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅃㄹ",
+      "fr": "vite !",
+      "literal": "빨리",
+      "note": "\"ㅃㄹ와\" = \"viens vite\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅂㄹ",
+      "fr": "bof",
+      "literal": "별로 (pas terrible)",
+      "note": "Avis négatif tiède. Confirmé sans ambiguïté notable.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅂㄷㅂㄷ",
+      "fr": "il tremble de rage / tilté",
+      "literal": "부들부들 (tremblote)",
+      "note": "Moque quelqu'un qui rage.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄱㅇㄷ",
+      "fr": "tout bénéf / jackpot",
+      "literal": "개이득 (gain énorme)",
+      "note": "Gros gain : échange gagnant, baron volé.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅅㅌㅊ",
+      "fr": "au-dessus de la moyenne",
+      "literal": "상타치",
+      "note": "Évaluation ; famille avec ㅍㅌㅊ (moyen) et ㅎㅌㅊ (faible).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅍㅌㅊ",
+      "fr": "dans la moyenne",
+      "literal": "평타치",
+      "note": "Évaluation neutre.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅎㅌㅊ",
+      "fr": "en dessous de la moyenne / nul",
+      "literal": "하타치",
+      "note": "Évaluation négative.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅇㄴ",
+      "fr": "non mais",
+      "literal": "아니",
+      "note": "Incrédulité en début de phrase : \"ㅇㄴ 왜\" = \"non mais pourquoi\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅡㅡ",
+      "fr": "regard blasé",
+      "literal": "yeux plissés",
+      "note": "Agacement silencieux ; ㅡㅡ;; avec gouttes de sueur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "탑",
+      "fr": "top",
+      "literal": "",
+      "note": "La toplane ou le toplaner.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "미드",
+      "fr": "mid",
+      "literal": "",
+      "note": "La midlane ou le midlaner.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "봇",
+      "fr": "bot",
+      "literal": "",
+      "note": "La botlane ou le duo bot.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "정글",
+      "fr": "jungle / jungler",
+      "literal": "",
+      "note": "\"정글 뭐함\" = \"il fout quoi le jungle\". Jamais abrégé ㅈㄱ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "정글러",
+      "fr": "jungler",
+      "literal": "",
+      "note": "Le joueur jungle.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "원딜",
+      "fr": "ADC",
+      "literal": "원거리 딜러 (DPS à distance)",
+      "note": "Le carry AD botlane.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "서폿",
+      "fr": "supp",
+      "literal": "서포터",
+      "note": "Le support ; aussi 폿.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "라인",
+      "fr": "lane",
+      "literal": "ligne",
+      "note": "\"라인 미세요\" = \"push la lane\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "라이너",
+      "fr": "laner",
+      "literal": "",
+      "note": "Par opposition au jungler.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "라인전",
+      "fr": "phase de lane",
+      "literal": "guerre de lane",
+      "note": "Le 1v1/2v2 d'early game.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "딜",
+      "fr": "dégâts / dps",
+      "literal": "deal (damage)",
+      "note": "\"딜 박아\" = \"balance tes dégâts\" ; 딜러 = carry.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "탱커",
+      "fr": "tank",
+      "literal": "",
+      "note": "Aussi 탱 ; \"탱 없음\" = \"on n'a pas de tank\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "용",
+      "fr": "drake",
+      "literal": "dragon",
+      "note": "\"용 가자\" = \"go drake\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "장로",
+      "fr": "elder",
+      "literal": "doyen",
+      "note": "Elder drake (장로 드래곤).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "바론",
+      "fr": "baron / nash",
+      "literal": "",
+      "note": "Baron Nashor.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "전령",
+      "fr": "herald",
+      "literal": "héraut",
+      "note": "Le Héraut de la Faille.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "유충",
+      "fr": "grubs",
+      "literal": "larves",
+      "note": "Les voidgrubs (공허 유충).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "바위게",
+      "fr": "scuttle / crabe",
+      "literal": "crabe de pierre",
+      "note": "Le crabe de rivière, objectif jungle early.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "억제기",
+      "fr": "inhib",
+      "literal": "inhibiteur",
+      "note": "\"억제기 밀자\" = \"on prend l'inhib\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "포탑",
+      "fr": "tourelle",
+      "literal": "",
+      "note": "Aussi 타워 ; \"타워 끼고 싸워\" = \"joue sous tourelle\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "넥서스",
+      "fr": "nexus",
+      "literal": "",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "미니언",
+      "fr": "sbires",
+      "literal": "minions",
+      "note": "La vague de sbires (웨이브 = wave).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "부쉬",
+      "fr": "bush",
+      "literal": "buisson",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "시야",
+      "fr": "vision",
+      "literal": "champ de vision",
+      "note": "\"시야 없어\" = \"zéro vision, on y va pas\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "와드",
+      "fr": "ward",
+      "literal": "",
+      "note": "\"와드 박아\" = \"pose des wards\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "핑와",
+      "fr": "pink / ward de contrôle",
+      "literal": "핑크 와드 (pink ward)",
+      "note": "Control ward ; les Coréens disent toujours \"pink\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "렌즈",
+      "fr": "lentille / oracle",
+      "literal": "lens",
+      "note": "Le trinket de balayage.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "귀환",
+      "fr": "recall / b",
+      "literal": "retour",
+      "note": "Rentrer à la base (touche B).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "백",
+      "fr": "back / recule",
+      "literal": "",
+      "note": "\"백해\" = \"recule\". Aussi écrit 빽. 백핑 = ping back.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "궁",
+      "fr": "ult",
+      "literal": "궁극기 (technique ultime)",
+      "note": "\"궁 빠짐\" = \"son ult est down\" ; \"궁 있어?\" = \"t'as ton ult ?\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "스펠",
+      "fr": "sums",
+      "literal": "spell",
+      "note": "Sorts d'invocateur ; \"스펠 없음\" = \"il n'a plus ses sums\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "점멸",
+      "fr": "flash",
+      "literal": "scintillement",
+      "note": "Le sort Flash.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "플",
+      "fr": "flash",
+      "literal": "플래시 abrégé",
+      "note": "\"플 없음\" = \"plus de flash\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노플",
+      "fr": "no flash",
+      "literal": "no + flash",
+      "note": "\"미드 노플\" = \"le mid n'a plus flash\". Schéma 노+X = \"plus de X\" (노궁 = plus d'ult).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "텔",
+      "fr": "TP",
+      "literal": "텔레포트",
+      "note": "\"텔 들었어?\" = \"t'as pris TP ?\". Aussi 텔포.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "점화",
+      "fr": "ignite",
+      "literal": "mise à feu",
+      "note": "Sort d'invocateur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "탈진",
+      "fr": "exhaust",
+      "literal": "épuisement",
+      "note": "Sort d'invocateur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "회복",
+      "fr": "heal",
+      "literal": "soin",
+      "note": "Sort d'invocateur Heal.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "정화",
+      "fr": "cleanse",
+      "literal": "purification",
+      "note": "Sort d'invocateur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "유체화",
+      "fr": "ghost",
+      "literal": "spectralisation",
+      "note": "Sort d'invocateur Ghost.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "방어막",
+      "fr": "barrier",
+      "literal": "bouclier",
+      "note": "Sort d'invocateur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "강타",
+      "fr": "smite",
+      "literal": "frappe puissante",
+      "note": "\"강타 아껴\" = \"garde ton smite\" (smite fight).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "쿨",
+      "fr": "cd",
+      "literal": "cooldown",
+      "note": "\"궁 쿨이야\" = \"mon ult est en cd\" ; aussi 쿨타임.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "템",
+      "fr": "stuff / items",
+      "literal": "아이템 abrégé",
+      "note": "\"템 차이\" = \"diff de stuff\" ; 코어템 = core item.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "풀템",
+      "fr": "full stuff",
+      "literal": "full items",
+      "note": "Build complet.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "피",
+      "fr": "PV / vie",
+      "literal": "sang",
+      "note": "\"피 없어\" = \"je suis low\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빨피",
+      "fr": "low HP",
+      "literal": "sang rouge (barre rouge)",
+      "note": "PV critiques.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "딸피",
+      "fr": "one-shot / une barre de PV",
+      "literal": "PV riquiqui",
+      "note": "\"걔 딸피야\" = \"il est one-shot\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "반피",
+      "fr": "mi-vie",
+      "literal": "demi-sang",
+      "note": "À la moitié des PV.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "풀피",
+      "fr": "full life",
+      "literal": "sang plein",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노마나",
+      "fr": "oom / plus de mana",
+      "literal": "no mana",
+      "note": "Aussi \"마나 없음\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "미아",
+      "fr": "ss / mia",
+      "literal": "MIA (missing in action)",
+      "note": "L'ennemi a quitté la lane : \"미드 미아\" = \"ss mid\". Vient simplement de l'anglais MIA ; l'homonymie avec le mot coréen 미아 (enfant perdu) est une coïncidence parfois relevée en plaisantant, pas l'origine.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갱",
+      "fr": "gank",
+      "literal": "",
+      "note": "\"갱 와\" = \"viens gank\" ; 갱킹 = ganking.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "역갱",
+      "fr": "countergank",
+      "literal": "gank inversé",
+      "note": "Le jungler allié punit le gank adverse.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갱승",
+      "fr": "gank retourné / jungler qui feed sur ses ganks",
+      "literal": "갱승사자 = 갱킹 + 저승사자 (la Faucheuse des ganks)",
+      "note": "Moquerie visant d'abord LE JUNGLER dont les ganks échouent systématiquement et nourrissent le laner adverse (\"갱승 정글러\" = jungler qui meurt sur ses propres ganks). \"갱승당함\" = se faire retourner son gank. Le literal \"갱+승리\" parfois cité est une fausse étymologie.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "카정",
+      "fr": "counter-jungle",
+      "literal": "카운터 정글 abrégé",
+      "note": "Voler/envahir la jungle adverse.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "다이브",
+      "fr": "dive",
+      "literal": "",
+      "note": "Tower dive ; \"다이브 치자\" = \"on dive\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "로밍",
+      "fr": "roam",
+      "literal": "",
+      "note": "Quitter sa lane pour aider ailleurs.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "푸쉬",
+      "fr": "push",
+      "literal": "",
+      "note": "Pousser la lane ; aussi 푸시.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "스플릿",
+      "fr": "splitpush",
+      "literal": "",
+      "note": "\"스플릿 운영\" = \"plan splitpush\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "한타",
+      "fr": "teamfight",
+      "literal": "한 + 타(打), \"grand échange de coups\" — étymologie discutée",
+      "note": "\"한타 이김\" = \"on gagne le 5v5\" ; \"한타 각\" = \"fight jouable\". L'analyse \"한방 싸움\" parfois citée est spéculative.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "이니시",
+      "fr": "engage",
+      "literal": "initiation",
+      "note": "\"이니시 걸어\" = \"lance l'engage\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "점사",
+      "fr": "focus",
+      "literal": "tir concentré",
+      "note": "\"원딜 점사\" = \"focus l'ADC\". Synonyme : 포커싱.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "어그로",
+      "fr": "aggro",
+      "literal": "",
+      "note": "Aggro des tours/sbires ; en argot \"어그로 끌다\" = provoquer/attirer l'attention.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "딜교",
+      "fr": "trade",
+      "literal": "딜교환 (échange de dégâts)",
+      "note": "\"딜교 이겼다\" = \"j'ai gagné le trade\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "포킹",
+      "fr": "poke",
+      "literal": "",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "카이팅",
+      "fr": "kite",
+      "literal": "",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "무빙",
+      "fr": "déplacements / esquive",
+      "literal": "moving",
+      "note": "\"무빙 좋다\" = \"belles esquives\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "막타",
+      "fr": "last hit",
+      "literal": "dernier coup",
+      "note": "Sur sbire ou objectif (\"바론 막타\" = smite fight).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "파밍",
+      "fr": "farm",
+      "literal": "",
+      "note": "\"파밍해\" = \"farme\". CS se dit aussi tel quel.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "프리징",
+      "fr": "freeze",
+      "literal": "",
+      "note": "Geler la lane devant sa tour.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "디나이",
+      "fr": "deny",
+      "literal": "",
+      "note": "Priver l'adversaire de farm/XP.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "솔킬",
+      "fr": "solokill",
+      "literal": "",
+      "note": "\"솔킬 따임\" = \"il s'est fait solokill\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "퍼블",
+      "fr": "first blood",
+      "literal": "퍼스트 블러드 abrégé",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "펜타",
+      "fr": "penta",
+      "literal": "pentakill",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "킬딸",
+      "fr": "KS / chasse aux kills",
+      "literal": "se faire plaisir sur les kills (딸 vulgaire)",
+      "note": "Accuse de voler les kills (synonyme : 킬스틸). Connotation vulgaire.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "합류",
+      "fr": "regroupe / rejoins",
+      "literal": "jonction",
+      "note": "\"합류해\" = \"viens te regrouper\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "운영",
+      "fr": "macro",
+      "literal": "gestion",
+      "note": "Jeu stratégique de carte : \"운영으로 이기자\" = \"on gagne à la macro\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "스노볼",
+      "fr": "snowball",
+      "literal": "",
+      "note": "Creuser l'avantage.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "역전",
+      "fr": "comeback",
+      "literal": "renversement",
+      "note": "\"역전각\" = \"y'a moyen de comeback\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "각",
+      "fr": "y'a moyen / fenêtre",
+      "literal": "angle",
+      "note": "Suffixe très productif : 바론각 = \"baron jouable\", 던질각, 닷지각. Indique qu'une action est possible.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "던지다",
+      "fr": "throw / int",
+      "literal": "jeter",
+      "note": "\"다 던졌다\" = \"il a tout jeté\" ; 던짐 nom. Reproche équivalent à \"il int\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "쓰로잉",
+      "fr": "throw",
+      "literal": "throwing",
+      "note": "Konglish, même sens que 던지다.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "트롤",
+      "fr": "troll / int",
+      "literal": "",
+      "note": "Joueur qui sabote ; \"트롤하지마\" = \"arrête d'int\" ; 고의 트롤 = int volontaire ; 개트롤 renforcé.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "역캐리",
+      "fr": "int / carry inversé",
+      "literal": "carry à l'envers",
+      "note": "Faire perdre son équipe à lui tout seul.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "캐리",
+      "fr": "carry",
+      "literal": "",
+      "note": "\"캐리해줘\" = \"porte-nous\" ; 하드캐리 = hard carry.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "버스",
+      "fr": "se faire porter",
+      "literal": "bus",
+      "note": "\"버스 타다\" = être carry ; \"버스 태워줘\" = \"portez-moi\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "버스기사",
+      "fr": "le carry de la game",
+      "literal": "chauffeur de bus",
+      "note": "Celui qui porte tout le monde.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "멘탈",
+      "fr": "mental",
+      "literal": "",
+      "note": "\"멘탈 나갔다\" = \"il est tilté\" ; \"멘탈 잡아\" = \"reste focus\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "멘붕",
+      "fr": "tilt total",
+      "literal": "멘탈 붕괴 (effondrement mental)",
+      "note": "État de tilt profond.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "탑신병자",
+      "fr": "toplaner dégénéré",
+      "literal": "탑 + 정신병자 (malade mental de la top)",
+      "note": "Toplaner obsédé par son 1v1/split qui ignore l'équipe. Moqueur, mi-affectueux mi-insultant.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "정글차이",
+      "fr": "jungle diff",
+      "literal": "écart de jungle",
+      "note": "Souvent utilisé pour flame son propre jungler.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "탑차이",
+      "fr": "top diff",
+      "literal": "écart de top",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "미드차이",
+      "fr": "mid diff",
+      "literal": "écart de mid",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "원딜차이",
+      "fr": "adc diff",
+      "literal": "écart d'ADC",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "체급차이",
+      "fr": "gap de niveau",
+      "literal": "écart de gabarit",
+      "note": "Différence de skill brut entre deux joueurs.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "손차이",
+      "fr": "diff de mécaniques",
+      "literal": "écart de mains",
+      "note": "Skill mécanique pur.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "닷지",
+      "fr": "dodge",
+      "literal": "",
+      "note": "Quitter le champ select ; \"닷지각\" = \"ça sent le dodge\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "서렌",
+      "fr": "ff",
+      "literal": "surrender abrégé",
+      "note": "\"서렌 치자\" = \"go ff\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "항복",
+      "fr": "ff / surrender",
+      "literal": "reddition",
+      "note": "Le vote d'abandon.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "탈주",
+      "fr": "leaver / ragequit",
+      "literal": "désertion",
+      "note": "Joueur qui quitte la partie.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "잠수",
+      "fr": "afk",
+      "literal": "plongée (sous-marin)",
+      "note": "Joueur inactif (volontaire). À distinguer de 튕김 = crash involontaire du client.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "신고",
+      "fr": "report",
+      "literal": "signalement",
+      "note": "\"신고하세요\" = \"reportez-le\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "리폿",
+      "fr": "report",
+      "literal": "report abrégé",
+      "note": "\"리폿 ㄱㄱ\" = \"report svp\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "채금",
+      "fr": "chat ban",
+      "literal": "채팅 금지 (interdiction de chat)",
+      "note": "Restriction de chat suite à des reports.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "정지",
+      "fr": "ban (compte)",
+      "literal": "suspension",
+      "note": "\"정지 먹었다\" = \"il s'est fait ban\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "티어",
+      "fr": "rank / élo",
+      "literal": "tier",
+      "note": "\"티어 어디세요\" = \"t'es quel rank ?\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "솔랭",
+      "fr": "soloQ",
+      "literal": "솔로 랭크",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "자랭",
+      "fr": "flexQ",
+      "literal": "자유 랭크 (rank libre)",
+      "note": "File flexible.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "듀오",
+      "fr": "duo",
+      "literal": "",
+      "note": "\"듀오세요?\" = \"vous êtes en duoQ ?\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "큐",
+      "fr": "la queue",
+      "literal": "queue",
+      "note": "\"큐 돌리자\" = \"on relance une game\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "승급전",
+      "fr": "promos",
+      "literal": "match de promotion",
+      "note": "Série de promotion de rank.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "강등",
+      "fr": "démote",
+      "literal": "rétrogradation",
+      "note": "Descente de division.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "칼바람",
+      "fr": "ARAM",
+      "literal": "vent de lames (칼바람 나락 = Abîme Hurlant)",
+      "note": "Le mode ARAM.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "협곡",
+      "fr": "la Faille",
+      "literal": "gorge",
+      "note": "Summoner's Rift (소환사의 협곡).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "우물",
+      "fr": "fontaine",
+      "literal": "puits",
+      "note": "La base / fountain.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "부캐",
+      "fr": "smurf",
+      "literal": "perso secondaire",
+      "note": "Compte secondaire.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "본캐",
+      "fr": "main account",
+      "literal": "perso principal",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "대리",
+      "fr": "boosting",
+      "literal": "jeu par procuration (대리랭)",
+      "note": "Compte joué/boosté par un autre — accusation fréquente, pratique interdite.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "양학",
+      "fr": "smurfing / écraser des noobs",
+      "literal": "양민학살 (massacre de civils)",
+      "note": "Stomper bien plus faible que soi.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "고인물",
+      "fr": "vétéran no-life",
+      "literal": "eau croupie",
+      "note": "Joueur très ancien et très fort.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "장인",
+      "fr": "OTP",
+      "literal": "artisan / maître",
+      "note": "\"야스오 장인\" = \"OTP Yasuo\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뉴비",
+      "fr": "newbie",
+      "literal": "",
+      "note": "Débutant.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "사기",
+      "fr": "broken / cheaté",
+      "literal": "escroquerie",
+      "note": "\"사기챔\" = \"champion broken\" ; 핵사기 = \"ultra broken\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "너프",
+      "fr": "nerf",
+      "literal": "",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "버프",
+      "fr": "buff",
+      "literal": "",
+      "note": "Buff de patch ou buffs jungle.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "블루",
+      "fr": "blue",
+      "literal": "",
+      "note": "Buff bleu ; \"블루 주세요\" = \"laisse-moi le bleu\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "레드",
+      "fr": "red",
+      "literal": "",
+      "note": "Buff rouge.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "픽",
+      "fr": "pick",
+      "literal": "",
+      "note": "\"픽 미쳤다\" = \"le pick est abusé\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "밴",
+      "fr": "ban (champ select)",
+      "literal": "",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "리메이크",
+      "fr": "remake (vote /remake) / rework selon contexte",
+      "literal": "",
+      "note": "En chat in-game, tapé en début de partie (\"리메이크 ㄱ\", \"리메이크 하실?\") = quasi toujours le vote /remake (AFK détecté) — sens prioritaire. Le rework de champion, plus rare en partie, s'écrit de plus en plus 리워크.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "챔프",
+      "fr": "champion",
+      "literal": "챔피언 abrégé",
+      "note": "Aussi 챔.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "모스트",
+      "fr": "main champ",
+      "literal": "most (played)",
+      "note": "\"모스트가 뭐예요\" = \"tu mains quoi ?\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "컸다",
+      "fr": "il est fed",
+      "literal": "il a grandi",
+      "note": "\"쟤 너무 컸어\" = \"il est trop fed\" ; 성장 = scaling.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "핵",
+      "fr": "cheat / scripts",
+      "literal": "noyau, nucléaire",
+      "note": "\"핵쟁이\" = cheateur (accusation). Aussi préfixe intensif : 핵노잼, 핵사기.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "콜",
+      "fr": "call",
+      "literal": "",
+      "note": "Annonce stratégique (\"콜 해줘\") OU \"콜!\" = \"deal, ça marche\". Contexte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오더",
+      "fr": "shotcall",
+      "literal": "order",
+      "note": "\"오더 따라\" = \"suis les calls\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "핑",
+      "fr": "ping",
+      "literal": "",
+      "note": "Signal sur la map OU latence (\"핑 높아\" = \"je lag\"). Contexte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "렉",
+      "fr": "lag",
+      "literal": "",
+      "note": "\"렉 걸렸어\" = \"j'ai laggé\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "끊겼다",
+      "fr": "il s'est fait catch / (si le joueur parle de lui-même) ça a coupé, j'ai DC",
+      "literal": "coupé",
+      "note": "Deux sens à trancher au contexte : (1) déconnexion/connexion coupée, TRÈS fréquent (\"나 끊겼었어\" = \"j'avais DC\" ; indices : 나, 잠깐, 렉, 인터넷) ; (2) pick isolé avant un fight (nom d'un mate/ennemi + contexte fight ; synonyme 짤렸다). Contresens dangereux en live si on traduit \"catch\" quand un mate explique qu'il a crash.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "시팅",
+      "fr": "camp / babysit",
+      "literal": "sitting",
+      "note": "Jungler qui campe une lane : \"미드 시팅\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "호응",
+      "fr": "follow-up",
+      "literal": "réponse à l'appel",
+      "note": "Suivre un gank/engage : \"호응 좀\" = \"follow mes engages\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "즐겜",
+      "fr": "chill game / pour le fun",
+      "literal": "즐거운 게임 (jeu plaisir)",
+      "note": "\"즐겜하세요\" = \"bonne game\" ; un 즐겜러 ne tryhard pas.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빡겜",
+      "fr": "tryhard",
+      "literal": "jeu acharné",
+      "note": "Jouer à fond, opposé de 즐겜.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "똥",
+      "fr": "feed / faire de la merde",
+      "literal": "caca",
+      "note": "\"똥 쌌다\" = \"il a int/fail\" ; \"똥챔\" = champ poubelle ; 똥싸개 = le feeder.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오브젝트",
+      "fr": "objectifs",
+      "literal": "object",
+      "note": "Drakes/baron/herald : \"오브젝트 챙겨\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "커버",
+      "fr": "cover",
+      "literal": "",
+      "note": "\"봇 커버 가\" = \"va couvrir la bot\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "니엄마",
+      "fr": "ta mère",
+      "literal": "",
+      "note": "패드립 : insulte aux parents, MAXIMALE en Corée, bien plus grave qu'en FR. Le streamer doit savoir qu'on attaque sa mère.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "니애미",
+      "fr": "ta daronne",
+      "literal": "애미 = mère (vulgaire)",
+      "note": "Très vulgaire ; \"애미없냐\" = \"t'as pas de mère ?\" = extrêmement insultant.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "느금마",
+      "fr": "ta mère (version la plus crue)",
+      "literal": "déformation de 니 엄마",
+      "note": "Aussi 느금. Patrip ultra-agressif, report quasi systématique.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "엠창",
+      "fr": "ta mère est une pute",
+      "literal": "애미 + 창녀 (mère + prostituée)",
+      "note": "Un des pires patrips ; sert aussi de serment (\"엠창 걸고\" = \"je le jure sur ma mère\").",
+      "confidence": "haute"
+    },
+    {
+      "kr": "패드립",
+      "fr": "patrip / insulte aux parents",
+      "literal": "패륜 (impiété filiale) + 애드립",
+      "note": "Catégorie d'insultes visant les parents ; \"패드립 치지마\" = \"laisse mes parents en dehors\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "시발",
+      "fr": "putain",
+      "literal": "",
+      "note": "Juron n°1 (aussi 씨발, 씨바, ㅅㅂ) ; \"시발놈아\" dirigé = \"fils de pute\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "개새끼",
+      "fr": "enfoiré / fdp",
+      "literal": "petit de chien",
+      "note": "Insulte forte et directe ; abrégé 개색, ㄱㅅㄲ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "새끼",
+      "fr": "connard",
+      "literal": "petit (d'animal)",
+      "note": "Suffixe insultant : \"못하는 새끼\" = \"ce connard de nul\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "병신",
+      "fr": "débile / attardé",
+      "literal": "infirme",
+      "note": "Très courant et blessant (validiste) ; 병신새끼 combine.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "꺼져",
+      "fr": "dégage",
+      "literal": "éteins-toi",
+      "note": "\"겜에서 꺼져\" = \"désinstalle\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "닥쳐",
+      "fr": "ta gueule",
+      "literal": "",
+      "note": "Variantes : 닥치셈, 입 닫아 (\"ferme-la\").",
+      "confidence": "haute"
+    },
+    {
+      "kr": "미친놈",
+      "fr": "taré",
+      "literal": "type fou",
+      "note": "미친년 (version féminine, 년) est nettement plus violent.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "한남",
+      "fr": "\"mec coréen typique\" (slur misandre)",
+      "literal": "한국 남자 (homme coréen)",
+      "note": "Terme péjoratif des guerres de genre en ligne ; insulte un homme en tant qu'homme coréen (forme longue 한남충).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "한녀",
+      "fr": "slur misogyne symétrique",
+      "literal": "한국 여자 (femme coréenne)",
+      "note": "Pendant misogyne de 한남.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "틀딱",
+      "fr": "boomer / vieux débris",
+      "literal": "틀니 (dentier) + 딱딱 (claquement)",
+      "note": "Insulte âgiste : \"vieux con dépassé\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "급식충",
+      "fr": "gamin de collège (péjoratif)",
+      "literal": "cafard de cantine scolaire",
+      "note": "Moque un joueur immature comme un gosse en âge de cantine.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "잼민이",
+      "fr": "sale gosse / kid relou",
+      "literal": "",
+      "note": "Enfant pénible en ligne. Origine : la voix TTS \"재민\" de la plateforme de dons Toonation (투네이션), utilisée par les streamers Twitch KR vers 2019-2020.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "충",
+      "fr": "suffixe \"-cafard\"",
+      "literal": "insecte (蟲)",
+      "note": "Accolé à un mot pour mépriser un groupe : 트롤충, 한남충, 급식충.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "벌레",
+      "fr": "vermine",
+      "literal": "insecte",
+      "note": "\"정글 벌레\" = \"ce déchet de jungler\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "쓰레기",
+      "fr": "déchet / trash",
+      "literal": "ordure",
+      "note": "\"쓰레기 팀\" = \"team poubelle\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "발컨",
+      "fr": "manchot",
+      "literal": "발 컨트롤 (contrôle au pied)",
+      "note": "\"Tu joues avec les pieds\" — mécaniques nulles.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "발로 하냐",
+      "fr": "tu joues avec les pieds ?",
+      "literal": "tu le fais avec les pieds ?",
+      "note": "Moquerie de mécaniques, même famille que 발컨.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "똥손",
+      "fr": "mains pourries",
+      "literal": "mains de merde",
+      "note": "Maladresse ; contraire 금손 (mains en or).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뇌없냐",
+      "fr": "t'as pas de cerveau ?",
+      "literal": "pas de cerveau ?",
+      "note": "Variante : \"뇌 빼고 하냐\" = \"tu joues sans cerveau\". Attaque le sens du jeu.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "노답",
+      "fr": "cas désespéré",
+      "literal": "no + 답 (pas de solution)",
+      "note": "\"노답이네\" = \"t'es irrécupérable\" ; synonyme 답없다.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "어이없네",
+      "fr": "j'hallucine",
+      "literal": "c'est absurde",
+      "note": "Indignation/reproche, pas une insulte directe.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뭐함",
+      "fr": "tu fous quoi ?",
+      "literal": "tu fais quoi",
+      "note": "\"정글 뭐함\" = ambiance \"report jungle\". Peut être neutre selon ton. Variantes : 뭐하냐, 머함.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "접어라",
+      "fr": "désinstalle",
+      "literal": "plie/range (le jeu)",
+      "note": "\"롤 접어라\" = \"arrête LoL\" ; synonyme 삭제해라 (\"supprime le jeu\").",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뒤져",
+      "fr": "crève",
+      "literal": "meurs (vulgaire)",
+      "note": "Aussi 죽어 ; 뒤져라 très agressif — à signaler clairement au streamer.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "짱깨",
+      "fr": "slur anti-chinois",
+      "literal": "",
+      "note": "Slur raciste souvent balancé aux étrangers sur le serveur KR — le streamer peut le recevoir. Désigne aussi familièrement le jjajangmyeon (contexte).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "원숭이",
+      "fr": "singe",
+      "literal": "",
+      "note": "Employé comme insulte raciste contre les étrangers selon contexte ; sinon mot neutre (Wukong = 오공).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "인성질",
+      "fr": "BM",
+      "literal": "인성 (caractère) + 질",
+      "note": "Toxicité délibérée : spam ping, danse sur le cadavre. \"인성 글렀다\" = \"il est pourri de l'intérieur\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "비매너",
+      "fr": "BM / mauvais esprit",
+      "literal": "non-manières",
+      "note": "Manque de fair-play ; 매너 = fair-play (\"매너 좀\").",
+      "confidence": "haute"
+    },
+    {
+      "kr": "핵쟁이",
+      "fr": "cheateur",
+      "literal": "type à hacks",
+      "note": "Accusation de cheat/scripts.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "죄송합니다",
+      "fr": "désolé (poli)",
+      "literal": "",
+      "note": "Excuse sincère registre poli ; 죄송해요 un peu moins formel ; 죄송 court = \"dsl\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "미안",
+      "fr": "pardon / my bad",
+      "literal": "",
+      "note": "Familier ; 미안해, 미안하다 entre pairs.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "제발",
+      "fr": "pitié / stp",
+      "literal": "je t'en prie",
+      "note": "\"제발 좀\" = \"pitié quoi\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "잘부탁합니다",
+      "fr": "on compte sur vous / bonne game à nous",
+      "literal": "je me confie à vous",
+      "note": "Formule de début de partie ; court : 잘부탁.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "화이팅",
+      "fr": "let's go / courage !",
+      "literal": "fighting",
+      "note": "Encouragement ; variantes 파이팅, 홧팅, 팟팅.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "가즈아",
+      "fr": "LET'S GOOO",
+      "literal": "étirement de 가자 (allons-y)",
+      "note": "Cri de hype.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "가자",
+      "fr": "c'est parti / on y va",
+      "literal": "allons-y",
+      "note": "\"용 가자\" = \"go drake\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "드가자",
+      "fr": "on rentre dedans / go",
+      "literal": "들어가자 (entrons) contracté",
+      "note": "Hype d'engage.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "고고",
+      "fr": "go go",
+      "literal": "",
+      "note": "Forme pleine de ㄱㄱ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "나이스",
+      "fr": "nice / bien joué",
+      "literal": "",
+      "note": "\"나이스 갱\" = \"joli gank\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "굿",
+      "fr": "good",
+      "literal": "",
+      "note": "Aussi écrit 굳, doublé 굳굳.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "수고하셨습니다",
+      "fr": "bg à tous / merci pour la game",
+      "literal": "vous vous êtes donné de la peine",
+      "note": "Formule polie de fin de partie ; familier : 수고했어, 수고.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "고생하셨습니다",
+      "fr": "bien joué, c'était dur",
+      "literal": "vous avez souffert",
+      "note": "Variante de fin de game.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "감사합니다",
+      "fr": "merci (poli)",
+      "literal": "",
+      "note": "Court : 감사, ㄱㅅ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "고마워",
+      "fr": "merci (familier)",
+      "literal": "",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "땡큐",
+      "fr": "thx",
+      "literal": "thank you",
+      "note": "Konglish.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "부탁해요",
+      "fr": "stp / je te le demande",
+      "literal": "je te confie ça",
+      "note": "\"갱 부탁\" = \"gank stp\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "같이가",
+      "fr": "on y va ensemble / attends-moi",
+      "literal": "allons ensemble",
+      "note": "Coordination avant objectif ; poli : 같이 가요.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "도와줘",
+      "fr": "aide-moi / help",
+      "literal": "",
+      "note": "\"탑 도와줘\" = \"help top\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "살려줘",
+      "fr": "sauvez-moi",
+      "literal": "fais-moi vivre",
+      "note": "Appel à l'aide en fuite.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "와줘",
+      "fr": "viens (stp)",
+      "literal": "",
+      "note": "\"미드 와줘\" = \"viens mid\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빨리 와",
+      "fr": "viens vite",
+      "literal": "",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "기다려",
+      "fr": "attends",
+      "literal": "",
+      "note": "Cf. ㄱㄷ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "잠만",
+      "fr": "2 sec / attends",
+      "literal": "잠깐만 (un instant) contracté",
+      "note": "Aussi 잠깐.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "잘했어",
+      "fr": "bien joué",
+      "literal": "tu as bien fait",
+      "note": "Poli : 잘하셨어요.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "잘함",
+      "fr": "il est fort / gj",
+      "literal": "joue bien",
+      "note": "\"서폿 개잘함\" = \"le supp est énorme\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "힘내",
+      "fr": "courage",
+      "literal": "prends des forces",
+      "note": "Console après un fail.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "괜찮아",
+      "fr": "c'est pas grave / ça va",
+      "literal": "",
+      "note": "Rassure un mate qui s'excuse.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "안녕하세요",
+      "fr": "bonjour",
+      "literal": "",
+      "note": "Poli en début de game ; familier : 안녕, 하이.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "반갑습니다",
+      "fr": "enchanté / salut",
+      "literal": "content de vous voir",
+      "note": "",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "즐겜하세요",
+      "fr": "bonne game / amusez-vous",
+      "literal": "jouez plaisir",
+      "note": "Souhait de début de partie.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "네",
+      "fr": "oui (poli)",
+      "literal": "",
+      "note": "넵 = \"yep\" énergique ; 넹 = mignon.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "응",
+      "fr": "ouais",
+      "literal": "",
+      "note": "Familier ; variante 엉.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "아니",
+      "fr": "non / non mais",
+      "literal": "",
+      "note": "En début de phrase = \"non mais\" (incrédulité). Poli : 아니요.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "알겠어",
+      "fr": "compris / ça marche",
+      "literal": "",
+      "note": "Poli : 알겠습니다.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "좋아",
+      "fr": "ça me va / bonne idée",
+      "literal": "c'est bien",
+      "note": "Valide un plan ; poli : 좋아요.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "그래",
+      "fr": "ouais / ok",
+      "literal": "",
+      "note": "Accord neutre.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "한번만",
+      "fr": "juste une fois / allez stp",
+      "literal": "une seule fois",
+      "note": "Pour demander un gank ou refuser un ff (\"한번만 더 해보자\").",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "사랑해요",
+      "fr": "je t'adore",
+      "literal": "je t'aime",
+      "note": "Hype après un save/play : \"정글 사랑해\" = \"jungler je t'aime\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "형",
+      "fr": "frérot",
+      "literal": "grand frère",
+      "note": "Familier amical, parfois condescendant : \"형이 캐리한다\" = \"tonton va vous carry\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "님",
+      "fr": "suffixe poli (monsieur/madame)",
+      "literal": "",
+      "note": "Sur un pseudo ou un rôle : \"탑님\" ; \"님아\" pour interpeller.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "잘가",
+      "fr": "bye / à plus",
+      "literal": "pars bien",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "주세요",
+      "fr": "donne / laisse-moi (poli)",
+      "literal": "donnez",
+      "note": "\"블루 주세요\" = \"laisse le bleu stp\" ; familier : 줘.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "때매",
+      "fr": "à cause de",
+      "literal": "때문에 contracté",
+      "note": "\"너 때매 짐\" = \"on perd à cause de toi\" — souvent un reproche.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "어케",
+      "fr": "comment",
+      "literal": "어떻게 contracté",
+      "note": "\"어케 이기냐\" = \"comment on gagne\". Variante 어캐.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갠찮",
+      "fr": "ça va / pas grave (variantes : 갠춘, ㄱㅊ)",
+      "literal": "괜찮아 contracté",
+      "note": "Forme attestée ; la contraction de chat la plus emblématique est 갠춘 (\"갠춘갠춘\") — à reconnaître aussi par le parseur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빡치다",
+      "fr": "être vénère",
+      "literal": "",
+      "note": "\"아 빡쳐\" = \"ça me vénère\" ; 빡침 = la rage, 빡친다 présent.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "개-",
+      "fr": "préfixe \"trop / grave\"",
+      "literal": "chien-",
+      "note": "Intensifieur quasi universel : 개잘함, 개못함, 개꿀, 개이득. Vulgarité légère.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "개못함",
+      "fr": "il est nul de chez nul",
+      "literal": "joue trop mal",
+      "note": "Flame très fréquent.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "개잘함",
+      "fr": "il défonce",
+      "literal": "joue trop bien",
+      "note": "Compliment.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "존나",
+      "fr": "putain de / trop",
+      "literal": "",
+      "note": "Intensifieur vulgaire (= ㅈㄴ) ; 졸라 version atténuée.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "레알",
+      "fr": "véridique / pour de vrai",
+      "literal": "real",
+      "note": "Cf. ㄹㅇ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "진짜",
+      "fr": "vraiment / sérieux",
+      "literal": "",
+      "note": "\"진짜?\" = \"sérieux ?\" ; \"진짜 못하네\" = \"il est vraiment nul\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "진심",
+      "fr": "sérieusement",
+      "literal": "cœur sincère",
+      "note": "\"진심임?\" = \"t'es sérieux ?\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "함정",
+      "fr": "piège",
+      "literal": "",
+      "note": "\"함정이야\" = \"c'est un bait/une embuscade\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "꿀",
+      "fr": "EZ / OP",
+      "literal": "miel",
+      "note": "꿀챔 = champ facile et fort ; 개꿀 = \"trop EZ, le pied\" ; 꿀빨다 = se la couler douce.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노잼",
+      "fr": "pas drôle / chiant",
+      "literal": "no + 재미 (fun)",
+      "note": "\"이번판 노잼\" = \"game nulle\" ; 핵노잼 renforcé.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "꿀잼",
+      "fr": "trop fun",
+      "literal": "miel + fun",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "헐",
+      "fr": "sérieux ?? / oh la",
+      "literal": "",
+      "note": "Choc, surprise.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "대박",
+      "fr": "énorme / incroyable",
+      "literal": "jackpot",
+      "note": "Positif ou choc selon contexte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "쩐다",
+      "fr": "ça déchire",
+      "literal": "",
+      "note": "Admiratif ; aussi 쩔어.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오지다",
+      "fr": "abusé / monstrueux",
+      "literal": "",
+      "note": "\"오지네\" = \"c'est abusé\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "지리다",
+      "fr": "trop stylé",
+      "literal": "se pisser dessus",
+      "note": "\"지렸다\" = \"frissons, c'était énorme\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "미쳤다",
+      "fr": "c'est dingue (souvent compliment)",
+      "literal": "c'est fou",
+      "note": "ATTENTION : \"이 플레이 미쳤다\" = compliment. Différent de 미친놈 (insulte).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "망했다",
+      "fr": "c'est mort / on est foutus",
+      "literal": "c'est ruiné",
+      "note": "\"겜 망했어\" = \"game foutue\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "망겜",
+      "fr": "game foutue / jeu pourri",
+      "literal": "jeu ruiné",
+      "note": "La partie en cours ou le jeu lui-même.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "똥겜",
+      "fr": "game de merde",
+      "literal": "jeu caca",
+      "note": "Partie de mauvaise qualité des deux côtés.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갓-",
+      "fr": "préfixe \"god\"",
+      "literal": "god-",
+      "note": "갓겜 = jeu génial ; 갓플레이 = play divin.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "답답해",
+      "fr": "c'est frustrant",
+      "literal": "étouffant",
+      "note": "\"보는 내가 답답하다\" = \"rien que te regarder me frustre\" — prélude au flame.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "에휴",
+      "fr": "pfff (soupir)",
+      "literal": "",
+      "note": "Famille de soupirs : 하, 후, 아오, 어휴 — marqueurs d'exaspération.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "그만",
+      "fr": "stop / arrête",
+      "literal": "",
+      "note": "\"싸움 그만\" = \"arrêtez de vous embrouiller\" ; variante 고만.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "좀",
+      "fr": "\"un peu / quoi\" (râle)",
+      "literal": "un peu",
+      "note": "Particule de reproche : \"와드 좀\" = \"des wards, QUOI\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "그니까",
+      "fr": "c'est ce que je dis",
+      "literal": "그러니까 contracté",
+      "note": "Accord appuyé.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "맞다",
+      "fr": "ah oui exact",
+      "literal": "c'est juste",
+      "note": "맞음/맞아 = \"exact\" (cf. ㅁㅈ).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "알빠노",
+      "fr": "rien à battre / c'est pas mon problème",
+      "literal": "알 바 아님 + ~노 (lecture débattue)",
+      "note": "Argot récent, dédaigneux : refuse toute responsabilité (\"내 알빠노?\"). La terminaison ~노 vient du style DC Inside/Ilbe (connotation à connaître). Popularisé par une partie de LoL du streamer PAKA en 2022 (un Azir support l'avait répondu dans le chat).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "어쩔티비",
+      "fr": "et alors ? va pleurer",
+      "literal": "\"qu'est-ce que tu vas faire, télé ?\"",
+      "note": "Provoc puérile virale (réplique : 저쩔티비). Peut sonner daté mais reste compris.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "빼박",
+      "fr": "indéniable / sans débat",
+      "literal": "빼도 박도 못한다 (ni retirer ni enfoncer)",
+      "note": "\"빼박 트롤\" = \"int pur et simple\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "개이득",
+      "fr": "tout bénéf",
+      "literal": "gain de fou",
+      "note": "Forme pleine de ㄱㅇㄷ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "존버",
+      "fr": "tenir / attendre son heure",
+      "literal": "존나 버티기 (tenir comme un fou)",
+      "note": "Attendre passivement (scaling, late game) : \"존버하면 이김\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "현타",
+      "fr": "coup de blues / lucidité brutale",
+      "literal": "현자타임 à l'origine (\"temps du sage\"), resémantisé en 현실 자각 타임",
+      "note": "\"현타 온다\" = \"d'un coup ça me déprime\" (après une lose). L'étymologie \"현실 자각 타임\" souvent citée est un rétro-acronyme ; l'origine réelle est 현자타임.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "졌잘싸",
+      "fr": "défaite honorable / on a bien lutté",
+      "literal": "졌지만 잘 싸웠다 (perdu mais bien battu)",
+      "note": "Fin de game serrée, sans amertume.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "무지성",
+      "fr": "sans réfléchir / no brain",
+      "literal": "sans intellect",
+      "note": "\"무지성 다이브\" = \"dive débile\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "어디감",
+      "fr": "tu vas où ??",
+      "literal": "où vas-tu (style chat)",
+      "note": "Interpelle un mate qui part n'importe où.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "~함 / ~임 / ~셈",
+      "fr": "terminaisons de chat",
+      "literal": "",
+      "note": "Style télégraphique : 못함 = \"il est nul\", 맞음 = \"exact\", 닥치셈 = \"tg\". Suffixes, pas des mots — utile pour le parseur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "1인분",
+      "fr": "faire sa part / assurer son rôle",
+      "literal": "une portion (de nourriture)",
+      "note": "Pilier absolu du flame solo queue : \"1인분만 해\" = \"fais juste ta part\", \"1인분도 못하네\" = \"t'es même pas capable de faire ton job\". Aussi écrit 일인분/인분.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅈ밥",
+      "fr": "noob / déchet / petit joueur",
+      "literal": "좆밥 (vulgaire)",
+      "note": "\"ㅈ밥새끼\" = \"ce gros nul\". Insulte très fréquente, aussi 좆밥.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅈ같다",
+      "fr": "c'est de la merde / ça me dégoûte",
+      "literal": "좆같다 (vulgaire)",
+      "note": "\"팀운 ㅈ같네\" = \"mes teams c'est de la merde\". Variantes ㅈ같네, 좆같다.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "팀운",
+      "fr": "la loterie des mates / chance de team",
+      "literal": "팀 + 운 (chance de team)",
+      "note": "\"팀운 없다\" = \"j'ai jamais de chance avec mes teams\". Concept central de la solo queue ; voisin de 팀탓 (rejeter la faute sur la team).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "억까",
+      "fr": "hate gratuit / critique de mauvaise foi",
+      "literal": "억지로 + 까다 (casser de force)",
+      "note": "Casser quelqu'un avec des arguments bidons. \"억까 ㄴㄴ\" = \"arrêtez de le flame pour rien\". Contraire : 억빠 (éloge forcé). Très courant 2023-2026.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄹㅈㄷ",
+      "fr": "légendaire (souvent ironique)",
+      "literal": "레전드 (legend) en choseong",
+      "note": "\"ㄹㅈㄷ네\" = \"du jamais vu\" — pour un play de fou COMME pour une catastrophe (\"이 정글 ㄹㅈㄷ\" = \"ce jungler, légendaire\" = il int). Omniprésent en 2025 — trancher au contexte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "킹받네",
+      "fr": "ça me vénère (meme)",
+      "literal": "킹 (king, intensif) + 열받다 (s'énerver)",
+      "note": "\"킹받네 진짜\" = \"qu'est-ce que ça m'énerve\". Aussi 킹받다, 킹받게.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빼",
+      "fr": "recule ! / on lâche",
+      "literal": "retire (de 빼다)",
+      "note": "Call de désengage crucial : \"빼빼빼\" = \"back back back\", \"바론 빼\" = \"lâchez le baron\". Complément indispensable de 백 ; formes 빼라, 빼자, 빼셈.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "사려",
+      "fr": "joue safe / expose-toi pas",
+      "literal": "사리다 (se ménager)",
+      "note": "\"좀 사려\" = \"arrête de overextend\", \"사리면서 해\" = \"joue prudent\". Call défensif très courant.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "무리",
+      "fr": "pas jouable / force pas",
+      "literal": "excès / impossible (無理)",
+      "note": "\"무리야\" = \"on peut pas le prendre\", \"무리하지마\" = \"force pas le play\". Réponse standard à un call trop optimiste.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "물몸",
+      "fr": "squishy",
+      "literal": "corps d'eau",
+      "note": "Champion fragile. \"걔 물몸이야 점사해\" = \"il est squishy, focus-le\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "CC기",
+      "fr": "CC / contrôles",
+      "literal": "crowd control + 기 (prononcé 씨씨기)",
+      "note": "\"CC기 다 빠졌어\" = \"ils ont plus de CC, on peut y aller\". Aussi écrit 씨씨.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "딜탱",
+      "fr": "bruiser",
+      "literal": "딜 + 탱",
+      "note": "Champion qui fait des dégâts en encaissant. \"딜탱 없어서 짐\" = \"on perd faute de bruiser\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "튕겼다",
+      "fr": "le client a crash / il a DC",
+      "literal": "a été éjecté / a rebondi",
+      "note": "\"겜 튕김\" = \"le jeu a crash\". Capital pour le streamer : distinguer un crash (튕김, involontaire) d'un AFK volontaire (잠수) avant de flamer ; voir aussi 재접 (재접속 = il reconnecte).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "전적",
+      "fr": "match history / les stats",
+      "literal": "historique de matchs",
+      "note": "\"전적 봤는데 다 트롤임\" = \"j'ai check son op.gg, c'est un troll\". Réflexe culturel KR (전적검색) ; 옵지 = OP.GG (\"옵지 돌려봐\" = \"check son op.gg\").",
+      "confidence": "haute"
+    },
+    {
+      "kr": "선픽",
+      "fr": "first pick / instalock",
+      "literal": "pick en premier (先pick)",
+      "note": "Champ select : \"선픽 미안\" = \"dsl j'ai instalock\", \"미드 선픽\" = \"je first-pick mid\". Source classique d'embrouille pré-game.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "씹-",
+      "fr": "préfixe ultra-vulgaire \"méga-\"",
+      "literal": "vulgaire",
+      "note": "Cran au-dessus de 개- : 씹사기 = \"complètement broken\", 씹트롤, 씹못함. À détecter comme préfixe par le parseur, comme 개- et 갓-.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "천상계",
+      "fr": "high elo",
+      "literal": "monde céleste",
+      "note": "Diamant+/Master+. \"천상계에서는 다르게 함\" = \"en high elo on joue pas comme ça\". Spécifique au serveur KR.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "심해",
+      "fr": "elo hell / les abysses",
+      "literal": "mer profonde",
+      "note": "Le low elo où les games sont injouables. 심해어 (\"poisson des abysses\") = joueur de low elo. Antonyme de 천상계.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "가보자고",
+      "fr": "let's gooo / on y va",
+      "literal": "allons-y (étiré, meme)",
+      "note": "Hype virale toujours vivante : \"자 가보자고\". Choseong ㄱㅂㅈㄱ. Complète 가즈아/드가자.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄷㅊ",
+      "fr": "tg / ferme-la",
+      "standard": "입 닥쳐",
+      "note": "Initiales de 닥쳐. Agressif mais courant en tilt.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄴㅇㅅ",
+      "fr": "nice",
+      "standard": "좋았어!",
+      "note": "Initiales de 나이스, félicitation rapide après un play.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄱㄴ",
+      "fr": "ça passe / possible",
+      "standard": "가능해",
+      "note": "Initiales de 가능. Ex: '킬각 ㄱㄴ?' = le kill est possible ?",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅂㄱㄴ",
+      "fr": "ça passe pas / impossible",
+      "standard": "불가능해",
+      "note": "Initiales de 불가능, négatif de ㄱㄴ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅆㄱㄴ",
+      "fr": "ça passe large / ez",
+      "standard": "완전히 가능해",
+      "note": "쌉가능 en initiales : possible à 200%.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "쌉가능",
+      "fr": "ça passe large",
+      "standard": "충분히 가능해",
+      "note": "Préfixe intensif 쌉- + 가능. Variante jamo: ㅆㄱㄴ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅁㅌㅊ",
+      "fr": "il vaut quoi ? / ça se place où ?",
+      "standard": "수준이 어느 정도야?",
+      "note": "몇타치 — demande d'évaluation, famille de ㅅㅌㅊ/ㅍㅌㅊ/ㅎㅌㅊ déjà au glossaire.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅆㅅㅌㅊ",
+      "fr": "largement au-dessus du lot / cracké",
+      "standard": "평균보다 훨씬 뛰어나다",
+      "note": "쌉상타치, superlatif de ㅅㅌㅊ.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅇㅈㄹ",
+      "fr": "n'importe quoi / il raconte de la merde",
+      "standard": "또 헛소리를 한다",
+      "note": "이 지랄 — réaction méprisante à un message/comportement.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅂㅅ",
+      "fr": "débile / abruti",
+      "standard": "멍청이 (욕설)",
+      "note": "병신 en deux jamo séparés — variante orthographique de ㅄ (déjà au glossaire, caractère composé différent).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅁㅊㄴ",
+      "fr": "taré / tarée",
+      "standard": "미친 놈 (욕설)",
+      "note": "미친놈/미친년 en initiales.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄴㄱㅁ",
+      "fr": "insulte à ta mère (très vulgaire)",
+      "standard": "네 엄마 (심한 패드립 욕설)",
+      "note": "느금마 en initiales — patdrip, à signaler/modérer, jamais anodin.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "18",
+      "fr": "ptn",
+      "standard": "제기랄 (욕설)",
+      "note": "Homophone de 십팔 ≈ 시발. Ex: '아 18'. Attention aux vrais nombres.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "시1발",
+      "fr": "ptn (filtre contourné)",
+      "standard": "젠장 (심한 욕설)",
+      "note": "씨발 avec chiffre inséré pour contourner le filtre de chat. Variantes: ㅅ1ㅂ, 시1바.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "병1신",
+      "fr": "débile (filtre contourné)",
+      "standard": "멍청이 (욕설)",
+      "note": "병신 avec chiffre anti-filtre.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "씨발",
+      "fr": "putain",
+      "standard": "젠장 (심한 욕설)",
+      "note": "Orthographe pleine de 시발 (déjà présent) — chaîne différente à matcher.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "좆까",
+      "fr": "va te faire",
+      "standard": "꺼져 (매우 심한 욕설)",
+      "note": "Très vulgaire. Variante: ㅈ까.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "좆밥",
+      "fr": "déchet / free kill",
+      "standard": "형편없는 실력자",
+      "note": "Orthographe pleine de ㅈ밥 (déjà au glossaire).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅍㅇㅌ",
+      "fr": "fighting / let's go",
+      "standard": "힘내자!",
+      "note": "파이팅 en initiales. Variante: ㅎㅇㅌ (화이팅).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅎㄷㄷ",
+      "fr": "énorme / flippant",
+      "standard": "굉장하다",
+      "note": "후덜덜 — tremblement d'impression ou de peur, version amplifiée de ㄷㄷ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅗㅜㅑ",
+      "fr": "oh wow",
+      "standard": "와 대단하다",
+      "note": "Suite de voyelles = stupéfaction (souvent admirative, parfois graveleuse). Variante 오우야.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅇㅎ",
+      "fr": "ah ok / je vois",
+      "standard": "아하, 그렇구나",
+      "note": "아하 abrégé.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄱㅂㅈㄱ",
+      "fr": "let's gooo",
+      "standard": "한번 가 보자!",
+      "note": "가보자고 en initiales (déjà présent en toutes lettres).",
+      "confidence": "haute"
+    },
+    {
+      "kr": ";;",
+      "fr": "...(malaise) / sueur",
+      "standard": "(당황)",
+      "note": "Points-virgules = gouttes de sueur, gêne/consternation. Souvent ;;; ou collé à un mot.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "22",
+      "fr": "+1 / pareil",
+      "standard": "나도 동의해",
+      "note": "'2' = je seconde le message précédent. Souvent 222/2222, ou ㅇㅇ22. 33 = troisième à approuver.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "지지",
+      "fr": "ff / gg (abandon)",
+      "standard": "항복하자",
+      "note": "PIÈGE: épellation hangul de ㅈㅈ — appel au surrender, PAS un compliment en cours de partie. '지지치자' = votez ff.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "겜",
+      "fr": "game / partie",
+      "standard": "게임",
+      "note": "Abréviation omniprésente: 겜 던짐, 한 겜만, 이번 겜.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "바텀",
+      "fr": "bot / botlane",
+      "standard": "아래쪽 라인 (봇)",
+      "note": "Variante loanword de 봇, très courante à l'oral et en chat.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "타워",
+      "fr": "tour / tourelle",
+      "standard": "포탑",
+      "note": "Loanword pour 포탑. '타워 끼고 싸워' = fight sous tour.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "평타",
+      "fr": "AA / auto-attaque",
+      "standard": "기본 공격",
+      "note": "평범한 타격. '평타 캔슬' = animation cancel.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "스킬샷",
+      "fr": "skillshot",
+      "standard": "조준해서 맞히는 기술",
+      "note": "Compétence à viser. '스킬샷 다 빗나감' = il rate tout.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "논타겟",
+      "fr": "sort non ciblé / skillshot",
+      "standard": "조준이 필요한 기술",
+      "note": "Non-target. Opposé: 타겟팅 (point & click).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "그랩",
+      "fr": "grab / hook",
+      "standard": "적을 끌어오는 기술",
+      "note": "Hooks type Blitz/Thresh/Nautilus. '그랩 조심' = care hook.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "에어본",
+      "fr": "knock-up / airborne",
+      "standard": "공중에 띄우는 기술",
+      "note": "CC d'envol (insensible au tenacity). '에어본 맞으면 죽음'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "백도어",
+      "fr": "backdoor",
+      "standard": "몰래 적 기지 건물을 공격하기",
+      "note": "Pousser/finir la base sans son équipe. Abrégé parfois 백도.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "스틸",
+      "fr": "steal",
+      "standard": "막타를 가로채다",
+      "note": "Vol d'objectif (baron/drake) ou de kill. '바론 스틸당함'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "몰래바론",
+      "fr": "baron ninja / sneaky baron",
+      "standard": "몰래 바론을 사냥하기",
+      "note": "Call stratégique classique quand l'ennemi est bot.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "인베",
+      "fr": "invade",
+      "standard": "게임 시작 직후 적 정글에 침입하기",
+      "note": "인베이드 abrégé, niveau 1. '인베 가자' = on invade.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "리쉬",
+      "fr": "leash",
+      "standard": "정글러의 첫 몬스터 사냥을 도와주기",
+      "note": "Aide au premier camp. Aussi écrit 리시. '리쉬 좀' = leash svp.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "풀캠",
+      "fr": "full clear",
+      "standard": "정글 캠프를 전부 사냥하기",
+      "note": "풀캠프 — clear complet de la jungle.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "동선",
+      "fr": "pathing / trajet",
+      "standard": "이동 경로",
+      "note": "Surtout le pathing jungle. '정글 동선 꼬임' = pathing ruiné.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "정글링",
+      "fr": "farmer la jungle / clear",
+      "standard": "정글 몬스터 사냥",
+      "note": "L'action de faire ses camps.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갱킹",
+      "fr": "gank",
+      "standard": "기습 공격",
+      "note": "Forme longue de 갱 (déjà au glossaire). Variante: 갱크.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "피딩",
+      "fr": "feed / feeding",
+      "standard": "반복해서 죽어 적에게 이득을 주는 것",
+      "note": "Mourir en boucle = nourrir l'ennemi. '피딩 그만' = arrête de feed.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "퍼주다",
+      "fr": "feed / distribuer des kills",
+      "standard": "적에게 킬을 계속 내주다",
+      "note": "'퍼주지 마' = arrête de donner. '퍼줬다' = j'ai feed.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "키우다",
+      "fr": "engraisser l'ennemi / le rendre fed",
+      "standard": "상대를 성장시켜 주다",
+      "note": "'케틀 다 키워놨네' = vous avez rendu la Kai'Sa monstrueuse.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "어시",
+      "fr": "assist",
+      "standard": "어시스트 (처치 관여)",
+      "note": "'어시 먹었다' = j'ai pris l'assist.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "셧다운",
+      "fr": "shutdown",
+      "standard": "연속 처치를 끊어 받는 보너스 골드",
+      "note": "Prime sur la tête d'un joueur en série de kills. '셧다운 골드 개큼'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "현상금",
+      "fr": "bounty / prime",
+      "standard": "처치하면 추가 골드를 주는 현상금",
+      "note": "Prime d'or sur un joueur/objectif (système de bounty).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "처형",
+      "fr": "exécuté (mort sans kill ennemi)",
+      "standard": "챔피언이 아닌 것에게 죽음 (처형)",
+      "note": "Mort sur tour/sbires/jungle: pas d'or pour l'ennemi. '처형당함ㅋㅋ' = moquerie.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "주도권",
+      "fr": "prio (priorité de lane)",
+      "standard": "라인 주도권 (우위)",
+      "note": "Terme macro clé: qui push en premier. '미드 주도권 없음' = pas de prio mid.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "반반",
+      "fr": "even / 50-50",
+      "standard": "비등비등한 상황",
+      "note": "'반반 가자' = on joue égal, pas de risque. '아직 반반임' = la game est even.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "맞라인",
+      "fr": "vis-à-vis / matchup direct",
+      "standard": "같은 라인의 상대",
+      "note": "맞라이너 = l'adversaire direct de lane.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "상성",
+      "fr": "matchup",
+      "standard": "상대와의 유불리 관계",
+      "note": "'상성상 짐' = le matchup est perdu d'avance.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "카운터",
+      "fr": "counter / counter-pick",
+      "standard": "천적 (상성에서 유리한 픽)",
+      "note": "'카운터 맞았다' = je me suis fait counter-pick.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "사이드",
+      "fr": "sidelane",
+      "standard": "옆 라인 (탑이나 봇)",
+      "note": "'사이드 가라' = va gérer la sidelane (call macro).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "라인스왑",
+      "fr": "lane swap",
+      "standard": "라인 위치 교체",
+      "note": "Méta pro 2024-2025 revenue en force; en soloQ = échange de lanes.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "스왑",
+      "fr": "swap",
+      "standard": "자리/챔피언 교체",
+      "note": "Échange de rôle, de champion en sélection, ou de lane.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "프리딜",
+      "fr": "free damage",
+      "standard": "반격받지 않고 공격하기",
+      "note": "'프리딜 각' = fenêtre pour taper gratuitement.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "킬각",
+      "fr": "fenêtre de kill / il est kill",
+      "standard": "처치할 수 있는 기회",
+      "note": "각 (angle/opportunité) + kill. '킬각 보임' = je vois le kill.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갱각",
+      "fr": "fenêtre de gank / gankable",
+      "standard": "기습 공격의 기회",
+      "note": "'갱각 나옴' = la lane est gankable.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "먹자",
+      "fr": "on prend (drake/baron/nash)",
+      "standard": "잡자 (처치하자)",
+      "note": "먹다 = 'manger' un objectif/buff/CS. '용 먹자' = on fait le drake. PIÈGE pour MT générique (rendu 'mangeons le dragon').",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오픈",
+      "fr": "open / laissez-les finir",
+      "standard": "항복하는 의미로 기지를 열어 주자",
+      "note": "PIÈGE: 'open mid' = on arrête de défendre pour que ça finisse vite. Signe de tilt/ff mental.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "이지",
+      "fr": "ez",
+      "standard": "쉬운 게임이었다 (도발)",
+      "note": "BM classique en fin de partie. '이지겜' = ez game.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "끝내자",
+      "fr": "on end / on finit",
+      "standard": "게임을 끝내자",
+      "note": "Call pour fermer la game au lieu de traîner.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "밀자",
+      "fr": "on push",
+      "standard": "라인을 밀고 전진하자",
+      "note": "'미드 밀자' = on push mid.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "철거",
+      "fr": "on démonte les tours",
+      "standard": "포탑 파괴",
+      "note": "'철거하자' = on rase les structures.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "설계",
+      "fr": "setup / coup préparé",
+      "standard": "계획적으로 함정을 준비함",
+      "note": "Préparer un pick/une embuscade. '설계 당했다' = on est tombés dans le plan.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "변수",
+      "fr": "facteur X / risque de throw",
+      "standard": "예상 밖의 변수",
+      "note": "'변수 만들지 마' = ne crée pas de situation risquée, joue propre.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "맵리",
+      "fr": "map awareness / regarde ta map",
+      "standard": "미니맵 확인",
+      "note": "맵리딩. '맵리 좀 해' = regarde la minimap bordel.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "페이스체크",
+      "fr": "facecheck",
+      "standard": "시야 없는 수풀을 몸으로 확인하기",
+      "note": "'페이스체크하다 죽음' = mort en facecheck.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노궁",
+      "fr": "pas d'ulti",
+      "standard": "궁극기 없음",
+      "note": "'쟤 노궁' = il n'a pas son ult. Variante: 궁 없음.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노스펠",
+      "fr": "pas de spells",
+      "standard": "소환사 주문 없음",
+      "note": "Flash/heal down. Complète 노플 (déjà au glossaire).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "렙차",
+      "fr": "diff de level",
+      "standard": "레벨 차이",
+      "note": "'렙차 나서 못 싸움' = trop d'écart de niveau pour fight.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "웨이브",
+      "fr": "wave",
+      "standard": "미니언 무리",
+      "note": "'빅웨이브 옴' = grosse vague qui arrive.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "라클",
+      "fr": "waveclear",
+      "standard": "라인 미니언 정리 (라인 클리어)",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "용혼",
+      "fr": "âme du drake (soul)",
+      "standard": "드래곤의 영혼 버프",
+      "note": "4e drake = soul. '용혼 떴다' = la soul est en jeu. Aussi 영혼.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "아타칸",
+      "fr": "Atakhan",
+      "standard": "에픽 몬스터 아타칸 (2026 시즌에 삭제됨)",
+      "note": "Objectif épique introduit saison 2025 (côté top/bot selon la version). Call: '아타칸 가자'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "눈덩이",
+      "fr": "snowball (ARAM)",
+      "standard": "표식 (칼바람 스펠)",
+      "note": "Le spell Mark/Dash d'ARAM. '눈덩이 맞음' = je suis marqué.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "리롤",
+      "fr": "reroll",
+      "standard": "다시 뽑기",
+      "note": "ARAM/TFT. '리롤 없음' = plus de rerolls.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "우르프",
+      "fr": "URF",
+      "standard": "우르프 (특별 게임 모드)",
+      "note": "Mode fun cooldowns réduits.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "내전",
+      "fr": "inhouse / partie perso",
+      "standard": "아는 사람들끼리 하는 사설 경기",
+      "note": "Custom 5v5 entre connaissances/communauté — fréquent chez les streamers.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "다인큐",
+      "fr": "stack / premade",
+      "standard": "여러 명이 함께 게임을 잡는 것",
+      "note": "Queue à plusieurs. Connotation triche d'élo en haut MMR.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "돌진",
+      "fr": "engage / compo dive",
+      "standard": "돌격형",
+      "note": "'돌진 조합' = compo full engage.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "뚜벅이",
+      "fr": "piéton / champion sans mobilité",
+      "standard": "이동기가 없는 챔피언",
+      "note": "'뚜벅이라 도망 못 감' = pas de dash, je peux pas escape.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "브루저",
+      "fr": "bruiser",
+      "standard": "전사형 챔피언 (딜과 탱 겸비)",
+      "note": "Fighter. '브루저 메타'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "누커",
+      "fr": "burst / nuker",
+      "standard": "순간 폭딜 챔피언",
+      "note": "Assassin/mage burst. Un peu daté mais encore lu.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "왕귀",
+      "fr": "monstre du late / hypercarry qui scale",
+      "standard": "후반에 매우 강해짐 (왕의 귀환)",
+      "note": "왕의 귀환. '왕귀챔' = champion late game. '왕귀했다' = il a fini son scaling.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "유통기한",
+      "fr": "champion early game (périmé au late)",
+      "standard": "후반에 약해지는 챔피언",
+      "note": "Litt. 'date de péremption'. '유통기한 지남' = il ne sert plus à rien.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "템트리",
+      "fr": "build / stuff",
+      "standard": "아이템 구매 순서",
+      "note": "'템트리 뭐임?' = tu build quoi ?",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오피",
+      "fr": "OP / cheaté",
+      "standard": "지나치게 강함",
+      "note": "Prononciation coréenne de OP. '개오피챔'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "사기챔",
+      "fr": "champion broken",
+      "standard": "너무 강한 챔피언",
+      "note": "사기 (déjà présent) + 챔. '이게 사기지' = c'est ça qui est broken.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "꿀챔",
+      "fr": "pick gratuit / champion ez elo",
+      "standard": "쉽고 강한 챔피언",
+      "note": "꿀 (miel=facile) + 챔.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "1티어",
+      "fr": "S-tier / pick méta",
+      "standard": "최상위 등급 픽",
+      "note": "'지금 1티어 정글' = les junglers méta du patch. 0티어 = au-dessus de la méta.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "리워크",
+      "fr": "rework",
+      "standard": "챔피언 전면 개편",
+      "note": "'리워크 됨' = il a été rework.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "롤드컵",
+      "fr": "les Worlds",
+      "standard": "리그 오브 레전드 세계 선수권 대회",
+      "note": "롤+월드컵. Référence fréquente: '롤드컵 가야지ㅋㅋ' (ironique sur un play).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "200년",
+      "fr": "champion '200 years' (broken by design)",
+      "standard": "밸런스가 엉망인 챔피언 (밈)",
+      "note": "Meme Riot '200 years of collective experience' — désigne les champions surdesignés.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "순삭",
+      "fr": "vaporisé / deleted",
+      "standard": "순식간에 삭제되듯 죽음",
+      "note": "순간삭제. '탱커가 순삭당함' = le tank a fondu instantanément.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "원콤",
+      "fr": "oneshot (en un combo)",
+      "standard": "콤보 한 번에 죽음",
+      "note": "'나 걔한테 원콤임' = il me oneshot.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "녹았다",
+      "fr": "il a fondu",
+      "standard": "순식간에 죽었다",
+      "note": "녹다 = fondre sous le burst.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "짤렸다",
+      "fr": "il s'est fait pick / catch",
+      "standard": "혼자 다니다가 잡혔다",
+      "note": "짤리다/잘리다 = se faire couper isolé. '미드 짤림' = mid s'est fait catch.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "물렸다",
+      "fr": "il s'est fait engage / choper",
+      "standard": "적에게 붙잡혔다",
+      "note": "물리다 = se faire mordre = subir l'engage.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "말렸다",
+      "fr": "je suis derrière / lane foutue",
+      "standard": "성장이 막혀 뒤처졌다",
+      "note": "말리다 = être étouffé/shut down. '개말림' = complètement derrière.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "터졌다",
+      "fr": "ça a explosé (lane perdue)",
+      "standard": "완전히 무너졌다",
+      "note": "'봇 터짐' = la botlane a explosé. Peut aussi = crash du jeu selon contexte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "발렸다",
+      "fr": "il s'est fait rouler dessus",
+      "standard": "일방적으로 졌다",
+      "note": "발리다 = se faire stomp. '라인전 개발림'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "압살",
+      "fr": "stomp total",
+      "standard": "압도적으로 이김",
+      "note": "'라인전 압살' = écrasé en lane.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "찢었다",
+      "fr": "il a tout déchiré",
+      "standard": "엄청난 활약을 했다",
+      "note": "찢다 = déchirer = pop off. '한타 찢었다' = il a déchiré le teamfight.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "폼",
+      "fr": "forme / niveau du moment",
+      "standard": "현재 기량 (컨디션)",
+      "note": "'폼 미쳤다' = il est en forme monstrueuse (meme).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "하드캐리",
+      "fr": "hard carry",
+      "standard": "혼자 팀을 승리로 이끌다",
+      "note": "'정글이 하드캐리함'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "멱살캐리",
+      "fr": "carry à bout de bras",
+      "standard": "억지로 팀을 승리시키다",
+      "note": "Litt. 'carry par le col'. '멱살 잡고 캐리' = porté toute l'équipe de force.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "1대9",
+      "fr": "1v9",
+      "standard": "혼자서 아홉 명을 상대하듯 캐리",
+      "note": "Carry seul contre tous (sa team comprise). Aussi écrit 1vs9.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "4대5",
+      "fr": "4v5",
+      "standard": "한 명이 없는 것 같은 게임",
+      "note": "Un afk/boulet = on joue à 4 contre 5. Aussi 4vs5.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "0인분",
+      "fr": "0 utile / poids mort",
+      "standard": "아무 기여도 하지 못함",
+      "note": "Famille de 1인분 (déjà présent). 2인분 = porte double part.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "1도",
+      "fr": "pas du tout / zéro",
+      "standard": "전혀",
+      "note": "'1도 모름' = j'y connais rien. '딜 1도 안 박힘' = zéro dégâts.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노데스",
+      "fr": "deathless / 0 mort",
+      "standard": "한 번도 죽지 않음",
+      "note": "'노데스 캐리' = carry sans mourir.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "딜량",
+      "fr": "damage (check tab)",
+      "standard": "입힌 피해량",
+      "note": "'딜량 봐라' = regarde le damage chart (souvent pour se défendre/accuser).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "딜찍누",
+      "fr": "écraser au damage",
+      "standard": "화력으로 찍어 눌러 압도하다",
+      "note": "딜로 찍어 누른다 — gagner juste en stats de dégâts.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "날먹",
+      "fr": "win gratuit / sans forcer",
+      "standard": "노력 없이 거저 이기다",
+      "note": "날로 먹다. '날먹 챔' = champion qui gagne sans effort. Très fréquent.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "운빨",
+      "fr": "lucky / RNG",
+      "standard": "순전히 운",
+      "note": "'운빨겜' = game décidée à la chance. '운빨로 이김'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "숟가락",
+      "fr": "vautour / ramasse-kills",
+      "standard": "남의 성과에 묻어가다",
+      "note": "'숟가락 얹다' = poser sa cuillère = prendre les kills des autres.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "닉값",
+      "fr": "fidèle à son pseudo",
+      "standard": "이름값을 하다",
+      "note": "'닉값 하네ㅋㅋ' = il joue comme son pseudo l'annonce.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "넘사벽",
+      "fr": "gap infranchissable / pas le même monde",
+      "standard": "넘을 수 없는 큰 격차",
+      "note": "넘을 수 없는 사차원의 벽. Compare deux niveaux incomparables.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "비비다",
+      "fr": "rivaliser / contest",
+      "standard": "대등하게 겨루다",
+      "note": "'비빌 수가 없다' = on ne peut pas rivaliser (gap trop grand).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "피지컬",
+      "fr": "mechanics / skill mécanique",
+      "standard": "조작 실력",
+      "note": "'피지컬 차이' = mechanics diff.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뇌지컬",
+      "fr": "game IQ / cerveau",
+      "standard": "게임 이해력과 판단력",
+      "note": "뇌 + 피지컬. '뇌지컬 좋다' = très intelligent in-game.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "세체미",
+      "fr": "meilleur mid du monde",
+      "standard": "세계 최고의 미드라이너",
+      "note": "세계 최고 미드. Famille: 세체정(jungle)/세체탑/세체원/세체폿. Souvent ironique en soloQ.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "혜지",
+      "fr": "boostée / madame duo-bus (péjoratif)",
+      "standard": "실력 없이 듀오에 업혀 가는 유저 (비하)",
+      "note": "Meme sexiste visant les supports féminins 'boostées' en duo; étendu à tout support nul. Sensible — à modérer.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "원딜자르기",
+      "fr": "couper l'ADC",
+      "standard": "적 원거리 딜러를 먼저 암살하기",
+      "note": "Meme/call: assassiner le carry adverse d'entrée de fight. '원딜은 자르라고 있는 거다'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "꼬라박다",
+      "fr": "int / run it down",
+      "standard": "일부러 무모하게 돌진해서 죽다",
+      "note": "'꼬라박지 마' = arrête d'int. Variante: 꼬박.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "트롤픽",
+      "fr": "pick troll",
+      "standard": "고의로 이상한 챔피언 선택",
+      "note": "Pick hors méta/sabotage en sélection.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "패작",
+      "fr": "derank volontaire / lose queue",
+      "standard": "일부러 져서 점수를 낮추는 행위",
+      "note": "패배 작업 — perdre exprès pour baisser son MMR (smurf/vente de comptes).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "어뷰징",
+      "fr": "abuse / boost frauduleux",
+      "standard": "승부 조작 (시스템 악용)",
+      "note": "Matchs arrangés/duoQ frauduleux pour monter l'élo.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "헬퍼",
+      "fr": "scripts / cheats",
+      "standard": "불법 치트 프로그램",
+      "note": "Terme KR pour les scripts (esquive auto, etc.). '헬퍼 새끼' = sale scripteur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "스크립트",
+      "fr": "script / scripteur",
+      "standard": "자동 조작 치트",
+      "note": "'스크립트 쓰네' = il script. Synonyme de 헬퍼.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "영정",
+      "fr": "permaban (compte)",
+      "standard": "영구 계정 정지",
+      "note": "영구정지. '영정 먹었다' = il s'est fait permaban.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빡종",
+      "fr": "ragequit",
+      "standard": "화가 나서 게임을 꺼 버림",
+      "note": "빡쳐서 종료. '빡종함' = il a ragequit.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "강종",
+      "fr": "alt+F4 / fermeture forcée",
+      "standard": "강제 종료",
+      "note": "강제 종료 — quitter brutalement (rage ou crash).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "탈주닌자",
+      "fr": "leaver / déserteur",
+      "standard": "게임을 버리고 나간 사람",
+      "note": "Variante meme de 탈주 (déjà présent).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "탈롤",
+      "fr": "désinstall / j'arrête LoL",
+      "standard": "롤을 그만두다",
+      "note": "'탈롤한다' = je désinstalle (souvent dit en tilt, rarement tenu).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "손절",
+      "fr": "on drop / on abandonne",
+      "standard": "미련 없이 포기하고 손을 떼다",
+      "note": "Terme boursier passé au jeu: lâcher une lane/un joueur perdu. '탑 손절해'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "멘케",
+      "fr": "care le mental / remonter le moral",
+      "standard": "기분을 달래 주다 (멘탈 케어)",
+      "note": "'멘케 좀 해줘' = chouchoute-le pour qu'il ne tilt pas.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "유리멘탈",
+      "fr": "mental de verre / tilt facile",
+      "standard": "쉽게 무너지는 멘탈",
+      "note": "Opposé: 강철멘탈 (mental d'acier).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "분조장",
+      "fr": "rageux chronique",
+      "standard": "분노 조절을 못 하는 사람 (분노조절장애)",
+      "note": "Insulte pour les ragers. '분조장이냐?' = t'as un problème de gestion de colère ?",
+      "confidence": "haute"
+    },
+    {
+      "kr": "급발진",
+      "fr": "il pète un câble d'un coup",
+      "standard": "갑자기 화를 폭발시키다",
+      "note": "Litt. accélération soudaine (voiture). Rage qui part de rien.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "혈압",
+      "fr": "ça fait monter la tension",
+      "standard": "혈압이 오를 만큼 답답하다",
+      "note": "'아 혈압' / '혈압 오르네' = expression de tilt frustré.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "암걸린다",
+      "fr": "ça me donne le cancer / insupportable",
+      "standard": "너무 답답하다",
+      "note": "Hyperbole de frustration très courante. Variantes: 암 걸릴 듯, 암유발.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "발암",
+      "fr": "cancérigène (gameplay insupportable)",
+      "standard": "매우 답답하게 만드는",
+      "note": "'발암겜' = game cancer. '발암 플레이'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "고구마",
+      "fr": "frustrant / étouffant",
+      "standard": "답답한 상황",
+      "note": "Patate douce = qui reste en travers de la gorge. Opposé: 사이다.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "사이다",
+      "fr": "jouissif / ça fait du bien",
+      "standard": "속이 시원한 상황",
+      "note": "Soda = libérateur. '와 사이다' = enfin, ça soulage.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뇌절",
+      "fr": "forcer / en faire trop",
+      "standard": "도가 지나치게 반복하다",
+      "note": "'뇌절 그만' = arrête de forcer (plays répétés qui ne marchent plus).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "남탓",
+      "fr": "blame les autres",
+      "standard": "남에게 책임을 돌리기",
+      "note": "'남탓 ㄴㄴ' = arrête de blame. Famille: 정글탓, 팀탓.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "정치질",
+      "fr": "politique de chat / monter la team contre qqn",
+      "standard": "채팅으로 편을 가르고 비난하는 행위",
+      "note": "'정치 그만하고 겜해' = arrête la politique, joue. Aussi 정치.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "정병",
+      "fr": "malade mental (insulte)",
+      "standard": "정신병자 (비하)",
+      "note": "정신병 abrégé. Insulte courante en tilt.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "폐급",
+      "fr": "niveau poubelle / déchet",
+      "standard": "쓸모없는 최하급",
+      "note": "Argot militaire passé au jeu. '폐급 정글'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "호구",
+      "fr": "pigeon / proie facile",
+      "standard": "만만한 사람",
+      "note": "'호구 잡혔다' = il s'est fait avoir comme un pigeon.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "등신",
+      "fr": "abruti",
+      "standard": "멍청이 (욕설)",
+      "note": "Insulte modérée-forte.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "응 아니야",
+      "fr": "même pas en rêve / nope",
+      "standard": "절대 아니야",
+      "note": "Meme de rejet condescendant. Variante: 응~ 아니야~.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "어림없지",
+      "fr": "aucune chance",
+      "standard": "절대 안 되지",
+      "note": "Meme: '어림도 없지' — refus moqueur après avoir contré un play.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "자강두천",
+      "fr": "duel de tocards (ironique)",
+      "standard": "수준 낮은 두 사람의 맞대결 (반어)",
+      "note": "자존심 강한 두 천재의 대결 — ironique: deux nuls qui s'affrontent.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "중꺾마",
+      "fr": "l'important c'est de ne rien lâcher",
+      "standard": "중요한 것은 꺾이지 않는 마음",
+      "note": "Meme Worlds 2022 (Deft). Encouragement anti-ff devenu proverbe gamer.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빌런",
+      "fr": "le boulet toxique de la team",
+      "standard": "문제를 일으키는 사람 (빌런)",
+      "note": "'우리팀 빌런 있음' = on a un villain dans l'équipe.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "관종",
+      "fr": "cherche l'attention / attention whore",
+      "standard": "관심받고 싶어 하는 사람",
+      "note": "관심종자. '관종짓 그만'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "주작",
+      "fr": "fake / truqué",
+      "standard": "조작된 것",
+      "note": "'주작이지?' = c'est mis en scène non ? Issu de 조작.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "즙",
+      "fr": "chouine pour se victimiser",
+      "standard": "동정을 얻으려고 우는 척하기",
+      "note": "'즙 짜지 마' = arrête de presser le jus (= de pleurnicher).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "박제",
+      "fr": "screenshotté pour la postérité",
+      "standard": "캡처해서 기록으로 남기다",
+      "note": "'Empaillé' : tes propos sont archivés/exposés publiquement (wall of shame). '박제당함' = 'il est devenu un meme'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "저격",
+      "fr": "snipe / ciblage",
+      "standard": "특정인을 노리고 따라다니기",
+      "note": "저격듀오 = duo qui queue-snipe qqn; aussi 'viser qqn' dans le chat. Important pour streamers.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "방플",
+      "fr": "stream sniping (triche via le stream)",
+      "standard": "방송을 보면서 정보를 얻는 부정행위",
+      "note": "방송 플레이. Accusation fréquente contre les adversaires de streamers.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "똥싸개",
+      "fr": "feeder / inteur",
+      "standard": "계속 죽어서 게임을 망치는 사람",
+      "note": "Litt. 'chieur'. Famille de 똥 (déjà présent). '똥쟁이' variante.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "롤린이",
+      "fr": "newbie LoL",
+      "standard": "롤 초보자",
+      "note": "롤+어린이. Pas forcément péjoratif.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "롤붕이",
+      "fr": "joueur LoL lambda (auto-dérision)",
+      "standard": "롤 하는 사람 (자조적)",
+      "note": "Surtout sur les forums, parfois en chat.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "개꿀",
+      "fr": "trop free / gratuit",
+      "standard": "아주 이득",
+      "note": "개 (intensif) + 꿀. '개꿀이네' = c'est cadeau.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갑분싸",
+      "fr": "gros blanc / ambiance tuée",
+      "standard": "갑자기 분위기가 싸해짐",
+      "note": "Quand une vanne tombe à plat ou qu'un patrip fige le chat.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "브실골",
+      "fr": "low elo (bronze-argent-or)",
+      "standard": "하위 티어 (브론즈·실버·골드)",
+      "note": "Désigne le low elo collectivement. '브실골 탈출' = sortir du low elo.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "플레",
+      "fr": "plat / platine",
+      "standard": "플래티넘 티어",
+      "note": "Abréviation de 플래티넘.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "에메",
+      "fr": "émeraude",
+      "standard": "에메랄드 티어",
+      "note": "Tier Emerald (ajouté 2023). Aussi 에메랄드.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "다이아",
+      "fr": "diamant",
+      "standard": "다이아몬드 티어",
+      "note": "'다이아 듀오 구함'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "그마",
+      "fr": "GM / grandmaster",
+      "standard": "그랜드마스터 티어",
+      "note": "Abréviation de 그랜드마스터.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "챌",
+      "fr": "chall / challenger",
+      "standard": "챌린저 티어",
+      "note": "'챌 찍었다' = il a atteint Challenger. Aussi 챌린저.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "승강전",
+      "fr": "barrages (promotion/relégation)",
+      "standard": "승격과 강등을 결정하는 경기",
+      "note": "Série de promotion entre divisions.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "광클",
+      "fr": "spam clic",
+      "standard": "미친 듯이 빠르게 클릭하기",
+      "note": "'궁 광클' = spammer la touche. '광클하지 마'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "칼퇴",
+      "fr": "part pile à l'heure / file direct sans traîner",
+      "standard": "정시에 칼같이 바로 떠난다 (칼퇴근)",
+      "note": "Quitter le lobby instantanément après la victoire/défaite.",
+      "confidence": "basse"
+    },
+    {
+      "kr": "즐겜러",
+      "fr": "joueur chill / casu",
+      "standard": "재미로 게임하는 사람",
+      "note": "Famille de 즐겜 (déjà présent). Opposé: 빡겜러 (tryharder).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빡겜러",
+      "fr": "tryharder / sweat",
+      "standard": "진지하게 임하는 사람",
+      "note": "Famille de 빡겜 (déjà présent).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "무지성챔",
+      "fr": "champion sans cerveau / braindead",
+      "standard": "생각 없이 해도 되는 챔피언",
+      "note": "무지성 (déjà présent) + 챔: pick braindead.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "손가락 이슈",
+      "fr": "skill issue",
+      "standard": "조작 실력 문제",
+      "note": "Équivalent KR du meme 'skill issue'. Variante: 실력 이슈, X 이슈.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "쿨겜",
+      "fr": "game tranquille / no rage",
+      "standard": "감정 없이 쿨하게 하는 게임",
+      "note": "'쿨겜하자' = on reste calme, pas de flame.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "한대만",
+      "fr": "juste une frappe / laisse-moi le finir",
+      "standard": "한 대만 치게 해 줘",
+      "note": "Mendier le last hit d'un kill/objectif. Aussi '한 번만'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "개같이",
+      "fr": "comme un chien (intensif)",
+      "standard": "필사적으로 / 형편없이",
+      "note": "'개같이 도망감' = il a fui misérablement. Meme: '개같이 멸망'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "칼바람 전사",
+      "fr": "main ARAM",
+      "standard": "칼바람 모드만 하는 유저",
+      "note": "Joueur qui ne fait que de l'ARAM.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "GG영문",
+      "fr": "gg / (en cours de partie) ff",
+      "standard": "좋은 경기였다 (게임 중이면: 항복하자)",
+      "note": "En lettres latines 'gg' en fin de partie = fair-play; en cours de partie = appel au ff comme ㅈㅈ.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅎㅇㅌ",
+      "fr": "let's go / courage !",
+      "standard": "화이팅",
+      "note": "Version jamo de 화이팅/파이팅 (déjà couverts en toutes lettres).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅗㅗ",
+      "fr": "🖕🖕",
+      "standard": "욕 (가운뎃손가락 두 개)",
+      "note": "Double doigt d'honneur, plus appuyé que ㅗ seul.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅃㅃ",
+      "fr": "bb (bye)",
+      "standard": "잘 가 (바이바이)",
+      "note": "Variantes : ㅂㅇ, 빠이, 빠빠이.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄹㄹ",
+      "fr": "ff",
+      "standard": "항복하자",
+      "note": "\"ff\" tapé avec l'IME coréen resté actif (touche f = ㄹ). Contexte vote surrender.",
+      "confidence": "basse"
+    },
+    {
+      "kr": "ㅇㅉ",
+      "fr": "et alors ?",
+      "standard": "어쩌라고",
+      "note": "",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "서렌각",
+      "fr": "c'est ff ça",
+      "standard": "항복해야 할 상황이다",
+      "note": "각 = l'angle/le moment. \"서렌각이다\" = \"faut ff\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노서렌",
+      "fr": "no ff",
+      "standard": "항복하지 말자",
+      "note": "Refus du vote surrender. Aussi écrit 노 서렌.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "이거 짐",
+      "fr": "c'est lose ça",
+      "standard": "이 게임은 진다",
+      "note": "Variantes : 이겜 짐, 무조건 짐.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "할만함",
+      "fr": "ça se joue encore",
+      "standard": "해볼 만하다 (이길 가능성이 있다)",
+      "note": "Variante : 비빌만함 / 비벼볼만함 = \"on peut encore contest\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "다 신고",
+      "fr": "report all",
+      "standard": "모두 신고하자",
+      "note": "Souvent \"겜 끝나고 다 신고\" = \"report tous après la game\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "멸망전",
+      "fr": "match de la mort / tournoi de streamers",
+      "standard": "스트리머들끼리의 대결 이벤트, 또는 지면 끝장인 중요한 판",
+      "note": "À l'origine tournois entre BJ/streamers ; au figuré : partie décisive quitte ou double.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "빠대",
+      "fr": "une normale (quick play)",
+      "standard": "일반 게임 (빠른 대전)",
+      "note": "빠른 대전 = file Quick Play.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "일겜",
+      "fr": "normal game",
+      "standard": "일반 게임",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "배치",
+      "fr": "games de placement",
+      "standard": "배치고사 (시즌 초 티어 결정전)",
+      "note": "\"배치 보는 중\" = \"je fais mes placements\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "연승",
+      "fr": "winstreak",
+      "standard": "연속 승리",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "연패",
+      "fr": "losestreak",
+      "standard": "연속 패배",
+      "note": "\"5연패\" = \"5 défaites de suite\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "언랭",
+      "fr": "unranked",
+      "standard": "랭크 배치를 보지 않은 계정/유저",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "실론즈",
+      "fr": "elo poubelle (silver-bronze)",
+      "standard": "실버와 브론즈 (낮은 티어)",
+      "note": "Mot-valise 실버+브론즈, moqueur.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "다야",
+      "fr": "diam",
+      "standard": "다이아몬드 티어",
+      "note": "Graphie argotique de 다이아.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오피지지",
+      "fr": "op.gg",
+      "standard": "전적 검색 사이트 OP.GG",
+      "note": "Abrégé : 옵지. \"오피지지 봐라\" = \"check ses stats\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "트수",
+      "fr": "viewer (Twitch)",
+      "standard": "인터넷 방송(트위치) 시청자",
+      "note": "Twitch a quitté la Corée en 2024 mais le mot reste pour les viewers Chzzk/SOOP. \"트수냐?\" = \"t'es un viewer ?\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "치지직",
+      "fr": "Chzzk",
+      "standard": "네이버의 게임 방송 플랫폼 치지직",
+      "note": "Plateforme de stream n°1 en Corée post-Twitch. 숲(SOOP) = ex-AfreecaTV.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "저격밴",
+      "fr": "ban target",
+      "standard": "특정인이 하려는 챔피언을 일부러 밴하는 것",
+      "note": "",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "시참",
+      "fr": "game viewers (sub games)",
+      "standard": "시청자 참여 콘텐츠",
+      "note": "Partie où les viewers jouent avec le streamer.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "도네",
+      "fr": "donation",
+      "standard": "방송 후원금",
+      "note": "별풍선 = donations sur SOOP/AfreecaTV.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "방송하세요?",
+      "fr": "tu streams ?",
+      "standard": "지금 방송 중이세요?",
+      "note": "Question fréquente quand un streamer est reconnu en soloQ.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "방송 잘 보고 있어요",
+      "fr": "je regarde ton stream :)",
+      "standard": "방송을 잘 보고 있습니다",
+      "note": "Phrase-type de viewer qui croise son streamer en partie. Signal positif à transmettre.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "라인 정해줘",
+      "fr": "on se répartit les lanes ?",
+      "standard": "각자 갈 라인을 정해 줘",
+      "note": "Champ select / normales sans rôles fixés.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "칼픽",
+      "fr": "instalock",
+      "standard": "고민 없이 즉시 챔피언을 픽하는 것",
+      "note": "칼- = \"immédiat\" (cf. 칼퇴).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "후픽",
+      "fr": "last pick / counterpick",
+      "standard": "상대 픽을 보고 나중에 픽하는 것",
+      "note": "Opposé de 선픽.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "닷지각",
+      "fr": "go dodge",
+      "standard": "게임을 시작 전에 나가는 게 나은 상황",
+      "note": "",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "탑솔",
+      "fr": "toplaner",
+      "standard": "탑 라이너 (탑 솔로)",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "원챔",
+      "fr": "OTP",
+      "standard": "한 챔피언만 주로 하는 유저",
+      "note": "원챔충 = OTP (péjoratif).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "챔폭",
+      "fr": "champion pool",
+      "standard": "다룰 수 있는 챔피언의 폭",
+      "note": "\"챔폭 좁다\" = \"il a un petit pool\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "평캔",
+      "fr": "AA cancel",
+      "standard": "기본 공격 모션 캔슬",
+      "note": "Animation cancel.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갱좀",
+      "fr": "gank stp",
+      "standard": "갱킹 좀 와 줘",
+      "note": "Souvent \"탑 갱좀\" = \"gank top stp\". Variante : 갱 좀 와줘.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "와드좀",
+      "fr": "ward stp",
+      "standard": "와드 좀 설치해 줘",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오브",
+      "fr": "objo",
+      "standard": "오브젝트 (용, 바론 등 목표물)",
+      "note": "\"오브 챙겨\" = \"secure les objos\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "포블",
+      "fr": "first tower",
+      "standard": "첫 포탑 파괴 보상 (포탑 퍼스트 블러드)",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "플레이팅",
+      "fr": "plates (de tourelle)",
+      "standard": "포탑 방패 (파괴 시 골드를 주는 외장)",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "미아핑",
+      "fr": "ping ss",
+      "standard": "적이 사라졌다는 핑",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "물음표핑",
+      "fr": "le ping « ? »",
+      "standard": "물음표 핑 (주로 조롱의 의미)",
+      "note": "Pinger \"?\" sur un allié = BM. \"물음표핑 박지마\" = \"arrête les ? ping\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "궁없음",
+      "fr": "pas d'ult",
+      "standard": "궁극기가 없음",
+      "note": "궁있음 = \"ult up\". Variante : 궁 없어.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "플없음",
+      "fr": "il a plus flash",
+      "standard": "점멸이 없음",
+      "note": "Souvent en désignant un ennemi : \"쟤 플없음\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "맞다이",
+      "fr": "1v1 face à face",
+      "standard": "정면 1대1 대결",
+      "note": "\"맞다이 까자\" = \"viens 1v1\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "조합",
+      "fr": "compo",
+      "standard": "팀의 챔피언 구성",
+      "note": "\"조합 좋다\" = \"bonne compo\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "제어와드",
+      "fr": "pink (control ward)",
+      "standard": "제어 와드",
+      "note": "Nom officiel de la 핑와.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "텔포",
+      "fr": "TP",
+      "standard": "순간이동(텔레포트) 소환사 주문",
+      "note": "Forme longue de 텔.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "스마",
+      "fr": "smite",
+      "standard": "강타 (정글 소환사 주문)",
+      "note": "\"스마 싸움\" = \"smite fight\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "맵핵",
+      "fr": "maphack",
+      "standard": "맵 전체가 보이는 핵",
+      "note": "Souvent hyperbole : \"맵핵이냐\" = \"il a des wards partout ou quoi\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "봇차이",
+      "fr": "bot diff",
+      "standard": "봇 라인의 실력 차이",
+      "note": "Même série que 정글차이/미드차이.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "서폿차이",
+      "fr": "supp diff",
+      "standard": "서포터의 실력 차이",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "긁?",
+      "fr": "ça pique ?",
+      "standard": "화났어? (도발)",
+      "note": "Abréviation de 긁혔어? — moquerie quand l'adversaire tilt. Très courant 2023+.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "긁혔네",
+      "fr": "touché, il tilt",
+      "standard": "도발에 화가 났네",
+      "note": "Variantes : 긁혔냐, 긁혔구나.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "멘탈 잡아",
+      "fr": "tilt pas, reste focus",
+      "standard": "침착함을 유지해",
+      "note": "멘탈 나갔다 = \"il est parti en tilt\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "분탕",
+      "fr": "griefer",
+      "standard": "고의로 게임/분위기를 망치는 행위 또는 그런 사람",
+      "note": "\"분탕치지마\" = \"arrête de grief\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "깝치지마",
+      "fr": "fais pas le malin",
+      "standard": "까불지 마",
+      "note": "Variante : 나대지마.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "안물안궁",
+      "fr": "on t'a rien demandé + osef",
+      "standard": "안 물어봤고 안 궁금하다",
+      "note": "안물 = 'on t'a pas demandé', 안궁 = 'ça m'intéresse pas'. Rejet d'un TMI.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "누칼협",
+      "fr": "on t'a forcé ? fallait pas",
+      "standard": "누가 칼 들고 협박했냐 (= 네가 선택한 일이다)",
+      "note": "'Qui t'a menacé au couteau ?' : balaie toute plainte — t'as choisi, assume. Né sur la communauté Lost Ark, pilier du trio dédaigneux avec 알빠노 (déjà couvert).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "고점",
+      "fr": "son meilleur niveau (ceiling)",
+      "standard": "보여줄 수 있는 최고 기량",
+      "note": "저점 = pire niveau. \"고점 높다\" = \"son plafond est très haut\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "폼 미쳤다",
+      "fr": "il est en feu",
+      "standard": "요즘 기량이 매우 좋다",
+      "note": "Meme 2022+ (\"폼 미쳤다\").",
+      "confidence": "haute"
+    },
+    {
+      "kr": "역배",
+      "fr": "upset (contre la cote)",
+      "standard": "예상을 뒤집는 결과",
+      "note": "정배 = résultat logique/favori. \"역배 가즈아\" = \"go l'upset\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "양심 있냐",
+      "fr": "t'as aucune honte ?",
+      "standard": "양심이 있냐",
+      "note": "",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "어쩔",
+      "fr": "et alors ?",
+      "standard": "어쩌라고",
+      "note": "Forme courte ; 어쩔티비 déjà couvert.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "응애",
+      "fr": "ouin ouin",
+      "standard": "아기 울음소리 (징징댄다는 조롱)",
+      "note": "Moquerie : \"arrête de pleurer bébé\".",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "정신차려",
+      "fr": "réveille-toi",
+      "standard": "정신 차려라",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "개판",
+      "fr": "le bordel total",
+      "standard": "엉망진창인 상황",
+      "note": "'겜 개판났네' = 'cette game est un chaos'. Vulgaire léger.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "던지지마",
+      "fr": "throw pas",
+      "standard": "일부러/무리해서 게임을 망치지 마라",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "캐리좀",
+      "fr": "carry stp",
+      "standard": "캐리 좀 해 줘",
+      "note": "Variante : 캐리해줘.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "누워",
+      "fr": "joue safe (laisse-toi porter)",
+      "standard": "무리하지 말고 수비적으로 해라",
+      "note": "눕다 = jouer passif et attendre le late / se faire porter.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "버텨",
+      "fr": "tiens bon",
+      "standard": "견뎌라",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "조심",
+      "fr": "care",
+      "standard": "조심해",
+      "note": "Souvent seul : \"미드 조심\" = \"care mid\".",
+      "confidence": "haute"
+    },
+    {
+      "kr": "튀어",
+      "fr": "run, fuyez",
+      "standard": "도망쳐",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "사라짐",
+      "fr": "ss",
+      "standard": "(적이) 시야에서 사라졌다",
+      "note": "\"미드 사라짐\" = \"ss mid\". Équivalent de 미아.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "안보임",
+      "fr": "no vision",
+      "standard": "보이지 않음",
+      "note": "",
+      "confidence": "haute"
+    },
+    {
+      "kr": "맵 봐",
+      "fr": "regarde ta map",
+      "standard": "미니맵을 봐라",
+      "note": "맵리 = map awareness.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "굳",
+      "fr": "nice",
+      "standard": "좋다 (굿)",
+      "note": "Graphie hangul de \"good\", variante de 굿.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "친추",
+      "fr": "add (en ami)",
+      "standard": "친구 추가",
+      "note": "\"친추 ㄱ\" = \"add-moi\". Fréquent après une bonne game.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "사료",
+      "fr": "il donne des kills gratuits",
+      "standard": "거저 주는 킬 (먹이)",
+      "note": "Littéralement \"croquettes\". \"사료 줬다\" = \"j'ai donné un kill\". 킬셔틀 = distributeur de kills.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "구멍",
+      "fr": "le boulet de l'équipe",
+      "standard": "팀에서 가장 못하는 약점인 사람",
+      "note": "Littéralement \"le trou\" : le maillon faible.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "기물",
+      "fr": "un PNJ (pièce inutile)",
+      "standard": "제 역할을 못 하는 팀원 (장기말 취급)",
+      "note": "Déshumanisant/toxique : traite le coéquipier en pièce d'échiquier.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "페이커냐",
+      "fr": "tu te prends pour Faker ?",
+      "standard": "페이커야? (그렇게 잘하냐 / 잘난 척하냐)",
+      "note": "Compliment ou moquerie selon le contexte.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "외국인이세요?",
+      "fr": "t'es pas coréen ?",
+      "standard": "외국인이세요?",
+      "note": "Question très fréquente aux streamers FR en soloQ KR. Variantes : 한국인이세요?, 한국분이세요?.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "잘하시네요",
+      "fr": "tu gères / bien joué",
+      "standard": "정말 잘하시네요",
+      "note": "Compliment poli (forme honorifique).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "개못하네",
+      "fr": "il est trop nul",
+      "standard": "정말 못한다",
+      "note": "Variante conjuguée de 개못함.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "버스 타",
+      "fr": "laisse-toi porter",
+      "standard": "잘하는 팀원에게 의지해서 이겨라",
+      "note": "Complète 버스/버스기사 déjà présents.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "즐겜요",
+      "fr": "bonne game",
+      "standard": "즐거운 게임 되세요",
+      "note": "Forme courte polie de 즐겜하세요.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "한판 더",
+      "fr": "re ?",
+      "standard": "한 게임 더 하자",
+      "note": "Proposition de rejouer ensemble après la partie.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㄱ",
+      "fr": "go",
+      "standard": "가자",
+      "note": "Un seul giyeok = 'go' minimal : '바론 ㄱ' = 'go baron'. Spam ㄱㄱㄱ = insistance. Complément du ㄱㄱ déjà couvert.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅌㅌ",
+      "fr": "fuyez / on se tire",
+      "standard": "도망쳐",
+      "note": "De 튀다 (détaler). 'ㅌㅌㅌ' spammé = 'cours !'. Call de fuite, pas un au revoir.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅅㄹㅎ",
+      "fr": "je t'adore",
+      "standard": "사랑해",
+      "note": "Hype affectueuse après un save : '정글 ㅅㄹㅎ'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㄱㅇㅇ",
+      "fr": "trop mignon",
+      "standard": "귀여워",
+      "note": "Réaction aux skins/picks mignons.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㄷㄱㄷㄱ",
+      "fr": "ça stresse (excitation)",
+      "standard": "두근두근 (긴장된다)",
+      "note": "Cœur qui bat : suspense avant un fight/résultat. Ne pas confondre avec ㄷㄷ.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅆㅇㅈ",
+      "fr": "j'avoue grave / 100% d'accord",
+      "standard": "완전히 인정한다",
+      "note": "쌉인정 en jamo : renforcement vulgaire de ㅇㅈ (인정).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅂㅂㅂㄱ",
+      "fr": "incontestable / rien à redire",
+      "standard": "반박 불가",
+      "note": "'Réfutation impossible' — clôt un débat, souvent après un fait accablant.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅅㅂㄴ",
+      "fr": "fdp / connard",
+      "standard": "시발놈 (심한 욕설)",
+      "note": "시발놈 en jamo, insulte dirigée. À signaler au streamer.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅁㄴㅇㄹ",
+      "fr": "blablabla (pianotage random)",
+      "standard": "(아무 의미 없는 글자)",
+      "note": "Équivalent de 'asdf' : touches tapées au hasard, remplit le chat sans rien dire.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㄴㅇㄱ",
+      "fr": "(choqué) ?!!",
+      "standard": "깜짝 놀랐다",
+      "note": "Émoticône-jamo figurant une personne qui sursaute les bras levés. Surprise comique.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅂ2",
+      "fr": "bye bye",
+      "standard": "바이바이",
+      "note": "ㅂ + 2 (이) = 바이. Souvent doublé ㅂ2ㅂ2. Départ amical.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅎㄹ",
+      "fr": "sérieux ?? / oh la",
+      "standard": "헐 (놀랐다)",
+      "note": "헐 en jamo (la forme pleine est déjà couverte).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅇㅅㅇ",
+      "fr": "(petit visage neutre)",
+      "standard": "(이모티콘)",
+      "note": "Émoticône visage. Variantes ㅎㅅㅎ, ㅡㅅㅡ (blasé), •ㅅ•. Ton léger/mignon.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "8282",
+      "fr": "vite vite !",
+      "standard": "빨리빨리",
+      "note": "Lecture 팔이팔이 ≈ 빨리빨리. Classique mais toujours compris.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "20000",
+      "fr": "sur ce, j'y vais",
+      "standard": "그럼 이만 (갈게)",
+      "note": "2만 = 이만 ('bon, là-dessus...'). Formule de départ : '그럼 20000'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "1004",
+      "fr": "t'es un ange",
+      "standard": "천사",
+      "note": "1004 = 천사 (ange). Compliment, souvent pour un support qui sauve.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "1도 없다",
+      "fr": "y'a R / pas un seul",
+      "standard": "하나도 없다",
+      "note": "'1도 몰라' = 'j'y connais R'. Le chiffre 1 remplace 하나/한.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "~노",
+      "fr": "(terminaison moqueuse, style DC Inside)",
+      "standard": "~냐 / ~다 (예: 어쩔 수 없노 → 어쩔 수 없다)",
+      "note": "Terminaison issue de DC Inside/Ilbe moquant feu le président Roh Moo-hyun — connotation politique/toxique forte, même si banalisée chez les jeunes. Ressemble au dialecte de Busan mais ne l'est généralement pas. Marque un ton ricaneur.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "~누",
+      "fr": "(variante de ~노)",
+      "standard": "~냐 / ~네 (예: 왜 죽었누 → 왜 죽었냐)",
+      "note": "Même famille DC Inside que ~노, nuance faussement plaintive/moqueuse ('왜 그랬누').",
+      "confidence": "haute"
+    },
+    {
+      "kr": "~띠",
+      "fr": "(suffixe mignon/moqueur)",
+      "standard": "(애교 어미, 예: 기모띠, 안뇽띠)",
+      "note": "Terminaison aegyo des 잼민이/급식 : infantilise ou se moque. Aussi collée aux pseudos en signe d'affection (ex. 워뇨띠).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "~삼",
+      "fr": "(terminaison relax : 'fais donc')",
+      "standard": "~하세요 / ~함 (예: 겜 잘하삼 → 게임 잘하세요)",
+      "note": "Vieille terminaison de chat toujours vivace, ton détendu semi-poli.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "~염",
+      "fr": "(terminaison cutesy)",
+      "standard": "~요 (예: 했어염 → 했어요)",
+      "note": "Variantes ~욤, ~당, ~능 : déformations mignonnes de ~요/~다. Ton enfantin ou ironique.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "~빠",
+      "fr": "fanboy de ~ / hater de ~ (~까)",
+      "standard": "~의 광적인 팬 (~까 = ~의 안티)",
+      "note": "Suffixes : 페이커빠 = fanboy de Faker, 티원까 = hater de T1. 빠순이 = groupie. Détecter comme suffixe.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "~붕이",
+      "fr": "(suffixe affectueux d'appartenance, style DC)",
+      "standard": "~하는 사람 (커뮤니티 멤버)",
+      "note": "롤붕이 = joueur de LoL lambda, 겜붕이 = gamer. Auto-dérision communautaire issue de DC Inside.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "쿠쿠루삥뽕",
+      "fr": "trololo (provoc absurde)",
+      "standard": "(상대를 약 올리는 의미 없는 말)",
+      "note": "Mot-taunt sans sens issu des donations vocales TTS Twitch (voix '찬구'). Sert uniquement à narguer : si on te le balance après ta mort, c'est du BM.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "앙 기모띠",
+      "fr": "'aah trop bon' (vulgaire, cringe)",
+      "standard": "기분 좋다 (저속한 유행어)",
+      "note": "Du japonais kimochii (origine vidéo pour adultes), popularisé par le BJ 철구. Marqueur 잼민이/cringe, souvent moqueur. Variante 기모찌.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "헉",
+      "fr": "(hoquet de choc) oh non",
+      "standard": "깜짝 놀랐다",
+      "note": "Souffle coupé : surprise, parfois feinte. 헉헉 = essoufflement.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "띠용",
+      "fr": "hein ?! (surprise comique)",
+      "standard": "깜짝 놀랐다",
+      "note": "Onomatopée cartoon de stupéfaction, ton léger.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "에바",
+      "fr": "abusé / trop là",
+      "standard": "너무 심하다",
+      "note": "De 오버(over). '그건 에바지' = 'là c'est abusé'. Variante meme : 에바참치.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오바",
+      "fr": "t'exagères / abuse pas",
+      "standard": "과장하지 마 / 너무 심하다",
+      "note": "'오바하지마' = 'en fais pas des caisses'. Konglish de over.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "어지럽네",
+      "fr": "j'hallucine, c'est le bordel",
+      "standard": "정신이 없고 어이가 없다",
+      "note": "Litt. 'j'ai le vertige' : réaction à une situation absurde/chaotique. Très utilisé 2021-2026.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "골때리네",
+      "fr": "c'est n'importe quoi (mdr)",
+      "standard": "어이없고 황당하다",
+      "note": "Mi-agacé mi-amusé devant l'absurde.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "웃프다",
+      "fr": "drôle mais triste",
+      "standard": "웃기지만 슬프다",
+      "note": "웃기다 + 슬프다 : rire jaune, typique après un fail comique de sa propre équipe.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빵터짐",
+      "fr": "explosé de rire",
+      "standard": "크게 웃음이 터졌다",
+      "note": "빵 터지다 = éclater de rire d'un coup.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "오글거려",
+      "fr": "cringe / ça me gêne",
+      "standard": "민망하고 낯간지럽다",
+      "note": "'Les doigts qui se recroquevillent' de gêne. Réaction au roleplay/flirt cringe dans le chat.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "열받네",
+      "fr": "ça m'énerve",
+      "standard": "화가 난다",
+      "note": "Base dont dérive 킹받네 (déjà couvert). Variante 열폭 = explosion de rage/jalousie.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "짜증나",
+      "fr": "ça me saoule",
+      "standard": "짜증이 난다",
+      "note": "Agacement du quotidien, omniprésent en chat tilté. Variante 개짜증.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빼애액",
+      "fr": "REEEE (crise de rage moquée)",
+      "standard": "빽 소리 지르며 화내는 모습",
+      "note": "Imite le hurlement de quelqu'un qui rage : sert à se moquer de celui qui s'énerve.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "이생망",
+      "fr": "ma vie est foutue",
+      "standard": "이번 생은 망했다",
+      "note": "Auto-apitoiement semi-ironique après une catastrophe (démote, série de loses).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "한강 간다",
+      "fr": "je vais me jeter dans le fleuve (humour noir)",
+      "standard": "한강에 뛰어들겠다 (절망 표현)",
+      "note": "Référence au suicide dans le Han : blague d'autodérision après un désastre. Sensible — signaler comme humour noir, pas menace réelle en général.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "못해먹겠다",
+      "fr": "j'en peux plus de ce jeu",
+      "standard": "더 이상 못 하겠다",
+      "note": "Ras-le-bol, précède souvent un ff ou un afk.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "때려친다",
+      "fr": "j'arrête / je plaque tout",
+      "standard": "그만둔다",
+      "note": "'롤 때려친다' = 'j'arrête LoL' (sur un coup de tilt, rarement vrai).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "롤접",
+      "fr": "je désinstalle / j'arrête LoL",
+      "standard": "롤(게임)을 그만둔다",
+      "note": "롤 + 접다. '롤접한다' déclaration de tilt ; 접음 = 'j'ai arrêté'. Complète 접어라 (déjà couvert, dirigé contre autrui).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "어쩌라고",
+      "fr": "et alors ? / qu'est-ce tu veux que j'y fasse",
+      "standard": "나보고 어떻게 하라는 거냐",
+      "note": "Réplique de rejet. Court : 어쩔 (d'où 어쩔티비, déjà couvert).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "됐고",
+      "fr": "bref, passons / cause toujours",
+      "standard": "그건 그렇고 / 그만해",
+      "note": "Coupe la parole : 'peu importe ce que tu racontes'. Dédaigneux.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "누물보",
+      "fr": "qui t'a demandé ?",
+      "standard": "누가 물어봤냐",
+      "note": "Même esprit que 안물안궁, un peu daté mais compris.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "너 뭐 돼?",
+      "fr": "t'es qui toi ?",
+      "standard": "네가 뭐라도 되는 사람이냐?",
+      "note": "Meme 2022 (Lee Young-ji) : remet en place quelqu'un qui la ramène.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "너 T야?",
+      "fr": "t'as zéro empathie ou quoi ?",
+      "standard": "너는 공감 능력이 없냐? (MBTI T 성향이냐)",
+      "note": "Meme MBTI 2023-24 : reproche un manque d'empathie (T = Thinking). Variante vulgaire 'T발 C야?'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "꼬우면",
+      "fr": "si t'es pas content...",
+      "standard": "불만이면 / 억울하면",
+      "note": "'꼬우면 니가 잘하든가' = 'si ça te va pas, t'as qu'à mieux jouer' — réplique solo queue archétypale.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "엿먹어",
+      "fr": "va te faire / bien fait pour toi",
+      "standard": "골탕 먹어라 (욕설)",
+      "note": "엿 = sucrerie (euphémisme sexuel historique). '빅엿 먹었다' = 'il s'est fait baiser bien profond'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빠큐",
+      "fr": "fuck you",
+      "standard": "(가운뎃손가락 욕설)",
+      "note": "Translittération de f*ck you ; le caractère 凸 sert aussi de doigt d'honneur graphique.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "아가리",
+      "fr": "ta gueule",
+      "standard": "입 닥쳐 (비속어)",
+      "note": "아가리 = gueule (vulgaire). '아가리 닫아' = 'ferme ta gueule' ; '아가리 털지마' = 'arrête de la ramener'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "입털다",
+      "fr": "trash-talk / la ramener",
+      "standard": "잘난 척하며 함부로 말하다",
+      "note": "'입 털지마' = 'arrête de parler'. '입만 살았네' = 'que de la tchatche, rien dans les mains'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "머가리",
+      "fr": "caboche (vide)",
+      "standard": "머리 (비속어)",
+      "note": "Déformation vulgaire de 대가리/머리 : '머가리 비었냐' = 'y'a rien dans ta tête ?'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "빡대가리",
+      "fr": "gros débile",
+      "standard": "아주 멍청한 사람 (욕설)",
+      "note": "Insulte d'intelligence très courante en solo queue.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "찐따",
+      "fr": "bolos / loser",
+      "standard": "어울리지 못하는 못난 사람",
+      "note": "Le rebut social. '찐따짓' = comportement de bolos. Blessant (origine : handicap).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "찐",
+      "fr": "vrai de vrai / authentique",
+      "standard": "진짜",
+      "note": "'찐이다' = 'c'est du lourd/du vrai'. NE PAS confondre avec 찐따 (insulte).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "허접",
+      "fr": "nul / cheap",
+      "standard": "형편없다",
+      "note": "'허접하네' = 'c'est de la camelote'. Vieille insulte gaming toujours vivante. Variante 허접쓰레기.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "듣보잡",
+      "fr": "parfait inconnu / no-name",
+      "standard": "듣지도 보지도 못한 무명",
+      "note": "'C'est qui ce randon ?'. Court : 듣보.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "쫄보",
+      "fr": "flippette",
+      "standard": "겁쟁이",
+      "note": "Joueur trop peureux pour engager. De 쫄다.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "쫄지마",
+      "fr": "flippe pas",
+      "standard": "겁먹지 마",
+      "note": "'쫄았네ㅋㅋ' = 'il a eu les jetons' (taunt) ; '쫄?' = 'peur ?'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "꼰대",
+      "fr": "vieux moralisateur / boomer",
+      "standard": "잔소리하는 권위적인 사람",
+      "note": "Celui qui fait la leçon ('de mon temps...'). 꼰대질 = comportement de boomer.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "라떼는",
+      "fr": "de mon temps...",
+      "standard": "나 때는 말이야",
+      "note": "Jeu de mots 나 때/라떼 (latte) moquant les discours de vétéran.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "초딩",
+      "fr": "gamin de primaire (gamer immature)",
+      "standard": "초등학생 (유치한 사람)",
+      "note": "Insulte de maturité : 'joue comme un gosse de 10 ans'. 중딩/고딩 = collégien/lycéen (plus neutres).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "선비",
+      "fr": "moralisateur coincé",
+      "standard": "지나치게 도덕적인 척하는 사람",
+      "note": "'Lettré confucéen' : celui qui s'offusque des blagues/insultes. 선비질 = moral policing.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "프로불편러",
+      "fr": "offensé professionnel",
+      "standard": "사소한 일에도 불편해하는 사람",
+      "note": "'Pro de l'indignation'. Sert à délégitimer une plainte.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "발작버튼",
+      "fr": "son bouton trigger",
+      "standard": "과민 반응을 일으키는 주제",
+      "note": "'발작버튼 눌렸네' = 'tu l'as trigger'. Sujet qui fait péter un câble à quelqu'un.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "겜창",
+      "fr": "no-life (très vulgaire)",
+      "standard": "게임만 하는 사람 (심한 비하)",
+      "note": "겜 + suffixe 창(녀) : '겜창인생' = 'vie de no-life'. Auto-dérision ou insulte.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "명존쎄",
+      "fr": "j'ai envie de lui en coller une",
+      "standard": "명치를 세게 때리고 싶다",
+      "note": "명치 존나 쎄게 (때리고 싶다) : exaspération violente mais semi-humoristique.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "빻았다",
+      "fr": "défoncé / moche (vulgaire)",
+      "standard": "못생겼다 (비속어)",
+      "note": "Litt. 'broyé'. Sur un visage = moche ; sur un comportement = lamentable.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "일베충",
+      "fr": "facho d'Ilbe",
+      "standard": "극우 사이트 일베 이용자 (멸칭)",
+      "note": "Accusation grave : utilisateur du site d'extrême droite Ilbe (d'où viennent ~노/~누). Sert à disqualifier quelqu'un.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "페미",
+      "fr": "'féministe' (étiquette hostile en gaming)",
+      "standard": "페미니스트 (게임 채팅에선 비난조)",
+      "note": "Dans le chat gaming KR, presque toujours lancé comme accusation/insulte dans les guerres de genre (cf. 한남/한녀 déjà couverts). Contexte à expliquer au streamer.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "외퀴",
+      "fr": "slur xénophobe anti-étrangers",
+      "standard": "외국인 비하 멸칭 (외국인+바퀴벌레)",
+      "note": "외국인 + 바퀴벌레 (cafard). Né dans les fandoms K-pop, étendu aux étrangers en ligne. Un streamer FR sur le serveur KR peut le recevoir — hate speech à signaler.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "양놈",
+      "fr": "slur anti-occidentaux",
+      "standard": "서양인 비하 멸칭",
+      "note": "Aussi 양키. Peut viser le streamer étranger.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "쪽바리",
+      "fr": "slur anti-japonais",
+      "standard": "일본인 비하 멸칭",
+      "note": "Slur raciste fréquent dans les embrouilles inter-serveurs.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "노양심",
+      "fr": "aucune honte / zéro scrupule",
+      "standard": "양심이 없다",
+      "note": "Pattern 노+X. '양심 어디감?' = 't'as pas honte ?' (ex. voler le farm/le buff).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "한심하네",
+      "fr": "pathétique",
+      "standard": "한심하다",
+      "note": "Mépris froid, souvent suivi de ㅉㅉ.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노매너",
+      "fr": "zéro fair-play",
+      "standard": "매너가 없다",
+      "note": "Variante de 비매너 (déjà couvert) — les deux orthographes circulent.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "고소",
+      "fr": "je porte plainte (menace très courante)",
+      "standard": "고소하겠다",
+      "note": "La diffamation/insulte est pénalement poursuivable en Corée (모욕죄) : '고소한다', '캡처했다' (j'ai screenshot), '사이버수사대 신고' sont des menaces semi-sérieuses fréquentes après du flame.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "신상턴다",
+      "fr": "je vais te dox",
+      "standard": "신상 정보를 캐낸다",
+      "note": "신상털기 = doxxing. Menace sérieuse à signaler.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "현피",
+      "fr": "baston IRL",
+      "standard": "온라인 싸움 상대를 현실에서 만나 싸움",
+      "note": "현실 + PK : 'viens on se voit en vrai'. '현피 뜨자' = provocation d'escalade après un 키배.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "키배",
+      "fr": "embrouille de chat / clash clavier",
+      "standard": "키보드 배틀 (말싸움)",
+      "note": "'키배 뜨지 말고 겜이나 해' = 'arrêtez de vous embrouiller, jouez'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "짱",
+      "fr": "le best / trop fort",
+      "standard": "최고",
+      "note": "'네가 짱' = 't'es le boss'. Préfixe possible : 짱센 = ultra fort. Vieilli mais universel.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "갑",
+      "fr": "au top / le patron",
+      "standard": "최고",
+      "note": "'원딜이 갑이네' = 'l'ADC c'est le patron'. De la paire contractuelle 갑/을 (dominant/dominé).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "고트",
+      "fr": "le GOAT",
+      "standard": "역대 최고 (GOAT)",
+      "note": "Anglicisme esport : '페이커 고트' — consacré dans la communauté LoL KR.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "레전드",
+      "fr": "légendaire (souvent ironique)",
+      "standard": "전설적이다",
+      "note": "Forme pleine de ㄹㅈㄷ (déjà couvert) : moment d'anthologie, en bien COMME en désastre.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "클라스",
+      "fr": "une classe au-dessus",
+      "standard": "수준이 다르다",
+      "note": "'클라스가 다르네' = 'ça joue dans une autre catégorie'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "상남자",
+      "fr": "gros bonhomme / chad",
+      "standard": "화끈하고 남자다운 남자",
+      "note": "'상남자 픽/다이브' = play couillu, tout dans l'engage. Souvent admiratif-ironique.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "참교육",
+      "fr": "remis à sa place / bonne leçon",
+      "standard": "따끔하게 혼내 주다",
+      "note": "'Rééducation' : le toxic/le smurf se fait punir. '참교육당했다' = 'il a pris sa leçon'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "케미",
+      "fr": "synergie / bonne alchimie",
+      "standard": "호흡이 잘 맞음 (궁합)",
+      "note": "De chemistry : '봇듀오 케미 좋다' = 'le duo bot est bien synchro'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "국룰",
+      "fr": "règle d'or / c'est LA norme",
+      "standard": "보편적으로 통용되는 규칙",
+      "note": "국민 룰 : 'ce qui se fait, point'. '미드가 블루 먹는 게 국룰'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "근본",
+      "fr": "du vrai classique / pedigree",
+      "standard": "정통성 있음 (기본기)",
+      "note": "'근본 챔' = pick légitime/historique ; '근본 없다' = 'sans pedigree' (moqueur). Très 2023-2026.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "정석",
+      "fr": "by the book / l'école classique",
+      "standard": "표준적인 정석 방식",
+      "note": "'정석대로 해' = 'joue standard, pas de fantaisie'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "혜자",
+      "fr": "généreux / très rentable",
+      "standard": "내용이 알차고 후하다",
+      "note": "Des bentos 김혜자 réputés copieux. '혜자네' = 'c'est cadeau'. Antonyme : 창렬.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "창렬",
+      "fr": "arnaque / pas rentable",
+      "standard": "내용이 부실하다 (가성비 나쁨)",
+      "note": "Des bentos 김창렬 réputés vides. 'Ce trade/skin est 창렬' = 'arnaque totale'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "가성비",
+      "fr": "bon rendement / rapport qualité-prix",
+      "standard": "가격(노력) 대비 성능",
+      "note": "'가성비 챔' = champion rentable sans effort. 갓성비 = renforcé.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "만렙",
+      "fr": "niveau max",
+      "standard": "최고 레벨",
+      "note": "'만렙 찍었다' = 'level max atteint'. Figuré : expert absolu ('눈치 만렙').",
+      "confidence": "haute"
+    },
+    {
+      "kr": "쪼렙",
+      "fr": "petit level / low level",
+      "standard": "낮은 레벨 (초보)",
+      "note": "'쪼렙이에요' = 'je suis tout petit niveau'. Auto-dérision de débutant.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "털렸다",
+      "fr": "s'est fait nettoyer",
+      "standard": "일방적으로 당했다",
+      "note": "털리다 : '정글 다 털림' = 'sa jungle s'est fait piller' ; '1대1로 털렸다' = 'détruit en duel'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "조졌다",
+      "fr": "c'est foutu / j'ai tout cassé",
+      "standard": "망쳤다 (비속어)",
+      "note": "조지다 : '아 조졌다' = 'merde, c'est mort' ; à l'impératif '조져버려' = 'défonce-les'. Sens selon cible.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "통수",
+      "fr": "coup de pute / backstab",
+      "standard": "뒤통수를 치다 (배신)",
+      "note": "'통수 맞았다' = 'on m'a planté dans le dos' (smite volé, bait d'allié...).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "팀킬",
+      "fr": "teamkill / saboter son allié",
+      "standard": "같은 편에게 피해를 주다",
+      "note": "Au figuré dans LoL : nuire à son équipe ('팀킬하냐?').",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "꼼수",
+      "fr": "astuce cheap / combine",
+      "standard": "정당하지 못한 잔꾀",
+      "note": "Truc limite mais pas interdit. '꼼수 부리지마'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "티배깅",
+      "fr": "t-bag",
+      "standard": "쓰러진 상대 위에서 조롱하는 행동",
+      "note": "BM universel ; en LoL : danser/ctrl+3 sur le cadavre. Cf. 인성질 (déjà couvert).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "광탈",
+      "fr": "éliminé direct / sorti en deux-deux",
+      "standard": "광속 탈락 (아주 빨리 떨어짐)",
+      "note": "'8강 광탈' = 'sorti dès les quarts'. Aussi pour une mort instantanée d'enchères/files.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "폭망",
+      "fr": "fail total",
+      "standard": "완전히 망했다",
+      "note": "폭삭 망하다 : '이번 판 폭망' = 'game complètement ratée'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "떡상",
+      "fr": "explose / monte en flèche",
+      "standard": "폭등하다",
+      "note": "Origine crypto/bourse. '주가 떡상' = 'sa cote explose' (après un beau play). Antonyme : 떡락.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "나락",
+      "fr": "descente aux enfers",
+      "standard": "밑바닥으로 추락함",
+      "note": "'나락 갔다' = 'il est fini / carrière terminée' (après une honte publique). Très courant 2022-2026.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "믿거",
+      "fr": "à blacklister d'office",
+      "standard": "믿고 거른다 (볼 것도 없이 피한다)",
+      "note": "'X는 믿거' = 'X, tu skip direct sans réfléchir' (champion, joueur, picks).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "걸러라",
+      "fr": "évite-le / skip",
+      "standard": "피해라",
+      "note": "거르다 = filtrer : '이런 팀원은 걸러' = 'fuis ce genre de mate'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "실화냐",
+      "fr": "c'est pas vrai ?! / réel ?",
+      "standard": "이게 실제 상황이냐",
+      "note": "'이게 실화냐?' = incrédulité totale (bonne ou mauvaise).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "팩트",
+      "fr": "fact / la vérité c'est que",
+      "standard": "사실",
+      "note": "'팩트는 니가 0/7이라는 거임' = 'le fact c'est que t'es 0/7'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "팩폭",
+      "fr": "vérité qui fait mal / fact-check brutal",
+      "standard": "반박할 수 없는 사실로 타격을 줌",
+      "note": "팩트 폭격 : assommer quelqu'un avec des faits (souvent ses stats op.gg).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뇌피셜",
+      "fr": "théorie sortie de son chapeau",
+      "standard": "근거 없는 개인적인 추측",
+      "note": "뇌 + 오피셜 : opinion perso déguisée en fait. '뇌피셜 ㄴㄴ'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "오피셜",
+      "fr": "officiel / confirmé",
+      "standard": "공식 발표된 사실",
+      "note": "S'oppose à 뇌피셜. '오피셜 떴다' = 'c'est confirmé'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "카더라",
+      "fr": "on-dit / rumeur",
+      "standard": "~라고 하더라 (소문)",
+      "note": "'카더라 통신' = radio-trottoir. Discrédite une info non sourcée.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "정신승리",
+      "fr": "copium / victoire dans sa tête",
+      "standard": "졌는데도 이긴 것처럼 자기 합리화함",
+      "note": "'정신승리 하지마' = 'arrête le copium'. Pilier du trash-talk d'après-game.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "행복회로",
+      "fr": "plein copium / espoir délirant",
+      "standard": "근거 없이 희망적인 상상만 함",
+      "note": "'Circuit du bonheur' : '행복회로 돌리는 중' = 'il se raconte des histoires'. Antonyme 절망회로.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "설레발",
+      "fr": "vendre la peau de l'ours / jinx",
+      "standard": "성급하게 김칫국 마시며 호들갑 떨다",
+      "note": "'설레발 ㄴㄴ' = 'porte pas la poisse' (dire 'win' à 20 min trop tôt). Le jinx de la solo queue.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "쉴드",
+      "fr": "défendre qqn / white knight",
+      "standard": "감싸고 변호하다",
+      "note": "'쉴드 치지마' = 'arrête de le défendre'. Konglish de shield au sens social.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빨지마",
+      "fr": "arrête de le glaze",
+      "standard": "지나치게 칭찬하지 마라 (비속어)",
+      "note": "빨다 (sucer, vulgaire) = encenser servilement. '페이커 그만 빨아'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "솔까말",
+      "fr": "franchement / tbh",
+      "standard": "솔직히 까놓고 말해서",
+      "note": "Introduit un avis cash : '솔까말 이건 정글 탓'. Court : 솔까.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "케바케",
+      "fr": "ça dépend du cas",
+      "standard": "경우에 따라 다르다 (케이스 바이 케이스)",
+      "note": "Variante 사바사 (사람 by 사람) = 'ça dépend des gens'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "극혐",
+      "fr": "dégueu / j'ai horreur",
+      "standard": "극도로 혐오함",
+      "note": "극한 혐오 : '이런 플레이 극혐' = 'ce genre de play, beurk'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "인싸",
+      "fr": "sociable / dans le coup",
+      "standard": "무리에 잘 어울리는 사람 (인사이더)",
+      "note": "핵인싸 = ultra populaire. Antonyme : 아싸.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "아싸",
+      "fr": "loner / pas dans le coup",
+      "standard": "무리에 못 어울리는 사람 (아웃사이더)",
+      "note": "Auto-dérision fréquente. Attention : 아싸! peut aussi être l'exclamation 'yes !'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "씹덕",
+      "fr": "gros otaku (insulte)",
+      "standard": "오타쿠 (심한 비하)",
+      "note": "씹 + 오덕후. '씹덕챔' = champion d'anime (Ahri, Gwen...). Vulgaire et moqueur.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "짤",
+      "fr": "meme / image",
+      "standard": "인터넷 이미지(밈)",
+      "note": "짤방 abrégé : '개웃긴 짤' = 'meme hilarant'. '움짤' = gif.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "눈팅",
+      "fr": "lurker / mater sans écrire",
+      "standard": "읽기만 하고 반응하지 않음",
+      "note": "'눈팅만 함' = 'je lurk'. 눈 + (채)팅.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "TMI",
+      "fr": "trop d'infos / on t'a rien demandé",
+      "standard": "굳이 알 필요 없는 과한 정보",
+      "note": "Konglish assumé. Réponse type : 안물안궁.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "드립",
+      "fr": "vanne / bit",
+      "standard": "즉흥 농담",
+      "note": "De ad-lib : '드립 치지마' = 'arrête tes vannes'. Composés : 패드립 (déjà couvert), 섹드립 = blague salace, 아재드립 = blague de daron.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "선넘네",
+      "fr": "là tu dépasses les bornes",
+      "standard": "선을 넘었다 (도를 지나쳤다)",
+      "note": "'선 넘었지?' = avertissement avant escalade ; 패드립 = franchissement automatique.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "알잘딱깔센",
+      "fr": "gère ça nickel tout seul",
+      "standard": "알아서 잘 딱 깔끔하고 센스 있게",
+      "note": "'Débrouille-toi bien comme il faut'. Court : 알잘딱. '알잘딱 해줘'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "머선129",
+      "fr": "c'est quoi ce délire ?",
+      "standard": "무슨 일이냐",
+      "note": "머선 일이고 (dialecte) + 129. Surprise comique, un peu daté mais compris.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "오히려 좋아",
+      "fr": "en vrai c'est même mieux",
+      "standard": "오히려 잘됐다",
+      "note": "Meme d'optimisme forcé après un imprévu ('on a perdu le drake... 오히려 좋아').",
+      "confidence": "haute"
+    },
+    {
+      "kr": "럭키비키",
+      "fr": "au final c'est tout bénéf !",
+      "standard": "오히려 운이 좋다고 긍정적으로 생각하자",
+      "note": "Meme 2024 (Jang Won-young/IVE, '원영적 사고') : positivité à toute épreuve, souvent ironique après un fail.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "스불재",
+      "fr": "il l'a bien cherché",
+      "standard": "스스로 불러온 재앙",
+      "note": "'Désastre auto-infligé' : overextend puis mort = 스불재.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "도파민",
+      "fr": "shoot de dopamine / pur kiff",
+      "standard": "강한 자극적 재미",
+      "note": "'도파민 터진다' = 'montée de dopamine'. Mot tendance 2023-2025 pour tout plaisir intense.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "우쭈쭈",
+      "fr": "oh le pauvre bébé (consolation moqueuse)",
+      "standard": "아기 달래듯 어르는 소리",
+      "note": "'우쭈쭈 해줘?' = 'tu veux un bisou magique ?'. Moque un pleurnicheur.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "낄끼빠빠",
+      "fr": "sache quand t'incruster (et quand dégager)",
+      "standard": "낄 때 끼고 빠질 때 빠져라",
+      "note": "Reproche de lourdeur sociale — ou, en jeu, de mauvais timing d'engage.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "렬루",
+      "fr": "for real",
+      "standard": "정말로 (레알로)",
+      "note": "Variante mignonne de 레알 (déjà couvert). '렬루?' = 'sérieux ?'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "졸귀",
+      "fr": "trop chou",
+      "standard": "매우 귀엽다",
+      "note": "졸라 귀엽다 : '이 스킨 졸귀탱' = 'cette skin est adorable'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "존예",
+      "fr": "sublime (vulgaire)",
+      "standard": "매우 예쁘다",
+      "note": "존나 예쁘다. Famille : 존잘 (très beau gosse), 존멋 (trop stylé).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "띵작",
+      "fr": "chef-d'œuvre",
+      "standard": "명작",
+      "note": "야민정음 : lettres remplacées par des sosies graphiques (명→띵, 귀엽다→커엽다, 멍멍이→댕댕이). Le parseur doit connaître le procédé.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "현생",
+      "fr": "la vraie vie / IRL",
+      "standard": "현실의 삶",
+      "note": "'현생 살아라' = 'va toucher de l'herbe' ; '현생이 바빠서' = 'l'IRL me rattrape'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "현질",
+      "fr": "mettre de l'argent IRL (micro-transactions)",
+      "standard": "현금으로 게임 아이템을 사다",
+      "note": "'현질했냐?' = 't'as acheté la skin ?'. 현질러 = acheteur compulsif.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "무과금",
+      "fr": "F2P / sans payer",
+      "standard": "게임에 돈을 쓰지 않는 유저",
+      "note": "Antonymes : 핵과금/고래 = whale. Surtout mobile mais compris partout.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "피방",
+      "fr": "PC bang / cybercafé",
+      "standard": "PC방 (게임 카페)",
+      "note": "'피방인데 렉걸림' = 'je suis au PC bang, ça lag'. Institution du gaming coréen.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "디코",
+      "fr": "Discord",
+      "standard": "디스코드 (음성 채팅 프로그램)",
+      "note": "'디코 ㄱ?' = 'on se met sur Discord ?'. Demande de vocal entre mates.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "옵치",
+      "fr": "Overwatch",
+      "standard": "오버워치 (게임)",
+      "note": "'옵치나 해라' = 'va jouer à OW' (= dégage de LoL). 배그 = PUBG, 롤 = LoL, 펨코·인벤 = forums.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "님들",
+      "fr": "les gens / vous autres",
+      "standard": "여러분",
+      "note": "'님들아 바론 가자' = 'les gars, go baron'. Pluriel familier de 님 (déjà couvert).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "행님",
+      "fr": "frérot (dialecte)",
+      "standard": "형님 (형)",
+      "note": "Prononciation Gyeongsang de 형님. '행님들 살려주십쇼' = ton suppliant-comique.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "마!",
+      "fr": "Eh ! (provoc façon Busan)",
+      "standard": "야! (부산 사투리)",
+      "note": "Interjection de défi popularisée par les memes sur Busan. '마! 1대1 뜨자'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "와이라노",
+      "fr": "pourquoi tu fais ça ?? (dialecte)",
+      "standard": "왜 이러냐 (경상도 사투리)",
+      "note": "Vrai dialecte du sud-est — à distinguer du ~노 moqueur de DC Inside.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "즐",
+      "fr": "c'est ça, salut (dédain)",
+      "standard": "(비꼬는 말) 됐다, 잘 가라",
+      "note": "Vieux raccourci de 즐겜 devenu congé méprisant ('cause toujours'). Daté mais reconnaissable.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "안습",
+      "fr": "la loose / triste à voir",
+      "standard": "안쓰럽다 (눈물 난다)",
+      "note": "안구에 습기 : 'tes yeux s'humidifient'. Pitié moqueuse. Daté mais compris.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "지못미",
+      "fr": "dsl, j'ai pas pu te sauver",
+      "standard": "지켜주지 못해 미안해",
+      "note": "S'envoie après avoir regardé un mate mourir sans pouvoir aider. Semi-ironique.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "늅늅",
+      "fr": "ptit noob",
+      "standard": "뉴비 (초보)",
+      "note": "Façon mignonne de dire noob : '늅늅이라 잘 못해요' = 'je débute, soyez indulgents'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "만반잘부",
+      "fr": "enchanté, soyez sympas",
+      "standard": "만나서 반가워, 잘 부탁해",
+      "note": "Formule de présentation contractée, registre jeune.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "반모",
+      "fr": "on se tutoie ?",
+      "standard": "반말 모드 (반말로 말하기)",
+      "note": "'반모 ㄱ?' = proposition de passer au tutoiement. 반박 = retour au vouvoiement.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "강퇴",
+      "fr": "kick",
+      "standard": "강제 퇴장",
+      "note": "'강퇴시켜' = 'kickez-le' (lobby, room, Discord).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "방장",
+      "fr": "host / chef de la room",
+      "standard": "방의 주인",
+      "note": "Celui qui a créé le lobby/la room. '방장 강퇴 ㄱ'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "메타",
+      "fr": "méta",
+      "standard": "현재 가장 유행하는 전략",
+      "note": "'메타 챔' = pick méta ; '뉴메타' = nouvelle stratégie à la mode (parfois ironique).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "정배",
+      "fr": "le favori / scénario logique",
+      "standard": "이길 확률이 높은 쪽 (정상 배당)",
+      "note": "Terme de cotes : '정배는 우리 팀' = 'sur le papier on gagne'. Antonyme : 역배 = l'upset, l'outsider qui passe.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "쌉-",
+      "fr": "préfixe 'ultra / grave' (vulgaire)",
+      "standard": "아주/완전 (강조 접두사)",
+      "note": "Cran au-dessus de 개- : 쌉가능 = 'large possible', 쌉소리 = 'grosse connerie', 쌉인정 = 'tellement vrai'. À détecter comme préfixe.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "쌉소리",
+      "fr": "grosse connerie / n'importe quoi",
+      "standard": "말도 안 되는 헛소리",
+      "note": "'쌉소리 ㄴㄴ' = 'arrête de raconter de la merde'. Famille 개소리/헛소리.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "개소리",
+      "fr": "conneries",
+      "standard": "말도 안 되는 소리 (욕설)",
+      "note": "Litt. 'bruit de chien' : '개소리 하지마' = 'raconte pas de la merde'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "킹리적갓심",
+      "fr": "suspicion plus que légitime (meme)",
+      "standard": "합리적 의심",
+      "note": "합리적 의심 boosté par 킹/갓. 'C'est gros comme une maison'. Famille des renforts 킹- (킹받네 déjà couvert).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "억텐",
+      "fr": "enthousiasme forcé",
+      "standard": "억지 텐션 (억지로 신난 척)",
+      "note": "Antonyme : 찐텐 = hype sincère. '억텐 그만' = 'arrête de surjouer'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "갑툭튀",
+      "fr": "sorti de nulle part",
+      "standard": "갑자기 툭 튀어나옴",
+      "note": "'갑툭튀하네' = apparition surprise (gank surgi du brouillard, sujet hors-sol dans le chat).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "솔플",
+      "fr": "jouer solo",
+      "standard": "혼자서 플레이함 (솔로 플레이)",
+      "note": "'솔플 중' = 'je joue sans premade'. Dérivés : 듀오플, 팀플.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "존맛",
+      "fr": "délicieux / trop bon",
+      "standard": "아주 맛있다 (비속어)",
+      "note": "존나 맛있다 ; aussi 존맛탱/JMT. Hors bouffe : 'ce combo 존맛' = 'jouissif'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "꿀빨다",
+      "fr": "se la couler douce / profiter gratos",
+      "standard": "편하게 이득을 누리다",
+      "note": "'Téter le miel' : '버스 타고 꿀빠네' = 'il se fait porter tranquille'. Complète 꿀 (déjà couvert).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "날로 먹네",
+      "fr": "il gagne sans rien faire",
+      "standard": "노력 없이 거저 얻는다",
+      "note": "Forme pleine de 날먹 — fréquente telle quelle dans le chat.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "노답팀",
+      "fr": "team désespérée",
+      "standard": "답이 없는 팀",
+      "note": "Composé courant de 노답 (déjà couvert) — matching exact utile.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "멘탈갑",
+      "fr": "mental d'acier",
+      "standard": "정신력이 아주 강한 사람",
+      "note": "멘탈 + 갑 (le meilleur) : imperturbable malgré le flame.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "무친",
+      "fr": "taré (euphémisme)",
+      "standard": "미친 (욕설 순화)",
+      "note": "Déformation volontaire de 미친 pour passer les filtres ; aussi 미띤, 믿힌.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "개나소나",
+      "fr": "n'importe qui / tout le monde et son chien",
+      "standard": "아무나 다",
+      "note": "'개나소나 다이아 가네' = 'n'importe qui monte diamant maintenant'. Méprisant.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "훈수",
+      "fr": "backseat / leçons non demandées",
+      "standard": "옆에서 참견하며 지시함",
+      "note": "'훈수 두지마' = 'arrête le backseat gaming'. 훈수충 = le relou qui commente tout.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "고인물 게임",
+      "fr": "jeu de vétérans no-life",
+      "standard": "고수들만 남은 게임",
+      "note": "Composé fréquent de 고인물 (déjà couvert) ; 썩은물 = encore pire (vétéran 'pourri').",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "손가락 빨다",
+      "fr": "rester à rien faire",
+      "standard": "아무것도 못 하고 구경만 하다",
+      "note": "'바론 때 손가락 빨았냐?' = 'tu suçais ton pouce pendant le baron ?'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "구경만 하네",
+      "fr": "il regarde le match (spectateur)",
+      "standard": "참여하지 않고 보고만 있다",
+      "note": "Reproche de passivité : 'il spectate sa propre game'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "멍때리다",
+      "fr": "être dans la lune / AFK du cerveau",
+      "standard": "아무 생각 없이 멍하니 있다",
+      "note": "'멍때리지마' = 'réveille-toi'. Cause classique de gank raté.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "각보다",
+      "fr": "guetter l'ouverture",
+      "standard": "기회를 노리다",
+      "note": "각 (déjà couvert) + 보다 : '궁각 보는 중' = 'je guette l'angle d'ult'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "개추",
+      "fr": "+1 de fou / gros upvote",
+      "standard": "개념 추천 (강력 추천)",
+      "note": "개념글 추천 : approbation forte façon forum, arrivée dans le chat ('ㅇㄱㄹㅇ 개추').",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㄹㅇㅍㅌ",
+      "fr": "véridique, fact",
+      "standard": "레알 팩트 (정말 사실)",
+      "note": "ㄹㅇ + 팩트 : renchérit sur une vérité qui pique.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "갓생",
+      "fr": "vie de winner / productive",
+      "standard": "부지런하고 모범적인 삶",
+      "note": "갓 + 인생. '갓생 살아라' = 'reprends ta vie en main' (et lâche le jeu).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "억까 그만",
+      "fr": "arrêtez le hate gratuit",
+      "standard": "억지로 비난하지 마라",
+      "note": "Tournure fréquente de 억까 (déjà couvert) — utile pour le matching exact.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "평생 브론즈",
+      "fr": "bronze à vie",
+      "standard": "평생 낮은 티어에 머물 것이다",
+      "note": "Malédiction d'élo classique ; variantes avec 아이언/실버.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "드가자~",
+      "fr": "on rentre dedaaans",
+      "standard": "들어가자",
+      "note": "Variante étirée de 드가자 (déjà couvert), souvent avec ~ ou ㅏㅏ. Pour le matching des variantes OCR.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅈㄴ어렵네",
+      "fr": "c'est chaud de ouf",
+      "standard": "존나 어렵다 (매우 어렵다)",
+      "note": "Exemple du pattern ㅈㄴ+adjectif collé sans espace, fréquent à l'OCR.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "어케함",
+      "fr": "on fait comment ?",
+      "standard": "어떻게 하냐",
+      "note": "어케 (déjà couvert) + 함 : '이거 어케 이김?' = 'comment on win ça ?'.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뭐임",
+      "fr": "c'est quoi ça ?",
+      "standard": "뭐야 / 뭐임?",
+      "note": "Interpellation incrédule ; variantes 머임, 뭥미 (daté). Complète 뭐함 (déjà couvert).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "왜저럼",
+      "fr": "il a quoi lui ?",
+      "standard": "왜 저러는 거냐",
+      "note": "'쟤 왜저럼' = 'c'est quoi son problème ?'. Jugement perplexe.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "뭐누",
+      "fr": "c'est quoi ça ? (style DC)",
+      "standard": "뭐냐",
+      "note": "뭐 + ~누 : marqueur DC Inside (cf. ~노/~누), ricaneur.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅋㅋ루삥뽕",
+      "fr": "trololo (variante)",
+      "standard": "(조롱하는 의미 없는 말)",
+      "note": "Variante orthographique de 쿠쿠루삥뽕 avec ㅋㅋ. Même valeur de taunt.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "아 맞다",
+      "fr": "ah ouais, j'oubliais",
+      "standard": "아 맞아, 깜빡했다",
+      "note": "Auto-correction ; souvent ironique ('아 맞다 너 0/8이지' = 'ah oui c'est vrai, t'es 0/8').",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "빼박이지",
+      "fr": "y'a pas débat",
+      "standard": "빼도 박도 못하는 사실이다",
+      "note": "Forme conversationnelle de 빼박 (déjà couvert).",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "지능플레이",
+      "fr": "200 IQ play (souvent ironique)",
+      "standard": "머리를 쓴 플레이",
+      "note": "Sincère ('quel cerveau') ou sarcastique pour un fail déguisé en plan.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "어그로꾼",
+      "fr": "troll à attention",
+      "standard": "관심을 끌려고 도발하는 사람",
+      "note": "Dérivé de 어그로 (déjà couvert) : celui qui provoque pour exister.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "한 번 더 가자",
+      "fr": "on retente / one more",
+      "standard": "한 번 더 시도하자",
+      "note": "Re-engage après un fight raté, ou re-queue après une game.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "운영 차이",
+      "fr": "macro diff",
+      "standard": "운영(전략) 수준의 차이",
+      "note": "Extension du pattern X차이 (déjà couvert pour les lanes) à la macro.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "멘탈 차이",
+      "fr": "mental diff",
+      "standard": "정신력의 차이",
+      "note": "Pattern X차이 appliqué au mental : 'on a gagné au mental'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "공부하고 와",
+      "fr": "va apprendre le jeu et reviens",
+      "standard": "게임 공부를 하고 와라",
+      "note": "Flame condescendant : 'retourne réviser (le champion/la matchup)'.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "손 풀었다",
+      "fr": "je suis chaud maintenant",
+      "standard": "몸이 풀렸다 (이제 잘할 것이다)",
+      "note": "'Mes mains sont déliées' : excuse après un mauvais début de game.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "이론상 완벽",
+      "fr": "parfait... sur le papier",
+      "standard": "이론상으로는 완벽하다",
+      "note": "Ironie sur un plan voué à l'échec ('이론상 우리가 이김').",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "나만 아니면 돼",
+      "fr": "tant que c'est pas moi",
+      "standard": "나에게만 피해가 없으면 된다",
+      "note": "Égoïsme assumé (origine variety show). Esprit 알빠노.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "무야호",
+      "fr": "trop contennnt ! (meme)",
+      "standard": "신난다 (유행어)",
+      "note": "Meme 2021 (Infinite Challenge) : joie naïve, souvent ironique. Daté mais compris.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "가즈아아",
+      "fr": "LET'S GOOOO (étiré)",
+      "standard": "가자",
+      "note": "Variante étirée de 가즈아 (déjà couvert) — l'OCR verra souvent des ㅏ multiples.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "ㅇㅋㄱㅈ",
+      "fr": "ok ça marche, go",
+      "standard": "오케이, 가자",
+      "note": "Combinaison ㅇㅋ + ㄱㅈ(가자). Variante de validation rapide.",
+      "confidence": "basse"
+    },
+    {
+      "kr": "ㄱㅅㄱㅅ",
+      "fr": "merciii",
+      "standard": "감사 감사",
+      "note": "Doublement de ㄱㅅ (déjà couvert) — entrée séparée pour le matching exact.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅈㅅㅈㅅ",
+      "fr": "dsl dsl",
+      "standard": "죄송 죄송",
+      "note": "Doublement de ㅈㅅ (déjà couvert) — excuse rapide répétée après un fail.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅊㅋㅊㅋ",
+      "fr": "gg gratz",
+      "standard": "축하 축하",
+      "note": "Doublement de ㅊㅋ (déjà couvert) — félicitations appuyées.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄱㅊㄱㅊ",
+      "fr": "t'inquiète t'inquiète",
+      "standard": "괜찮아 괜찮아",
+      "note": "Doublement de ㄱㅊ (déjà couvert) — rassure un mate qui s'excuse.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㄷㄷㄷ",
+      "fr": "oula (renforcé)",
+      "standard": "덜덜덜 (놀랍다)",
+      "note": "Triplement de ㄷㄷ (déjà couvert) — étonnement plus fort.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅗㅗㅗ",
+      "fr": "(doigts d'honneur multiples)",
+      "standard": "(욕설 제스처)",
+      "note": "Spam de ㅗ (déjà couvert) — hostilité claire, à signaler.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅠㅠㅠㅠ",
+      "fr": "(grosse détresse) 😭😭",
+      "standard": "(우는 모습)",
+      "note": "Allongement de ㅠㅠ — déjà géré par la regex de rires/pleurs, entrée de secours.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "ㅡㅡ;;",
+      "fr": "(blasé, gêné)",
+      "standard": "(어이없어 하는 표정)",
+      "note": "ㅡㅡ + gouttes de sueur ;; : agacement gêné. Le ;; seul marque l'embarras.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "?？",
+      "fr": "?? (provoc)",
+      "standard": "(도발적인 물음표)",
+      "note": "Un '?' seul après ta mort = taunt universel (comme en occident). '???' = incrédulité.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "느그",
+      "fr": "'vos' (dialecte, annonce un patrip)",
+      "standard": "너희(의)",
+      "note": "Dialecte de 너희 : '느그 팀' = 'votre team' ; surtout préfixe des patrips (느그 엄마/아빠). Vigilance.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "애비없냐",
+      "fr": "t'as pas de père ? (patrip)",
+      "standard": "아버지가 없냐 (패드립)",
+      "note": "Pendant paternel de 애미없냐 (déjà couvert côté mère). Insulte familiale grave.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "고아냐",
+      "fr": "t'es orphelin ? (patrip)",
+      "standard": "고아냐 (부모 비하 패드립)",
+      "note": "패드립 par l'orphelinat — extrêmement blessant en Corée. À signaler comme insulte familiale maximale.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "부모님 안부",
+      "fr": "'il a demandé des nouvelles de mes parents' (= patrip reçu)",
+      "standard": "부모님을 욕했다 (패드립을 했다)",
+      "note": "'부모님 안부 묻더라' = euphémisme pour 'il m'a insulté mes parents'. Décode le patrip pour le streamer.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "섹드립",
+      "fr": "blague salace",
+      "standard": "성적인 농담",
+      "note": "Famille 드립. Peut viser le streamer ; signaler si insistant.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "고인드립",
+      "fr": "blague sur les morts (tabou)",
+      "standard": "고인(죽은 사람) 비하 농담",
+      "note": "드립 sur un défunt : tabou fort, scandale assuré. À signaler.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "극딜",
+      "fr": "burst max / focus total",
+      "standard": "극한의 딜 (집중 공격)",
+      "note": "En jeu : burst maximal. Au figuré dans le chat : acharnement verbal sur quelqu'un ('걔한테 극딜박네' = 'ils le démontent').",
+      "confidence": "haute"
+    },
+    {
+      "kr": "딜교환 이득",
+      "fr": "trade gagnant",
+      "standard": "딜 교환에서 이득을 봄",
+      "note": "Forme longue de 딜교 (déjà couvert) + 이득.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "멘붕왔다",
+      "fr": "je suis en PLS",
+      "standard": "멘탈이 붕괴됐다",
+      "note": "Forme conjuguée de 멘붕 (déjà couvert) — fréquente telle quelle.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "실력차이",
+      "fr": "skill diff",
+      "standard": "실력의 차이",
+      "note": "Le X차이 générique : 'c'était juste une diff de niveau'. Complète les X차이 par lane déjà couverts.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "한수 배우고 갑니다",
+      "fr": "merci pour la leçon (souvent ironique)",
+      "standard": "한 수 배우고 갑니다",
+      "note": "Politesse de go/baduk recyclée : sincère après une belle game, sarcastique après un stomp.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "즐겜 하셈",
+      "fr": "bonne game (familier)",
+      "standard": "즐겁게 게임 하세요",
+      "note": "즐겜 + ~셈 : variante familière de 즐겜하세요 (déjà couvert).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "빨리좀",
+      "fr": "magne-toi quoi",
+      "standard": "빨리 좀 해라",
+      "note": "빨리 + 좀 (râle) collés : impatience (accepter la queue, prendre une décision).",
+      "confidence": "haute"
+    },
+    {
+      "kr": "어휴 진짜",
+      "fr": "pfff sérieux...",
+      "standard": "(한숨) 정말 답답하다",
+      "note": "Soupir + 진짜 : exaspération montante, prélude au flame. Combinaison ultra-fréquente.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "아 진짜 왜",
+      "fr": "mais pourquoi enfin ??",
+      "standard": "아 정말 왜 이러는 거야",
+      "note": "Tilt naissant. Souvent suivi d'un reproche précis.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "왜 사냐",
+      "fr": "pourquoi tu existes ? (très hostile)",
+      "standard": "왜 사는 거냐 (심한 모욕)",
+      "note": "'à quoi bon vivre comme ça' — insulte existentielle blessante, à signaler.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "인생 한심",
+      "fr": "vie pathétique",
+      "standard": "인생이 한심하다",
+      "note": "Attaque ad hominem au-delà du jeu. Signaler l'escalade.",
+      "confidence": "moyenne"
+    },
+    {
+      "kr": "응원합니다",
+      "fr": "je vous soutiens !",
+      "standard": "응원합니다",
+      "note": "Soutien poli — fréquent quand des viewers KR reconnaissent un streamer en game.",
+      "confidence": "haute"
+    },
+    {
+      "kr": "팬이에요",
+      "fr": "je suis fan !",
+      "standard": "팬입니다",
+      "note": "Reconnaissance amicale en game — fréquent pour un streamer connu sur le serveur KR.",
+      "confidence": "haute"
+    }
+  ]
+}
