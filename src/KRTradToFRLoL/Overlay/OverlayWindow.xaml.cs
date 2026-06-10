@@ -116,6 +116,7 @@ public partial class OverlayWindow : Window
         else
         {
             MouseLeftButtonDown -= OnDragMove;
+            Remove("démo"); // le message d'exemple ne vit que pendant le placement
             _config.OverlayX = Left;
             _config.OverlayY = Top;
             _config.Save();
@@ -136,6 +137,8 @@ public partial class OverlayWindow : Window
     /// <summary>Ajoute ou met à jour un message (clé = ligne de chat d'origine).</summary>
     public void Upsert(string key, string timestamp, string speaker, string body, bool failed, Brush? speakerBrush = null)
     {
+        if (key != "démo") Remove("démo"); // un vrai message chasse l'exemple
+
         var existing = _messages.FirstOrDefault(m => m.Key == key);
         if (existing is null)
         {
