@@ -7,7 +7,7 @@ namespace KRTradToFRLoL.Tests;
 public class ChatFrameAssemblerTests
 {
     private static readonly ChatFrameAssembler Assembler =
-        new(new ChatLineParser(new ChampionNames(["Yunara", "Yone", "Sylas", "Lee Sin", "Hwei"])));
+        new(new ChatLineParser(new ChampionNames(["Yunara", "Yone", "Sylas", "Lee Sin", "Hwei", "Diana"])));
 
     [Fact]
     public void Fusionne_la_ligne_de_continuation_avec_le_message_precedent()
