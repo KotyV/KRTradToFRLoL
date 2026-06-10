@@ -46,8 +46,8 @@ public sealed class AppConfig
 
     /// <summary>Refléter TOUTES les lignes du chat (pings/système compris) dans l'overlay,
     /// pas seulement le chat joueur. Les lignes majoritairement coréennes (client KR) sont
-    /// traduites, les autres copiées. Utile sur client coréen ou pour valider une zone.</summary>
-    public bool MirrorAllLines { get; set; }
+    /// traduites, les autres copiées en gris. Décochable pour un overlay minimal en live.</summary>
+    public bool MirrorAllLines { get; set; } = true;
 
     // — Capture/OCR —
     public int CaptureIntervalMs { get; set; } = 250;

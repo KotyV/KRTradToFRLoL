@@ -119,6 +119,28 @@ public class ChatFrameAssemblerTests
     }
 
     [Fact]
+    public void Un_ping_au_timestamp_mutile_ne_contamine_pas_le_message_precedent()
+    {
+        // Vu en réel : « 17:48 나나오즈 (Syndra) is on the way » lu « 1748 난날Relsynahe n he way »
+        // (timestamp sans ':', parenthèse perdue) se fusionnait dans le message du joueur.
+        var messages = Assembler.Assemble(
+        [
+            "17:18 [Team] KIFFEUR IS BACK (Diana): play with kai'sa",
+            "1748 난날Relsynahe n he way",
+        ]);
+
+        var msg = Assert.Single(messages);
+        Assert.Equal("play with kai'sa", msg.Text);
+    }
+
+    [Theory]
+    [InlineData("I1:50 신일(Rell has targeted the Blue Sentinel")] // ts « I1:50 »
+    [InlineData("11.50 신 일 (Rell) is on the way")]               // ts « 11.50 »
+    [InlineData("1748 난날 on he way")]                            // ts « 1748 »
+    public void Les_timestamps_mutiles_marquent_une_nouvelle_entree(string line) =>
+        Assert.True(ChatLineParser.LooksLikeNewEntry(line));
+
+    [Fact]
     public void Mode_tout_afficher_copie_les_pings_anglais_et_traduit_les_coreens()
     {
         var messages = Assembler.Assemble(

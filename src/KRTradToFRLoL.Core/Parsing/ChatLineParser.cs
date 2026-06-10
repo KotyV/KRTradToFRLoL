@@ -36,10 +36,11 @@ public sealed partial class ChatLineParser(ChampionNames champions)
     [GeneratedRegex(@"님이|님에게|신호를|보냄|알림|구입했|파괴했|처치했|습니다")]
     private static partial Regex KoreanSystemFragmentRegex();
 
-    // Une ligne qui commence par un timestamp ou contient une parenthèse « (Champion) »
-    // est une NOUVELLE entrée du chat (ping/kill/achat avec pseudo coréen compris),
-    // jamais la suite repliée d'un message précédent.
-    [GeneratedRegex(@"^\s*\d{1,2}\s*:\s*\d{2}|\([^()]{2,30}\)")]
+    // Une ligne qui commence par un timestamp — y compris MUTILÉ par l'OCR (« 1748 » sans
+    // deux-points, « I1:50 », « 11.50 ») — ou contient une parenthèse « (Champion) » est une
+    // NOUVELLE entrée du chat, jamais la suite repliée d'un message précédent (vu en réel :
+    // un ping au timestamp mutilé se faisait fusionner dans le message du joueur précédent).
+    [GeneratedRegex(@"^\s*[\dIl|]{1,2}\s*[:.]\s*\d{2}|^\s*\d{3,4}\b|\([^()]{2,30}\)")]
     private static partial Regex NewEntryMarkerRegex();
 
     public static bool ContainsHangul(string s) => HangulRegex().IsMatch(s);
