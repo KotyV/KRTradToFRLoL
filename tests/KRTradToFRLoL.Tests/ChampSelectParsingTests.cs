@@ -34,6 +34,25 @@ public class ChampSelectParsingTests
     [InlineData("몬스터 (르블랑) 님이 가고 있음")]                    // système coréen in-game
     public void Ne_capte_pas_les_autres_formats(string line) => Assert.Null(_parser.Parse(line));
 
+    [Theory]
+    // Bruit d'OCR réel (test live sur VOD) : annonces anglaises massacrées + hangul halluciné.
+    // L'ancien filtre laissait passer la 1re → garbage affiché dans l'overlay.
+    [InlineData("1003 Tbe ,: •Qui «;•zn has sian tbe Cberntech Drake!")]
+    [InlineData("누 : zn has sian tbe Cberntech 누rake!")]
+    [InlineData("|055 Tcamj : Mo(Y5 시")]
+    [InlineData("I IOI Tcamj : 10(YS go ahne farm")]
+    public void Rejette_le_bruit_ocr_des_annonces_systeme(string line) => Assert.Null(_parser.Parse(line));
+
+    [Fact]
+    public void Exige_un_message_majoritairement_coreen()
+    {
+        Assert.True(ChatLineParser.IsMostlyHangul("아 메튜렁 이새기"));
+        Assert.True(ChatLineParser.IsMostlyHangul("ㅋㅋ"));
+        Assert.True(ChatLineParser.IsMostlyHangul("럭스 e때매 죄송해요"));
+        Assert.False(ChatLineParser.IsMostlyHangul("zn has sian tbe Cberntech 누rake!"));
+        Assert.False(ChatLineParser.IsMostlyHangul("go alone farm"));
+    }
+
     [Fact]
     public void Le_format_in_game_reste_prioritaire()
     {

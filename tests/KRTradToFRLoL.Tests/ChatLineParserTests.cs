@@ -12,7 +12,7 @@ public class ChatLineParserTests
     private static readonly ChampionNames Champions = new(
     [
         "Lucian", "Rek'Sai", "Maître Yi", "Ezreal", "Yuumi", "Lee Sin", "Vi", "Jax",
-        "Kennen", "Nautilus", "Jhin", "Karma", "나피리", "요네", "사일러스", "르블랑",
+        "Kennen", "Nautilus", "Jhin", "Karma", "Hwei", "나피리", "요네", "사일러스", "르블랑",
     ]);
 
     private readonly ChatLineParser _parser = new(Champions);
@@ -27,6 +27,8 @@ public class ChatLineParserTests
     [InlineData("08:47 [Team] 아삿추시러 (Ezreal): 서렌?", "Team", "Ezreal", "서렌?", "08:47")]
     [InlineData("08:00 [Team] 아삿추시러 (Ezreal): ㅔ네 ㅋㅋㅋ", "Team", "Ezreal", "ㅔ네 ㅋㅋㅋ", "08:00")]
     [InlineData("28:51 [Team] 미니맵 이제 못봄 (Karma): 상대바론인데", "Team", "Karma", "상대바론인데", "28:51")]
+    [InlineData("13:49 [Team] 큰 곰 (Hwei): ㅋㅋ", "Team", "Hwei", "ㅋㅋ", "13:49")]
+    [InlineData("13:51 [Team] 큰 곰 (Hwei): 원숭이마낭", "Team", "Hwei", "원숭이마낭", "13:51")]
     public void Garde_les_vrais_messages_de_chat(string line, string channel, string champion, string text, string timestamp)
     {
         var msg = _parser.Parse(line);
@@ -66,6 +68,9 @@ public class ChatLineParserTests
     [InlineData("Adrian mateos (요네) 님이 첫 번째 포탑을 파괴했습니다!")]
     // Chat sans hangul = déjà lisible par le streamer
     [InlineData("02:33 [Team] 아삿추시러 (Ezreal): AN")]
+    [InlineData("13:31 [Team] Vi (Vi): stop die")]
+    [InlineData("13:45 [Team] MoeYS (Thresh): because bot AD")]
+    [InlineData("13:26 큰 곰 (Hwei) Bot Quest Complete!")]
     public void Rejette_pings_kills_et_systeme(string line) => Assert.Null(_parser.Parse(line));
 
     [Fact]

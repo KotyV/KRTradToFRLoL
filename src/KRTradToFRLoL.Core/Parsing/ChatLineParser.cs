@@ -81,10 +81,17 @@ public sealed partial class ChatLineParser(ChampionNames champions)
         };
     }
 
+    // Auteur champ select : lettres (hangul compris), chiffres, espace et ponctuation de
+    // pseudo — le bruit d'OCR (« 1003 Tbe ,] », « 「;•nn ») contient toujours autre chose.
+    [GeneratedRegex(@"^[\p{L}\p{N}][\p{L}\p{N} ._'-]{0,22}$")]
+    private static partial Regex CleanAuthorRegex();
+
     /// <summary>
-    /// Format champ select : « Krug : 진짜 ». Volontairement strict : message en hangul,
-    /// pas de parenthèse ni de timestamp dans la ligne (sinon c'est une entrée in-game),
-    /// pas de fragment système coréen.
+    /// Format champ select : « Krug : 진짜 ». Volontairement strict — ce format sans ancre
+    /// champion est la cible favorite du bruit d'OCR (vu en test réel : une annonce système
+    /// anglaise massacrée + un hangul halluciné suffisaient à passer) :
+    /// auteur au charset propre, message MAJORITAIREMENT coréen, pas de timestamp ni de
+    /// parenthèse (sinon c'est une entrée in-game), pas de fragment système coréen.
     /// </summary>
     private static ChatMessage? ParseChampSelect(string rawLine)
     {
@@ -92,18 +99,33 @@ public sealed partial class ChatLineParser(ChampionNames champions)
         var m = ChampSelectLineRegex().Match(rawLine);
         if (!m.Success) return null;
 
+        var author = m.Groups["author"].Value.Trim();
         var message = m.Groups["msg"].Value.Trim();
-        if (!ContainsHangul(message) || LooksLikeKoreanSystemFragment(rawLine)) return null;
+        if (!CleanAuthorRegex().IsMatch(author)) return null;
+        if (!IsMostlyHangul(message) || LooksLikeKoreanSystemFragment(rawLine)) return null;
 
         return new ChatMessage
         {
             Timestamp = "",
             Channel = "Lobby",
-            Author = m.Groups["author"].Value.Trim(),
+            Author = author,
             Champion = "",
             Text = message,
             RawLine = rawLine,
         };
+    }
+
+    /// <summary>Au moins 2 caractères hangul ET au moins la moitié des lettres en hangul :
+    /// un glyphe coréen halluciné par l'OCR dans une ligne anglaise ne suffit pas.</summary>
+    public static bool IsMostlyHangul(string s)
+    {
+        int hangul = 0, letters = 0;
+        foreach (var c in s)
+        {
+            if (c is >= '가' and <= '힣' or >= 'ㄱ' and <= 'ㆎ') hangul++;
+            if (char.IsLetter(c)) letters++;
+        }
+        return hangul >= 2 && hangul * 2 >= letters;
     }
 
     private static string NormalizeChannel(string chan) => chan.ToLowerInvariant() switch

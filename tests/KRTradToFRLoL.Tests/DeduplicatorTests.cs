@@ -43,6 +43,15 @@ public class DeduplicatorTests
     }
 
     [Fact]
+    public void Deux_messages_differents_du_meme_auteur_a_la_meme_seconde_acceptes()
+    {
+        // Capture 16 : « 13:52 큰 곰 (Hwei): 쳐대주고 » puis « 13:52 큰 곰 (Hwei): 입은 »
+        var dedup = new Deduplicator();
+        Assert.True(dedup.IsNew(Msg("13:52", "Hwei", "쳐대주고")));
+        Assert.True(dedup.IsNew(Msg("13:52", "Hwei", "입은")));
+    }
+
+    [Fact]
     public void Meme_texte_champion_different_accepte()
     {
         var dedup = new Deduplicator();
