@@ -46,6 +46,23 @@ public sealed class Deduplicator
     private static int MaxOcrJitter(string a, string b) =>
         Math.Max(1, (int)(Math.Max(a.Length, b.Length) * 0.2));
 
+    /// <summary>
+    /// Oublie un message : appelé quand l'overlay retire une ligne (sync de visibilité).
+    /// Sans ça, une ligne retirée à tort (jitter d'OCR fort) ne pouvait JAMAIS réapparaître,
+    /// la dédup la bloquant — des lignes encore à l'écran manquaient à l'overlay.
+    /// </summary>
+    public void Forget(ChatMessage msg)
+    {
+        _seenKeys.Remove(msg.DedupKey);
+        var norm = ChatMessage.Normalize(msg.Text);
+        var kept = _recent.Where(r =>
+            !(r.Speaker.Equals(msg.SpeakerKey, StringComparison.OrdinalIgnoreCase)
+              && (r.Timestamp == msg.Timestamp || r.Timestamp.Length == 0 || msg.Timestamp.Length == 0)
+              && Levenshtein.Distance(r.NormText, norm) <= MaxOcrJitter(r.NormText, norm))).ToList();
+        _recent.Clear();
+        foreach (var r in kept) _recent.Enqueue(r);
+    }
+
     public void Reset()
     {
         _seenKeys.Clear();

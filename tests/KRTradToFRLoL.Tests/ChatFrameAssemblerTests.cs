@@ -156,7 +156,32 @@ public class ChatFrameAssemblerTests
         Assert.Equal(2, messages.Count);
         Assert.All(messages, m => Assert.Equal("Sys", m.Channel));
         Assert.False(messages[0].NeedsTranslation); // copie telle quelle
-        Assert.True(messages[1].NeedsTranslation);  // hangul majoritaire → traduction
+        Assert.True(messages[1].NeedsTranslation);  // hangul majoritaire + marqueur 님이/보냄
+    }
+
+    [Fact]
+    public void Du_hangul_mal_lu_sans_marqueur_systeme_nest_pas_traduit()
+    {
+        // « Aide - à la suite » vu en réel : du hangul halluciné partait en traduction fantôme.
+        var messages = Assembler.Assemble(
+        [
+            "2233나나오 두꺼비둘 가나다 (Syndra)", // hangul majoritaire mais aucun 님이/보냄/습니다
+        ], mirrorAllLines: true);
+
+        var msg = Assert.Single(messages);
+        Assert.False(msg.NeedsTranslation); // copie grise, pas de LLM
+    }
+
+    [Theory]
+    [InlineData("2245나나오(Syndra) signals to be cautious", "22:45", "나나오(Syndra) signals to be cautious")]
+    [InlineData("I1:50 신일 (Rell) is on the way", "11:50", "신일 (Rell) is on the way")]
+    [InlineData("22.45 Evelynn (Evelynn) is on a rampage!", "22:45", "Evelynn (Evelynn) is on a rampage!")]
+    [InlineData("pas de timestamp ici", "", "pas de timestamp ici")]
+    public void Le_timestamp_mutile_est_extrait_et_reformate(string line, string ts, string rest)
+    {
+        var (timestamp, remainder) = ChatFrameAssembler.ExtractLeadingTimestamp(line);
+        Assert.Equal(ts, timestamp);
+        Assert.Equal(rest, remainder);
     }
 
     [Fact]

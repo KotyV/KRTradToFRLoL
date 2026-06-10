@@ -59,18 +59,50 @@ public sealed class ChatFrameAssembler(ChatLineParser parser)
             if (mirrorAllLines && text.Length >= 4
                 && (ChatLineParser.LooksLikeNewEntry(line) || ChatLineParser.IsMostlyHangul(text)))
             {
+                var (ts, rest) = ExtractLeadingTimestamp(text);
                 messages.Add(new ChatMessage
                 {
+                    Timestamp = ts,
                     Channel = "Sys",
-                    Text = text,
+                    Text = rest,
                     RawLine = line,
-                    // Ping/annonce du client coréen → traduisible ; ligne anglaise avec
-                    // pseudo hangul → simple copie.
-                    NeedsTranslation = ChatLineParser.IsMostlyHangul(text),
+                    // Seuls les VRAIS pings/annonces du client coréen sont traduits : hangul
+                    // majoritaire ET marqueur système authentique (님이/보냄/습니다…) — du
+                    // hangul mal lu sur une ligne anglaise partait sinon en traduction fantôme.
+                    NeedsTranslation = ChatLineParser.IsMostlyHangul(rest)
+                                       && ChatLineParser.LooksLikeKoreanSystemFragment(rest),
                 });
             }
         }
 
         return messages;
+    }
+
+    /// <summary>
+    /// Extrait un timestamp de tête, même mutilé par l'OCR (« 2245 », « I1:50 », « 22.45 »),
+    /// et le reformate « 22:45 » : l'overlay s'aligne sur la présentation du chat au lieu
+    /// d'afficher « 2245나나오… » collé.
+    /// </summary>
+    public static (string Timestamp, string Remainder) ExtractLeadingTimestamp(string text)
+    {
+        var m = System.Text.RegularExpressions.Regex.Match(
+            text, @"^\s*(?<h>[\dIl|]{1,2})\s*[:.]\s*(?<m>\d{2})\s*(?<rest>.*)$|^\s*(?<hm>\d{3,4})(?<rest2>\D.*)$");
+        if (!m.Success) return ("", text);
+
+        string h, mn, rest;
+        if (m.Groups["hm"].Success)
+        {
+            var hm = m.Groups["hm"].Value;
+            h = hm[..^2];
+            mn = hm[^2..];
+            rest = m.Groups["rest2"].Value.Trim();
+        }
+        else
+        {
+            h = m.Groups["h"].Value.Replace('I', '1').Replace('l', '1').Replace('|', '1');
+            mn = m.Groups["m"].Value;
+            rest = m.Groups["rest"].Value.Trim();
+        }
+        return rest.Length == 0 ? ("", text) : ($"{h}:{mn}", rest);
     }
 }

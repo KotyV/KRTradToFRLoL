@@ -29,7 +29,7 @@ public partial class MainWindow : Window
     // Suivi de visibilité : l'overlay disparaît avec le chat (fade/scroll). Clé overlay →
     // message source + nombre de frames consécutives où sa ligne n'est plus à l'écran.
     private readonly Dictionary<string, (ChatMessage Msg, int Missing)> _displayed = new();
-    private const int MissingFramesBeforeRemoval = 4; // ~1 s à 4 Hz : absorbe le flicker OCR
+    private const int MissingFramesBeforeRemoval = 6; // ~1,5 s à 4 Hz : absorbe le flicker OCR
 
     public MainWindow()
     {
@@ -316,6 +316,7 @@ public partial class MainWindow : Window
             {
                 _displayed.Remove(key);
                 _overlay?.Remove(key);
+                _service?.Forget(msg); // si la ligne est encore à l'écran, elle pourra revenir
             }
             else
             {
@@ -330,7 +331,9 @@ public partial class MainWindow : Window
         if (a.Timestamp != b.Timestamp && a.Timestamp.Length > 0 && b.Timestamp.Length > 0) return false;
         var na = ChatMessage.Normalize(a.Text);
         var nb = ChatMessage.Normalize(b.Text);
-        return Parsing.Levenshtein.Distance(na, nb) <= Math.Max(1, (int)(Math.Max(na.Length, nb.Length) * 0.2));
+        // Tolérance large (30 %) : sur VOD compressée, deux lectures de la même ligne
+        // peuvent diverger fortement — mieux vaut une ligne qui traîne qu'une qui clignote.
+        return Parsing.Levenshtein.Distance(na, nb) <= Math.Max(2, (int)(Math.Max(na.Length, nb.Length) * 0.3));
     }
 
     private bool IsNewOcrLine(string line) =>

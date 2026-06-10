@@ -44,6 +44,10 @@ public sealed class TranslatorService(
 
     public bool IsRunning => _loop is { IsCompleted: false };
 
+    /// <summary>Oubli en dédup quand l'overlay retire une ligne : si elle est encore à
+    /// l'écran (retrait dû au jitter), elle pourra se réafficher à la frame suivante.</summary>
+    public void Forget(ChatMessage msg) => _dedup.Forget(msg);
+
     public void Start()
     {
         if (IsRunning) return;
