@@ -80,18 +80,31 @@ public partial class MainWindow : Window
         };
     }
 
-    private void OnSaveKey(object sender, RoutedEventArgs e)
+    private async void OnSaveKey(object sender, RoutedEventArgs e)
     {
         _config.SetApiKey(ApiKeyBox.Password);
         _config.Save();
         ApiKeyBox.Clear(); // la clé ne reste ni affichée ni en mémoire UI
         ResetServiceForConfigChange();
-        SetStatus(_config.ResolveApiKey().Length > 0
-            ? "Clé API enregistrée (chiffrée DPAPI). " + DescribeTranslationSetup()
-            : "Clé effacée. " + DescribeTranslationSetup());
+        await ProbeAndReportAsync("Clé API enregistrée (chiffrée DPAPI).");
     }
 
-    private void OnSaveProxy(object sender, RoutedEventArgs e)
+    /// <summary>Enregistrer ne suffit pas : on sonde réellement le serveur et on affiche le verdict.</summary>
+    private async Task ProbeAndReportAsync(string prefix)
+    {
+        SetStatus($"{prefix} Test de connexion…");
+        using var probe = new ClaudeTranslator(_config);
+        if (!probe.IsConfigured)
+        {
+            SetStatus($"{prefix} {DescribeTranslationSetup()}", error: true);
+            return;
+        }
+        var (ok, detail) = await probe.ProbeAsync(CancellationToken.None);
+        SetStatus($"{prefix} {detail}", error: !ok);
+        AppendDiag($"[sonde {probe.Mode}] {detail}");
+    }
+
+    private async void OnSaveProxy(object sender, RoutedEventArgs e)
     {
         _config.ProxyUrl = ProxyUrlBox.Text.Trim();
         if (ProxyTokenBox.Password.Length > 0)
@@ -101,7 +114,7 @@ public partial class MainWindow : Window
         _config.Save();
         ProxyTokenBox.Clear();
         ResetServiceForConfigChange();
-        SetStatus("Proxy enregistré. " + DescribeTranslationSetup());
+        await ProbeAndReportAsync("Proxy enregistré.");
     }
 
     private void ResetServiceForConfigChange()

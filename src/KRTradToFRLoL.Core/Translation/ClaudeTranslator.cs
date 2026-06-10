@@ -86,6 +86,51 @@ public sealed class ClaudeTranslator : ITranslator, IDisposable
                "ㅋㅋㅋ → mdrr. Ne pas adoucir les insultes. Texte déjà en anglais/français → tel quel.";
     }
 
+    /// <summary>
+    /// Sonde réelle de connectivité/authentification (mini-requête d'1 token de sortie) :
+    /// distingue token refusé, URL fausse et serveur injoignable — l'enregistrement de la
+    /// config seul ne contacte pas le serveur.
+    /// </summary>
+    public async Task<(bool Ok, string Detail)> ProbeAsync(CancellationToken ct)
+    {
+        if (!IsConfigured) return (false, "aucune source de traduction configurée");
+
+        var body = new
+        {
+            model = _model,
+            max_tokens = 1,
+            stream = true,
+            messages = new object[] { new { role = "user", content = "ping" } },
+        };
+        using var request = new HttpRequestMessage(HttpMethod.Post, _endpoint);
+        request.Content = new StringContent(JsonSerializer.Serialize(body), Encoding.UTF8);
+        request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+        try
+        {
+            using var response = await _http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct);
+            return (int)response.StatusCode switch
+            {
+                200 => (true, Mode == "proxy" ? "proxy joignable, token accepté ✓" : "clé API acceptée ✓"),
+                401 => (false, Mode == "proxy"
+                    ? "le proxy répond mais REFUSE le token (vérifier APP_TOKENS côté Vercel, puis redéployer)"
+                    : "clé API refusée"),
+                404 => (false, "URL introuvable — vérifier le chemin (…/api/translate)"),
+                429 => (false, "quota/limite de débit atteint"),
+                529 => (false, "API Anthropic surchargée (réessayer)"),
+                var code => (false, $"réponse inattendue ({code})"),
+            };
+        }
+        catch (HttpRequestException ex)
+        {
+            return (false, $"serveur injoignable : {ex.Message}");
+        }
+        catch (TaskCanceledException)
+        {
+            return (false, "délai dépassé (réseau ?)");
+        }
+    }
+
     public async Task<string?> TranslateAsync(string koreanText, Action<string>? onPartial, CancellationToken ct)
     {
         if (!IsConfigured) return null;
