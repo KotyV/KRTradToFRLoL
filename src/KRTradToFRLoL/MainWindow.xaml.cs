@@ -144,7 +144,7 @@ public partial class MainWindow : Window
         StartStopButton.Content = "2. Démarrer la traduction";
     }
 
-    private void OnSelectRegion(object sender, RoutedEventArgs e)
+    private async void OnSelectRegion(object sender, RoutedEventArgs e)
     {
         var selector = new RegionSelectorWindow();
         if (selector.ShowDialog() == true && selector.SelectedRegion is { } region)
@@ -155,8 +155,32 @@ public partial class MainWindow : Window
             _config.ChatRegionHeight = region.Height;
             _config.Save();
             UpdateRegionLabel();
-            SetStatus("Zone de chat enregistrée.");
+
+            // Aperçu immédiat : ce que l'OCR lit dans la zone — détecte tout de suite une
+            // zone mal placée (le chat bouge avec la mise en page du stream/de la VOD).
+            SetStatus("Zone enregistrée — aperçu OCR…");
+            var preview = await OcrZoneOnceAsync();
+            if (preview.Count == 0)
+            {
+                SetStatus("Zone enregistrée, mais AUCUN texte détecté dedans — couvre-t-elle bien le chat ?", error: true);
+            }
+            else
+            {
+                SetStatus($"Zone enregistrée — {preview.Count} ligne(s) détectée(s).");
+                foreach (var l in preview.Take(6)) AppendDiag($"[zone] {l}");
+            }
         }
+    }
+
+    private async Task<IReadOnlyList<string>> OcrZoneOnceAsync()
+    {
+        if (!_ocr.IsAvailable) return [];
+        var region = new System.Drawing.Rectangle(
+            _config.ChatRegionX, _config.ChatRegionY, _config.ChatRegionWidth, _config.ChatRegionHeight);
+        using var raw = new Capture.ScreenRegionCapturer().Capture(region);
+        using var upscaled = Capture.ScreenRegionCapturer.Upscale(raw, _config.OcrUpscaleFactor);
+        Capture.ScreenRegionCapturer.EnhanceForOcr(upscaled);
+        return await _ocr.RecognizeLinesAsync(upscaled);
     }
 
     private void OnStartStop(object sender, RoutedEventArgs e)
