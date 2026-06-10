@@ -1,0 +1,6 @@
+{
+  "name": "krtradtofrlol-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Relais de traduction KRTradToFRLoL : la clé Anthropic reste côté serveur."
+}
