@@ -106,7 +106,16 @@ public partial class MainWindow : Window
 
     private async void OnSaveProxy(object sender, RoutedEventArgs e)
     {
-        _config.ProxyUrl = ProxyUrlBox.Text.Trim();
+        var url = ProxyUrlBox.Text.Trim();
+        // Piège fréquent : coller le domaine nu — l'endpoint est /api/translate.
+        if (Uri.TryCreate(url, UriKind.Absolute, out var uri)
+            && uri.Scheme == Uri.UriSchemeHttps
+            && uri.AbsolutePath is "/" or "")
+        {
+            url = url.TrimEnd('/') + "/api/translate";
+            ProxyUrlBox.Text = url;
+        }
+        _config.ProxyUrl = url;
         if (ProxyTokenBox.Password.Length > 0)
             _config.SetProxyToken(ProxyTokenBox.Password);
         if (_config.ProxyUrl.Length == 0)

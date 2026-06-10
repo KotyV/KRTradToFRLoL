@@ -116,6 +116,7 @@ public sealed class ClaudeTranslator : ITranslator, IDisposable
                     ? "le proxy répond mais REFUSE le token (vérifier APP_TOKENS côté Vercel, puis redéployer)"
                     : "clé API refusée"),
                 404 => (false, "URL introuvable — vérifier le chemin (…/api/translate)"),
+                405 => (false, "méthode refusée — l'URL pointe sur la racine du site, pas sur …/api/translate"),
                 429 => (false, "quota/limite de débit atteint"),
                 529 => (false, "API Anthropic surchargée (réessayer)"),
                 var code => (false, $"réponse inattendue ({code})"),
