@@ -61,14 +61,26 @@ public sealed class AppConfig
     public static string ConfigDir =>
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "KRTradToFRLoL");
 
+    /// <summary>Racine des modèles du bundle portable : dossier models/ à côté de l'exe.</summary>
+    private static readonly string PortableModelsRoot = Path.Combine(AppContext.BaseDirectory, "models");
+
+    /// <summary>
+    /// Un modèle livré à côté de l'exe (zip portable « dézipper → double-clic ») a priorité
+    /// sur l'installation utilisateur de %AppData% (tools/export_*.py).
+    /// </summary>
+    internal static string ResolveModelDir(string portableRoot, string name)
+    {
+        var portable = Path.Combine(portableRoot, name);
+        return Directory.Exists(portable) ? portable : Path.Combine(ConfigDir, "models", name);
+    }
+
     [JsonIgnore]
-    public string EffectiveOcrModelDirectory =>
-        Path.Combine(ConfigDir, "models", "ocr-ko");
+    public string EffectiveOcrModelDirectory => ResolveModelDir(PortableModelsRoot, "ocr-ko");
 
     [JsonIgnore]
     public string EffectiveLocalModelDirectory =>
         string.IsNullOrWhiteSpace(LocalModelDirectory)
-            ? Path.Combine(ConfigDir, "models", "m2m100")
+            ? ResolveModelDir(PortableModelsRoot, "m2m100")
             : LocalModelDirectory;
 
     private static string ConfigPath => Path.Combine(ConfigDir, "config.json");

@@ -113,6 +113,18 @@ Exporte [facebook/m2m100_418M](https://huggingface.co/facebook/m2m100_418M) (lic
 en ONNX quantifié (~500 Mo) vers `%AppData%/KRTradToFRLoL/models/m2m100`. L'app le
 détecte au lancement et l'utilise en filet de secours automatique.
 
+## Distribution : zip portable
+
+```powershell
+./tools/make-portable.ps1 -Zip
+```
+
+Produit `publish/KRTradToFRLoL-portable.zip` : exe auto-suffisant (~87 Mo, **aucune
+installation, aucun .NET requis** — dézipper → double-clic) + les modèles OCR coréen et
+M2M-100 s'ils sont installés sur la machine de build (~600 Mo tout inclus). L'app cherche
+les modèles d'abord dans `models/` à côté de l'exe, puis dans `%AppData%/KRTradToFRLoL/models` ;
+la config et le cache du streamer restent dans `%AppData%` dans tous les cas.
+
 ## Développement
 
 ```powershell
@@ -127,6 +139,7 @@ dotnet test KRTradToFRLoL.slnx      # pyramide : unitaires + intégration (fichi
 - `server/vercel-proxy` — relais API pour la distribution sans clé embarquée.
 - `tools/export_korean_ocr.py` — installation du moteur OCR coréen (PaddleOCR ONNX).
 - `tools/export_m2m100.py` — export du modèle de traduction locale.
+- `tools/make-portable.ps1` — assemble le zip portable de distribution.
 
 La CI GitHub Actions compile (warnings = erreurs) et exécute la suite de tests sur
 Windows. Les tests d'intégration OCR/M2M-100 passent en no-op sur la CI (modèles non
