@@ -113,17 +113,26 @@ Exporte [facebook/m2m100_418M](https://huggingface.co/facebook/m2m100_418M) (lic
 en ONNX quantifié (~500 Mo) vers `%AppData%/KRTradToFRLoL/models/m2m100`. L'app le
 détecte au lancement et l'utilise en filet de secours automatique.
 
-## Distribution : zip portable
+## Distribution aux streamers (zéro installation)
 
 ```powershell
-./tools/make-portable.ps1 -Zip
+./tools/make-portable.ps1 -SingleExe   # un seul fichier KRTradToFRLoL.exe (~74 Mo)
+./tools/make-portable.ps1 -Zip         # zip complet, avec les modèles s'ils sont installés
 ```
 
-Produit `publish/KRTradToFRLoL-portable.zip` : exe auto-suffisant (~87 Mo, **aucune
-installation, aucun .NET requis** — dézipper → double-clic) + les modèles OCR coréen et
-M2M-100 s'ils sont installés sur la machine de build (~600 Mo tout inclus). L'app cherche
-les modèles d'abord dans `models/` à côté de l'exe, puis dans `%AppData%/KRTradToFRLoL/models` ;
-la config et le cache du streamer restent dans `%AppData%` dans tous les cas.
+- **`-SingleExe`** : un unique `.exe` à envoyer tel quel — app, runtime .NET et données
+  embarqués (extraits dans un cache au premier lancement ; démarrages suivants
+  instantanés). L'OCR utilise le moteur Windows (pack de langue coréen requis), sauf si
+  un dossier `models/` est posé à côté de l'exe.
+- **`-Zip`** : dossier complet incluant les modèles OCR coréen et M2M-100 s'ils sont
+  installés sur la machine de build (~600 Mo tout inclus) — la meilleure qualité OCR et
+  la traduction hors ligne, sans aucune étape côté streamer.
+
+Dans les deux cas : **aucun .NET requis**, l'app cherche les modèles d'abord dans
+`models/` à côté de l'exe puis dans `%AppData%/KRTradToFRLoL/models`, et la config/le
+cache du streamer restent dans `%AppData%`. L'exe n'étant pas signé, Windows SmartScreen
+peut afficher un avertissement au premier lancement (« Informations complémentaires →
+Exécuter quand même »).
 
 ## Développement
 

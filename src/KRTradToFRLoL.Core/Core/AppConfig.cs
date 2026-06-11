@@ -61,8 +61,14 @@ public sealed class AppConfig
     public static string ConfigDir =>
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "KRTradToFRLoL");
 
-    /// <summary>Racine des modèles du bundle portable : dossier models/ à côté de l'exe.</summary>
-    private static readonly string PortableModelsRoot = Path.Combine(AppContext.BaseDirectory, "models");
+    /// <summary>
+    /// Racine des modèles du bundle portable : dossier models/ à côté de l'exe.
+    /// Ancré sur le chemin du process (pas AppContext.BaseDirectory) : en publication
+    /// « exe unique », BaseDirectory pointe vers le cache d'extraction temporaire,
+    /// alors que les modèles sont posés à côté du vrai .exe.
+    /// </summary>
+    private static readonly string PortableModelsRoot =
+        Path.Combine(Path.GetDirectoryName(Environment.ProcessPath) ?? AppContext.BaseDirectory, "models");
 
     /// <summary>
     /// Un modèle livré à côté de l'exe (zip portable « dézipper → double-clic ») a priorité
