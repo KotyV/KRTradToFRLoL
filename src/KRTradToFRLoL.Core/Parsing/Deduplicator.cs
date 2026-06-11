@@ -8,7 +8,7 @@ namespace KRTradToFRLoL.Parsing;
 ///  1. clé exacte normalisée (timestamp + champion + texte) — robuste si timestamps activés ;
 ///  2. distance d'édition contre les lignes récentes du même champion, pour absorber le
 ///     jitter d'OCR (fond animé → la même ligne peut varier d'1-2 caractères entre frames).
-///     Seuil en distance ABSOLUE bornée (≤ max(1, 15 % de la longueur)) et non en ratio :
+///     Seuil en distance ABSOLUE bornée (≤ max(1, 20 % de la longueur)) et non en ratio :
 ///     sur un message de 3 caractères, 1 caractère d'écart = 67 % de similarité seulement.
 /// Les répétitions légitimes (spam « ㅋㅋㅋ ») restent acceptées dès que le timestamp change.
 /// </summary>

@@ -81,7 +81,7 @@ public sealed class ChatFrameAssembler(ChatLineParser parser)
     /// <summary>
     /// Extrait un timestamp de tête, même mutilé par l'OCR (« 2245 », « I1:50 », « 22.45 »),
     /// et le reformate « 22:45 » : l'overlay s'aligne sur la présentation du chat au lieu
-    /// d'afficher « 2245나나오… » collé.
+    /// d'afficher « 2245두루미… » collé.
     /// </summary>
     public static (string Timestamp, string Remainder) ExtractLeadingTimestamp(string text)
     {

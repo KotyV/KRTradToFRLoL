@@ -9,7 +9,7 @@
 // Variables d'environnement (Settings → Environment Variables sur Vercel) :
 //   ANTHROPIC_API_KEY  : la clé Anthropic (secret)
 //   APP_TOKENS         : tokens autorisés, séparés par des virgules, un par streamer
-//                        (ex: "tok-4zr-x7Kq,tok-tiky-p2Mn") — révocable individuellement.
+//                        (ex: "tok-streamer1-x7Kq,tok-streamer2-p2Mn") — révocable individuellement.
 
 export const config = {
   runtime: 'edge',

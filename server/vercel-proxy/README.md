@@ -15,7 +15,7 @@ Puis dans le dashboard Vercel (Settings → Environment Variables) :
 | Variable | Valeur |
 |---|---|
 | `ANTHROPIC_API_KEY` | ta clé Anthropic (type **Sensitive**) |
-| `APP_TOKENS` | tokens autorisés séparés par des virgules, un par streamer — ex. `tok-4zr-Xk29qLm,tok-tiky-Zp41Rn` (génère-les longs et aléatoires) |
+| `APP_TOKENS` | tokens autorisés séparés par des virgules, un par streamer — ex. `tok-streamer1-Xk29qLmAw7,tok-streamer2-Zp41RnQc8x` (génère-les longs et aléatoires) |
 
 Redéploie après modification des variables. La fonction tourne en région `icn1` (Séoul)
 pour minimiser la latence depuis la Corée.

@@ -14,7 +14,7 @@ public class ChatFrameAssemblerTests
     {
         var messages = Assembler.Assemble(
         [
-            "24:55 [Team] Farm9 (Yunara): 본인이쓰레기처럼못한걸",
+            "24:55 [Team] Nick9 (Yunara): 본인이쓰레기처럼못한걸",
             "미안합니다나와아하는게 정상아닌가요?",
         ]);
 
@@ -27,7 +27,7 @@ public class ChatFrameAssemblerTests
     {
         var messages = Assembler.Assemble(
         [
-            "[Team] sinano (Yone): 첫번째",
+            "[Team] joueurx (Yone): 첫번째",
             "두번째",
             "세번째",
         ]);
@@ -42,7 +42,7 @@ public class ChatFrameAssemblerTests
         var messages = Assembler.Assemble(
         [
             "미안합니다나와아하는게 정상아닌가요?", // en-tête défilé hors zone : irrécupérable
-            "[Team] sinano (Yone): 네넹",
+            "[Team] joueurx (Yone): 네넹",
         ]);
 
         var msg = Assert.Single(messages);
@@ -54,7 +54,7 @@ public class ChatFrameAssemblerTests
     {
         var messages = Assembler.Assemble(
         [
-            "[Team] sinano (Yone): 네넹",
+            "[Team] joueurx (Yone): 네넹",
             "몬스터 (르블랑) 님이 후퇴 신호를 보냄",
         ]);
 
@@ -67,8 +67,8 @@ public class ChatFrameAssemblerTests
     {
         var messages = Assembler.Assemble(
         [
-            "[Team] sinano (Yone): 네넹",
-            "25:01 도구연구협회장 (Sylas) purchased Control Ward",
+            "[Team] joueurx (Yone): 네넹",
+            "25:01 라면연구협회장 (Sylas) purchased Control Ward",
             "정상아닌가요?", // ne suit pas immédiatement un message parsé → ignorée
         ]);
 
@@ -83,8 +83,8 @@ public class ChatFrameAssemblerTests
         // hangul (le pseudo) mais c'est une nouvelle entrée, pas une continuation.
         var messages = Assembler.Assemble(
         [
-            "[Team] sinano (Yone): 네넹",
-            "도구연구협회장 (Sylas) purchased Control Ward",
+            "[Team] joueurx (Yone): 네넹",
+            "라면연구협회장 (Sylas) purchased Control Ward",
         ]);
 
         var msg = Assert.Single(messages);
@@ -94,12 +94,12 @@ public class ChatFrameAssemblerTests
     [Fact]
     public void Le_format_lobby_est_desactive_dans_une_frame_in_game()
     {
-        // Faux positif vu en test réel : le pseudo coréen « 큰 곰 » apparaît dans chaque
-        // ping/achat ; un fragment d'OCR « 29 : 4 큰 곰 대… » passait par le format lobby.
+        // Faux positif vu en test réel : le pseudo coréen « 흰 곰 » apparaît dans chaque
+        // ping/achat ; un fragment d'OCR « 29 : 4 흰 곰 대… » passait par le format lobby.
         var messages = Assembler.Assemble(
         [
-            "30:30 큰 곰 (Hwei) is on the way",      // marqueur in-game → frame en partie
-            "29 : 4 큰 곰 대 yc",                    // fragment d'OCR → ne doit PAS parser
+            "30:30 흰 곰 (Hwei) is on the way",      // marqueur in-game → frame en partie
+            "29 : 4 흰 곰 대 yc",                    // fragment d'OCR → ne doit PAS parser
         ]);
 
         Assert.Empty(messages);
@@ -121,12 +121,12 @@ public class ChatFrameAssemblerTests
     [Fact]
     public void Un_ping_au_timestamp_mutile_ne_contamine_pas_le_message_precedent()
     {
-        // Vu en réel : « 17:48 나나오즈 (Syndra) is on the way » lu « 1748 난날Relsynahe n he way »
+        // Vu en réel : « 17:48 두루미즈 (Syndra) is on the way » lu « 1748 두루Relsynahe n he way »
         // (timestamp sans ':', parenthèse perdue) se fusionnait dans le message du joueur.
         var messages = Assembler.Assemble(
         [
-            "17:18 [Team] KIFFEUR IS BACK (Diana): play with kai'sa",
-            "1748 난날Relsynahe n he way",
+            "17:18 [Team] STREAMER IS BACK (Diana): play with kai'sa",
+            "1748 두루Relsynahe n he way",
         ]);
 
         var msg = Assert.Single(messages);
@@ -134,9 +134,9 @@ public class ChatFrameAssemblerTests
     }
 
     [Theory]
-    [InlineData("I1:50 신일(Rell has targeted the Blue Sentinel")] // ts « I1:50 »
-    [InlineData("11.50 신 일 (Rell) is on the way")]               // ts « 11.50 »
-    [InlineData("1748 난날 on he way")]                            // ts « 1748 »
+    [InlineData("I1:50 고요(Rell has targeted the Blue Sentinel")] // ts « I1:50 »
+    [InlineData("11.50 고 요 (Rell) is on the way")]               // ts « 11.50 »
+    [InlineData("1748 두루 on he way")]                            // ts « 1748 »
     public void Les_timestamps_mutiles_marquent_une_nouvelle_entree(string line) =>
         Assert.True(ChatLineParser.LooksLikeNewEntry(line));
 
@@ -145,7 +145,7 @@ public class ChatFrameAssemblerTests
     {
         var messages = Assembler.Assemble(
         [
-            "05:39 신 일 (Rell) is on the way",            // ping EN, pseudo hangul → copie
+            "05:39 고 요 (Rell) is on the way",            // ping EN, pseudo hangul → copie
             "몬스터 (르블랑) 님이 후퇴 신호를 보냄",          // ping client CORÉEN → à traduire
             "B D",                                         // fragment court → ignoré
             "COIEUI",                                      // bruit de fondu → ignoré
@@ -165,7 +165,7 @@ public class ChatFrameAssemblerTests
         // « Aide - à la suite » vu en réel : du hangul halluciné partait en traduction fantôme.
         var messages = Assembler.Assemble(
         [
-            "2233나나오 두꺼비둘 가나다 (Syndra)", // hangul majoritaire mais aucun 님이/보냄/습니다
+            "2233두루미 두꺼비둘 가나다 (Syndra)", // hangul majoritaire mais aucun 님이/보냄/습니다
         ], mirrorAllLines: true);
 
         var msg = Assert.Single(messages);
@@ -173,8 +173,8 @@ public class ChatFrameAssemblerTests
     }
 
     [Theory]
-    [InlineData("2245나나오(Syndra) signals to be cautious", "22:45", "나나오(Syndra) signals to be cautious")]
-    [InlineData("I1:50 신일 (Rell) is on the way", "11:50", "신일 (Rell) is on the way")]
+    [InlineData("2245두루미(Syndra) signals to be cautious", "22:45", "두루미(Syndra) signals to be cautious")]
+    [InlineData("I1:50 고요 (Rell) is on the way", "11:50", "고요 (Rell) is on the way")]
     [InlineData("22.45 Evelynn (Evelynn) is on a rampage!", "22:45", "Evelynn (Evelynn) is on a rampage!")]
     [InlineData("pas de timestamp ici", "", "pas de timestamp ici")]
     public void Le_timestamp_mutile_est_extrait_et_reformate(string line, string ts, string rest)
@@ -189,7 +189,7 @@ public class ChatFrameAssemblerTests
     {
         var messages = Assembler.Assemble(
         [
-            "13:51 [Team] 큰 곰 (Hwei): 원숭이마낭",
+            "13:51 [Team] 흰 곰 (Hwei): 원숭이마낭",
         ], mirrorAllLines: true);
 
         var msg = Assert.Single(messages);
@@ -201,8 +201,8 @@ public class ChatFrameAssemblerTests
     {
         var messages = Assembler.Assemble(
         [
-            "24:26 [Team] 도구연구협회장 (Sylas): 아ㄴ;",
-            "24:28 [Team] 도구연구협회장 (Sylas): 아니",
+            "24:26 [Team] 라면연구협회장 (Sylas): 아ㄴ;",
+            "24:28 [Team] 라면연구협회장 (Sylas): 아니",
         ]);
 
         Assert.Equal(2, messages.Count);

@@ -41,7 +41,7 @@ public class GlossaryDataTests
     {
         var glossary = Glossary.LoadFromDataDir();
 
-        Assert.True(glossary.Count >= 300, $"glossaire trop pauvre : {glossary.Count} entrées");
+        Assert.True(glossary.Count >= 800, $"glossaire trop pauvre : {glossary.Count} entrées");
         Assert.NotNull(glossary.TryTranslate("ㅈㅈ"));
         Assert.NotNull(glossary.TryTranslate("서렌"));
         Assert.NotNull(glossary.TryTranslate("ㄱㄱ"));

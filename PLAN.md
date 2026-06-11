@@ -8,6 +8,16 @@
 > par recherche web (rapport complet : `docs/recherche-rapport-2026-06-10.json` ;
 > observations des captures réelles : `docs/observations-captures.md`).
 
+> ⚠️ **Document d'époque, conservé pour référence — le code et le [README](README.md) font
+> foi.** Le produit a évolué depuis la rédaction : capture GDI/BitBlt 4 Hz sur zone d'écran
+> (WGC `CreateForWindow` reste la cible v2), fallback de traduction **local M2M-100 ONNX**
+> (les pistes Google Cloud Translation / Azure Translator ont été abandonnées), timeout LLM
+> 2,5 s, .NET 10, pipeline OCR ONNX maison installé via `tools/export_korean_ocr.py` (pas de
+> lib RapidOcrNet ni de modèles embarqués), glossaire 800+ entrées. L'essentiel des
+> phases 0 à 2 est livré, plus une partie de la phase 3 (CI, proxy de distribution,
+> auto-recovery, écran de diagnostic) — pas encore de source OBS, d'installeur ni de
+> détection de partie automatique. Les cases à cocher du §6 n'ont pas été tenues à jour.
+
 ---
 
 ## 1. Contraintes fondamentales
@@ -186,7 +196,7 @@ mots à ~0,9 s).
   On ne traduit que si la partie *message* contient du hangul.
 - **Ancre de parsing** : la **dernière** parenthèse avant `:` correspondant à un nom de champion
   de la locale (liste Data Dragon `fr_FR`/`en_US`) — les pseudos peuvent être des phrases
-  coréennes avec espaces (`아무도 너를 위로하지 않았다`).
+  coréennes avec espaces (`아무도 나를 막을 수 없다`).
 - Pseudos : jamais traduits (option romanisation). Mode « masquer les pseudos » du client
   (affiche le nom du champion à la place) : **à recommander dans l'onboarding** — simplifie
   parsing et OCR.

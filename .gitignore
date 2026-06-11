@@ -3,3 +3,15 @@ obj/
 *.user
 .vs/
 publish/
+
+# Proxy Vercel (server/vercel-proxy)
+node_modules/
+.vercel/
+.env
+.env.*
+
+# Modèles ML locaux (exportés dans %AppData%, jamais versionnés)
+*.onnx
+
+# Captures d'écran de référence (repo public : pseudos et habillage de stream visibles)
+samples/

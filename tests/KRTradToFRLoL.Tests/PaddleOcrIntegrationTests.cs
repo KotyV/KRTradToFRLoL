@@ -59,7 +59,7 @@ public class PaddleOcrIntegrationTests(ITestOutputHelper output)
             return;
         }
 
-        using var bmp = RenderLines("[Team] 큰 곰 (Hwei): 서렌?", "바론 가자");
+        using var bmp = RenderLines("[Team] 흰 곰 (Hwei): 서렌?", "바론 가자");
         ScreenRegionCapturer.EnhanceForOcr(bmp);
 
         var lines = await engine.RecognizeLinesAsync(bmp);
